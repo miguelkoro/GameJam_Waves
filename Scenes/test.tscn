@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=21 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Texture2D" uid="uid://0tla1bo75s3s" path="res://TileMaps/ocean_water__sandy_beach_tileset.png" id="1_qc4db"]
 [ext_resource type="Texture2D" uid="uid://bf3qe10ambcv0" path="res://TileMaps/turquoise_to_deeper_blue_with.png" id="2_35xla"]
-[ext_resource type="Texture2D" uid="uid://bqugh7s3x84kd" path="res://Sprites/Cat.png" id="2_ys1qc"]
 [ext_resource type="Texture2D" uid="uid://dm425pvlhil8x" path="res://Sprites/PupperFish2.png" id="3_35xla"]
+[ext_resource type="Script" uid="uid://dhuh6x6mu73g2" path="res://Scenes/Player.gd" id="4_35xla"]
+[ext_resource type="Texture2D" uid="uid://dy0td6k32b5lr" path="res://Sprites/Cat_1.png" id="5_35xla"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("1_qc4db")
@@ -54,47 +55,91 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_h2yge")
 sources/1 = SubResource("TileSetAtlasSource_i3aeo")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0xm2m"]
-atlas = ExtResource("2_ys1qc")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ys1qc"]
+radius = 15.0
+height = 64.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3aeo"]
+atlas = ExtResource("5_35xla")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_h2yge"]
-atlas = ExtResource("2_ys1qc")
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wyu1"]
+atlas = ExtResource("5_35xla")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
-atlas = ExtResource("2_ys1qc")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c07c"]
+atlas = ExtResource("5_35xla")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
-atlas = ExtResource("2_ys1qc")
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cgwh"]
+atlas = ExtResource("5_35xla")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
-atlas = ExtResource("2_ys1qc")
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaow0"]
+atlas = ExtResource("5_35xla")
 region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpfo2"]
+atlas = ExtResource("5_35xla")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb21e"]
+atlas = ExtResource("5_35xla")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aees8"]
+atlas = ExtResource("5_35xla")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mie3u"]
+atlas = ExtResource("5_35xla")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qy5o"]
+atlas = ExtResource("5_35xla")
+region = Rect2(704, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_272bh"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0xm2m")
+"texture": SubResource("AtlasTexture_i3aeo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_h2yge")
+"texture": SubResource("AtlasTexture_5wyu1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1bvp3")
+"texture": SubResource("AtlasTexture_0c07c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lquwl")
+"texture": SubResource("AtlasTexture_2cgwh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7mycd")
+"texture": SubResource("AtlasTexture_iaow0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpfo2")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle_south",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb21e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aees8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mie3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qy5o")
+}],
+"loop": true,
+"name": &"walk_south",
+"speed": 10.0
 }]
 
 [node name="Node2D" type="Node2D"]
@@ -103,14 +148,23 @@ animations = [{
 tile_map_data = PackedByteArray("AAD/////AAAAAAMAAAD//wAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAP//AAAAAAMAAAAAAP7/AAAAAAMAAAABAP7/AAAAAAIAAAABAP//AAAAAAMAAAABAAAAAAAAAAMAAAABAAEAAAAAAAMAAAAAAAEAAAAAAAMAAAD//wEAAAAAAAMAAAD+/wEAAAAAAAMAAAD+/wAAAAAAAAMAAAD+////AAAAAAMAAAD+//7/AAAAAAMAAAD///7/AAAAAAMAAAD9//7/AAAAAAMAAAD9////AAAAAAMAAAD9/wAAAAAAAAMAAAD9/wEAAAAAAAMAAAD+/wIAAAAAAAMAAAD//wIAAAAAAAMAAAAAAAIAAAAAAAMAAAABAAIAAAAAAAMAAAACAAEAAAAAAAMAAAACAAAAAAAAAAMAAAACAP//AAAAAAIAAAACAP7/AAACAAIAAAAAAP3/AAAAAAMAAAD///3/AAAAAAMAAAD+//3/AAAAAAMAAAACAP3/AAACAAEAAAADAP3/AAACAAEAAAADAP7/AAACAAEAAAAEAP7/AAACAAEAAAAEAP3/AAACAAEAAAADAPz/AAACAAEAAAACAPz/AAACAAEAAAAEAPz/AAACAAEAAAAFAP3/AAACAAEAAAAFAP7/AAACAAEAAAAGAP7/AAACAAEAAAAGAP3/AAACAAEAAAAFAPz/AAACAAEAAAAFAP//AAACAAEAAAAEAP//AAACAAEAAAAGAP//AAACAAEAAAABAP3/AAABAAAAAAADAP//AAACAAIAAAADAAAAAAABAAAAAAADAAEAAAABAAAAAAAAAPz/AAABAAIAAAD///z/AAABAAIAAAD+//z/AAABAAIAAAD9//z/AAADAAEAAAD9//3/AAADAAIAAAABAPz/AAACAAIAAAADAAIAAAABAAEAAAACAAMAAAABAAEAAAACAAIAAAABAAMAAAD8//7/AQADAAIAAAD8////AQADAAIAAAD8/wAAAQADAAIAAAD7//7/AQACAAEAAAD7////AQACAAEAAAD6////AQACAAEAAAD6/wAAAQACAAEAAAD7/wAAAQACAAEAAAD6//7/AQACAAEAAAD8/wEAAQADAAMAAAD7/wEAAQABAAIAAAD6/wEAAQABAAIAAAD5/wEAAQAAAAIAAAD5/wAAAQABAAAAAAD5////AQABAAAAAAD5//7/AQABAAAAAAD6//3/AQABAAEAAAD5//3/AQABAAMAAAD7//z/AQADAAAAAAD8//z/AQAAAAAAAAD8//3/AQADAAIAAAD7//3/AQACAAEAAAD6//z/AQABAAMAAAD6//v/AQAAAAMAAAD5//v/AQAAAAMAAAD5//z/AQAAAAMAAAD4//z/AQAAAAMAAAD4//3/AQAAAAMAAAD4//7/AQAAAAMAAAD4////AQAAAAMAAAD4/wAAAQAAAAMAAAD4/wEAAQAAAAMAAAD7//v/AQAAAAMAAAD8//v/AQAAAAMAAAD9//v/AQAAAAMAAAD7//r/AQAAAAMAAAD6//r/AQAAAAMAAAD5//r/AQAAAAMAAAD4//v/AQAAAAMAAAD5/wIAAQAAAAMAAAD4/wIAAQAAAAMAAAD6/wIAAQAAAAMAAAD7/wIAAQAAAAMAAAD8/wIAAQAAAAMAAAD7/wMAAQAAAAMAAAD6/wMAAQAAAAMAAAD4/wMAAQAAAAMAAAD5/wMAAQAAAAMAAAD8/wMAAQAAAAMAAAA=")
 tile_set = SubResource("TileSet_1bvp3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-223, -127)
-sprite_frames = SubResource("SpriteFrames_272bh")
-autoplay = "default"
-frame = 4
-frame_progress = 0.04678682
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-39, -28)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_35xla")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("4_35xla")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_ys1qc")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_272bh")
+animation = &"walk_south"
+autoplay = "idle_south"
+frame_progress = 0.117556565
