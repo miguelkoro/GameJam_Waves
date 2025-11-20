@@ -1,68 +1,104 @@
 [gd_scene load_steps=8 format=4 uid="uid://d2syatk0fq20k"]
 
-[ext_resource type="Texture2D" uid="uid://0tla1bo75s3s" path="res://TileMaps/ocean_water__sandy_beach_tileset.png" id="1_qc4db"]
-[ext_resource type="Texture2D" uid="uid://bf3qe10ambcv0" path="res://TileMaps/turquoise_to_deeper_blue_with.png" id="2_35xla"]
-[ext_resource type="Texture2D" uid="uid://dm425pvlhil8x" path="res://Sprites/PupperFish2.png" id="3_35xla"]
+[ext_resource type="Texture2D" uid="uid://be1dx1v22lvha" path="res://TileMaps/TileSet_Dungeon_Playa.png" id="1_qc4db"]
+[ext_resource type="Texture2D" uid="uid://dhij0f5830e8g" path="res://TileMaps/TileSet_Playa_Acantilado.png" id="2_ys1qc"]
+[ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Jellyfish.tscn" id="4_35xla"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="4_ys1qc"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ys1qc"]
 texture = ExtResource("1_qc4db")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
 0:1/0 = 0
-1:1/animation_columns = 1
-1:1/animation_separation = Vector2i(1, 0)
-1:1/animation_speed = 3.46
-1:1/animation_mode = 1
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
+4:1/0 = 0
 0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
+4:2/0 = 0
 0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+4:4/0 = 0
+0:5/0 = 0
+4:5/0 = 0
+4:6/0 = 0
+0:7/animation_columns = 4
+0:7/animation_frame_0/duration = 1.0
+0:7/animation_frame_1/duration = 1.0
+0:7/animation_frame_2/duration = 1.0
+0:7/animation_frame_3/duration = 1.0
+0:7/0 = 0
+4:7/animation_columns = 4
+4:7/animation_frame_0/duration = 1.0
+4:7/animation_frame_1/duration = 1.0
+4:7/animation_frame_2/duration = 1.0
+4:7/animation_frame_3/duration = 1.0
+4:7/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i3aeo"]
-texture = ExtResource("2_35xla")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_35xla"]
+texture = ExtResource("2_ys1qc")
 texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
 0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
+7:1/0 = 0
 0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
 3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(6, -16, 6, -4, 16, -4, 16, 16, -16, 16, -16, -16)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -16, -6, -4, -16, -4, -16, 16, 16, 16, 16, -16)
+7:2/0 = 0
 0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+5:4/0 = 0
+5:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, 16, -4, 16, 16, -16, 16)
+6:4/0 = 0
+6:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -4, 6, -4, 6, 16, -16, 16)
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, -4, -6, -4, -6, 16, 16, 16)
+4:5/0 = 0
+4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6, -16, -6, 16, 16, 16, 16, -16)
+5:5/0 = 0
+6:5/0 = 0
+6:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(6, -16, 6, 16, -16, 16, -16, -16)
+7:5/0 = 0
+0:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+4:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 10, -6, 10, -6, -16, 16, -16)
+5:6/0 = 0
+5:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 10, 16, 10, 16, -16, -16, -16)
+6:6/0 = 0
+6:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(6, -16, 6, 10, -16, 10, -16, -16)
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 10, 6, 10, 6, 16, -16, 16, -16, -16, 16, -16)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 10, -6, 10, -6, 16, 16, 16, 16, -16, -16, -16)
 
 [sub_resource type="TileSet" id="TileSet_1bvp3"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_h2yge")
-sources/1 = SubResource("TileSetAtlasSource_i3aeo")
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_ys1qc")
+sources/3 = SubResource("TileSetAtlasSource_35xla")
 
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD/////AAAAAAMAAAD//wAAAAAAAAMAAAAAAAAAAAAAAAMAAAAAAP//AAAAAAMAAAAAAP7/AAAAAAMAAAABAP7/AAAAAAIAAAABAP//AAAAAAMAAAABAAAAAAAAAAMAAAABAAEAAAAAAAMAAAAAAAEAAAAAAAMAAAD//wEAAAAAAAMAAAD+/wEAAAAAAAMAAAD+/wAAAAAAAAMAAAD+////AAAAAAMAAAD+//7/AAAAAAMAAAD///7/AAAAAAMAAAD9//7/AAAAAAMAAAD9////AAAAAAMAAAD9/wAAAAAAAAMAAAD9/wEAAAAAAAMAAAD+/wIAAAAAAAMAAAD//wIAAAAAAAMAAAAAAAIAAAAAAAMAAAABAAIAAAAAAAMAAAACAAEAAAAAAAMAAAACAAAAAAAAAAMAAAACAP//AAAAAAIAAAACAP7/AAACAAIAAAAAAP3/AAAAAAMAAAD///3/AAAAAAMAAAD+//3/AAAAAAMAAAACAP3/AAACAAEAAAADAP3/AAACAAEAAAADAP7/AAACAAEAAAAEAP7/AAACAAEAAAAEAP3/AAACAAEAAAADAPz/AAACAAEAAAACAPz/AAACAAEAAAAEAPz/AAACAAEAAAAFAP3/AAACAAEAAAAFAP7/AAACAAEAAAAGAP7/AAACAAEAAAAGAP3/AAACAAEAAAAFAPz/AAACAAEAAAAFAP//AAACAAEAAAAEAP//AAACAAEAAAAGAP//AAACAAEAAAABAP3/AAABAAAAAAADAP//AAACAAIAAAADAAAAAAABAAAAAAADAAEAAAABAAAAAAAAAPz/AAABAAIAAAD///z/AAABAAIAAAD+//z/AAABAAIAAAD9//z/AAADAAEAAAD9//3/AAADAAIAAAABAPz/AAACAAIAAAADAAIAAAABAAEAAAACAAMAAAABAAEAAAACAAIAAAABAAMAAAD8//7/AQADAAIAAAD8////AQADAAIAAAD8/wAAAQADAAIAAAD7//7/AQACAAEAAAD7////AQACAAEAAAD6////AQACAAEAAAD6/wAAAQACAAEAAAD7/wAAAQACAAEAAAD6//7/AQACAAEAAAD8/wEAAQADAAMAAAD7/wEAAQABAAIAAAD6/wEAAQABAAIAAAD5/wEAAQAAAAIAAAD5/wAAAQABAAAAAAD5////AQABAAAAAAD5//7/AQABAAAAAAD6//3/AQABAAEAAAD5//3/AQABAAMAAAD7//z/AQADAAAAAAD8//z/AQAAAAAAAAD8//3/AQADAAIAAAD7//3/AQACAAEAAAD6//z/AQABAAMAAAD6//v/AQAAAAMAAAD5//v/AQAAAAMAAAD5//z/AQAAAAMAAAD4//z/AQAAAAMAAAD4//3/AQAAAAMAAAD4//7/AQAAAAMAAAD4////AQAAAAMAAAD4/wAAAQAAAAMAAAD4/wEAAQAAAAMAAAD7//v/AQAAAAMAAAD8//v/AQAAAAMAAAD9//v/AQAAAAMAAAD7//r/AQAAAAMAAAD6//r/AQAAAAMAAAD5//r/AQAAAAMAAAD4//v/AQAAAAMAAAD5/wIAAQAAAAMAAAD4/wIAAQAAAAMAAAD6/wIAAQAAAAMAAAD7/wIAAQAAAAMAAAD8/wIAAQAAAAMAAAD7/wMAAQAAAAMAAAD6/wMAAQAAAAMAAAD4/wMAAQAAAAMAAAD5/wMAAQAAAAMAAAD8/wMAAQAAAAMAAAA=")
+tile_map_data = PackedByteArray("AAD/////AgAAAAAAAAD//wAAAgAAAAAAAAD+/wAAAgAAAAAAAAD+////AgAAAAAAAAD9////AgAAAAAAAAD9/wAAAgAAAAAAAAD+/wEAAgAAAAAAAAAAAAAAAgAAAAAAAAAAAP//AgAAAAAAAAD//wEAAgAAAAAAAAAAAAEAAgAAAAAAAAABAAEAAgAAAAAAAAABAAAAAgAAAAAAAAABAP//AgAAAAAAAAAAAP7/AgAAAAAAAAD///7/AgAAAAAAAAD+//7/AgAAAAAAAAD9//7/AgAAAAAAAAD8////AgAAAAAAAAD8/wAAAgAAAAAAAAD8/wEAAgAEAAEAAAD9/wEAAgAAAAAAAAACAAEAAgAAAAAAAAACAAAAAgAAAAAAAAACAP//AgAAAAAAAAACAP7/AgAAAAAAAAABAP7/AgAAAAAAAAD8//7/AgAAAAAAAAD7////AgAAAAAAAAD7/wAAAgAAAAAAAAD8/wIAAgAAAAUAAAD9/wIAAgAAAAAAAAD+/wIAAgAAAAAAAAD//wIAAgAAAAAAAAAAAAIAAgAAAAAAAAABAAIAAgAAAAAAAAACAAIAAgAAAAAAAAADAAIAAgAAAAAAAAADAAEAAgAAAAAAAAADAAAAAgAAAAAAAAADAP//AgAAAAAAAAADAP7/AgAAAAAAAAADAP3/AgAAAAAAAAACAP3/AgAAAAAAAAABAP3/AgAAAAAAAAAAAP3/AwAGAAYAAAD///3/AwAFAAYAAAD+//3/AgAAAAAAAAD9//3/AgAAAAAAAAD8//3/AgAAAAAAAAD7//7/AgAAAAAAAAD6////AgAAAAAAAAD6/wAAAgAAAAAAAAD6/wEAAgAAAAEAAAD7/wEAAgAEAAcAAAD7/wIAAgAAAAcAAAD5//z/AgAAAAAAAAD5//3/AgAAAAAAAAD5//7/AgAAAAAAAAD5////AgAAAAAAAAD5/wAAAgAAAAAAAAD5/wEAAgAAAAAAAAD5/wIAAgAAAAAAAAD5/wMAAgAAAAAAAAD5/wQAAgAAAAAAAAD6//z/AgAAAAAAAAD6//3/AgAAAAAAAAD6//7/AgAAAAAAAAD6/wIAAgAEAAUAAAD6/wMAAgAAAAMAAAD6/wQAAgAAAAAAAAD7//z/AgAAAAAAAAD7//3/AgAAAAAAAAD7/wMAAgAEAAYAAAD7/wQAAgAAAAAAAAD8//z/AgAAAAAAAAD8/wMAAgAEAAMAAAD8/wQAAgAAAAAAAAD9//z/AgAAAAAAAAD9/wMAAgAAAAAAAAD9/wQAAgAAAAAAAAD+//z/AgAAAAAAAAD+/wMAAgAAAAAAAAD+/wQAAgAAAAAAAAD///z/AwAFAAUAAAD//wMAAgAAAAAAAAD//wQAAgAAAAAAAAAAAPz/AwADAAQAAAAAAAMAAgAAAAAAAAAAAAQAAgAAAAAAAAABAPz/AwAFAAYAAAABAAMAAgAAAAAAAAABAAQAAgAAAAAAAAACAPz/AwAFAAYAAAACAAMAAgAAAAAAAAACAAQAAgAAAAAAAAADAPz/AwAFAAYAAAADAAMAAgAAAAAAAAADAAQAAgAAAAAAAAAEAPz/AwACAAQAAAAEAP3/AwAEAAYAAAAEAP7/AgAAAAAAAAAEAP//AgAAAAAAAAAEAAAAAgAAAAAAAAAEAAEAAgAAAAAAAAAEAAIAAgAAAAAAAAAEAAMAAgAAAAAAAAAEAAQAAgAAAAAAAAAFAPz/AgAAAAAAAAAFAP3/AwACAAQAAAAFAP7/AwAEAAUAAAAFAP//AwAEAAUAAAAFAAAAAwAEAAUAAAAFAAEAAgAAAAAAAAAFAAIAAgAAAAAAAAAFAAMAAgAAAAAAAAAFAAQAAgAAAAAAAAABAAUAAgAEAAcAAAAAAPv/AwAFAAUAAAABAPv/AwAFAAUAAAACAPv/AwAFAAUAAAD4//3/AwAGAAUAAAD4//7/AwAGAAUAAAA=")
 tile_set = SubResource("TileSet_1bvp3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-39, -28)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_35xla")
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("4_ys1qc")]
+[node name="Player" parent="YSort" groups=["Player"] instance=ExtResource("4_ys1qc")]
+
+[node name="Jellyfish" parent="YSort" instance=ExtResource("4_35xla")]
+position = Vector2(-69, -22)

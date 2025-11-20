@@ -9,8 +9,9 @@ func _physics_process(delta: float) -> void:
 	if !idle:
 		last_facing_direction = player.velocity.normalized()
 		
-	animation_tree.set("parameters/conditions/run", idle)
-	animation_tree.set("parameters/conditions/idle", !idle)
 	
-	animation_tree.set("parameters/Idle/blend_position", last_facing_direction)
-	animation_tree.set("parameters/Run/blend_position", last_facing_direction)
+	animation_tree.set("parameters/PlayerStates/Idle/blend_position", last_facing_direction)
+	animation_tree.set("parameters/PlayerStates/Run/blend_position", last_facing_direction)
+	#animation_tree.set("parameters/PlayerStates/Attack/blend_position", last_facing_direction)
+
+	animation_tree.set("parameters/TimeScale/scale", 1.0) #Para controlar la velocidad de todas las animaciones

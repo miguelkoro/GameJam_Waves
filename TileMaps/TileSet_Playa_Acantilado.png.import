@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e42auc5wibvj"
-path="res://.godot/imported/ChibbiCat.png-3d43e48572f9657157bf49e81b5ec3e9.ctex"
+uid="uid://dhij0f5830e8g"
+path="res://.godot/imported/TileSet_Playa_Acantilado.png-df01f24d02158dc27dc4e3e6f38d49f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/ChibbiCat.png"
-dest_files=["res://.godot/imported/ChibbiCat.png-3d43e48572f9657157bf49e81b5ec3e9.ctex"]
+source_file="res://TileMaps/TileSet_Playa_Acantilado.png"
+dest_files=["res://.godot/imported/TileSet_Playa_Acantilado.png-df01f24d02158dc27dc4e3e6f38d49f1.ctex"]
 
 [params]
 

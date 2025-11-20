@@ -31,6 +31,11 @@ folder_colors={
 "res://TileMaps/": "orange"
 }
 
+[global_group]
+
+Enemy=""
+Player=""
+
 [input]
 
 ui_left={

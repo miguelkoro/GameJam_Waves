@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0tla1bo75s3s"
-path="res://.godot/imported/ocean_water__sandy_beach_tileset.png-9e67983d71ecff1b16cb48f32a616ca4.ctex"
+uid="uid://c4u63xkad60y2"
+path="res://.godot/imported/Jellyfish.png-2d141598ee957178587190708de9cc83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileMaps/ocean_water__sandy_beach_tileset.png"
-dest_files=["res://.godot/imported/ocean_water__sandy_beach_tileset.png-9e67983d71ecff1b16cb48f32a616ca4.ctex"]
+source_file="res://Sprites/Jellyfish.png"
+dest_files=["res://.godot/imported/Jellyfish.png-2d141598ee957178587190708de9cc83.ctex"]
 
 [params]
 

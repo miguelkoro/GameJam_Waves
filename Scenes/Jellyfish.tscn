@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://qxnsc00hb5ae"]
+
+[ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Jellyfish.png" id="1_cytm7"]
+[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/PlayerShadow.png" id="2_m07os"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m07os"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebxm7"]
+atlas = ExtResource("1_cytm7")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6goe8"]
+atlas = ExtResource("1_cytm7")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2clb"]
+atlas = ExtResource("1_cytm7")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv3f0"]
+atlas = ExtResource("1_cytm7")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpsdb"]
+atlas = ExtResource("1_cytm7")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xtpv"]
+atlas = ExtResource("1_cytm7")
+region = Rect2(160, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e6vho"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebxm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6goe8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2clb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mv3f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpsdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xtpv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w24je"]
+radius = 9.0
+height = 26.0
+
+[node name="Jellyfish" type="CharacterBody2D" groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 18)
+shape = SubResource("CapsuleShape2D_m07os")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e6vho")
+autoplay = "default"
+frame_progress = 0.44162503
+
+[node name="AttackArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+modulate = Color(0.8618463, 2.8878452e-07, 0.49752194, 1)
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_w24je")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(-1, 18)
+texture = ExtResource("2_m07os")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf3qe10ambcv0"
-path="res://.godot/imported/turquoise_to_deeper_blue_with.png-31b4d2cda80c43c407d380a297dc3e92.ctex"
+uid="uid://dyqeb36ox6iv0"
+path="res://.godot/imported/PlayerShadow.png-128a31a9bdfe00cdd76bed9dfe16ddbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileMaps/turquoise_to_deeper_blue_with.png"
-dest_files=["res://.godot/imported/turquoise_to_deeper_blue_with.png-31b4d2cda80c43c407d380a297dc3e92.ctex"]
+source_file="res://Sprites/PlayerShadow.png"
+dest_files=["res://.godot/imported/PlayerShadow.png-128a31a9bdfe00cdd76bed9dfe16ddbd.ctex"]
 
 [params]
 

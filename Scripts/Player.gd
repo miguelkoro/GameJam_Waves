@@ -1,5 +1,6 @@
 extends CharacterBody2D
 var direction: Vector2 = Vector2.ZERO
+var attacking: bool = false
 
 
 func _physics_process(delta: float) -> void:
