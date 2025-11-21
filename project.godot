@@ -26,6 +26,7 @@ folder_colors={
 "res://Animations/": "teal",
 "res://Scenes/": "red",
 "res://Scripts/": "purple",
+"res://Shaders/": "pink",
 "res://Singletons/": "yellow",
 "res://Sprites/": "blue",
 "res://TileMaps/": "orange"

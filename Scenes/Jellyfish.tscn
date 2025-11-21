@@ -1,7 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://qxnsc00hb5ae"]
+[gd_scene load_steps=14 format=3 uid="uid://qxnsc00hb5ae"]
 
 [ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Jellyfish.png" id="1_cytm7"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/PlayerShadow.png" id="2_m07os"]
+
+[sub_resource type="Gradient" id="Gradient_m07os"]
+offsets = PackedFloat32Array(0, 0.7133333)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ebxm7"]
+gradient = SubResource("Gradient_m07os")
+fill = 1
+fill_from = Vector2(0.5046729, 0.4906542)
+fill_to = Vector2(1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m07os"]
 radius = 8.0
@@ -63,9 +73,18 @@ height = 26.0
 
 [node name="Jellyfish" type="CharacterBody2D" groups=["Enemy"]]
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -8)
+color = Color(0.6431373, 0.50980395, 1, 0.4392157)
+texture = SubResource("GradientTexture2D_ebxm7")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 18)
 shape = SubResource("CapsuleShape2D_m07os")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(-1, 18)
+texture = ExtResource("2_m07os")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_e6vho")
@@ -79,7 +98,3 @@ visible = false
 modulate = Color(0.8618463, 2.8878452e-07, 0.49752194, 1)
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_w24je")
-
-[node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(-1, 18)
-texture = ExtResource("2_m07os")
