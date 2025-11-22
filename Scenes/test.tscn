@@ -368,7 +368,7 @@ y_sort_enabled = true
 [node name="Player" parent="YSort" instance=ExtResource("4_ys1qc")]
 
 [node name="Jellyfish" parent="YSort" instance=ExtResource("4_35xla")]
-position = Vector2(-69, -22)
+position = Vector2(-45, -24)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.68403757, 0.78250575, 0.99999875, 1)

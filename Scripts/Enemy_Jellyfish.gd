@@ -21,8 +21,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	#Si hay colision con un muro, que se de la vuelta
-	if is_on_wall():
+	if patrol_mode == PatrolMode.HORIZONTAL and is_on_wall():
 		direction *= -1
+	elif patrol_mode == PatrolMode.VERTICAL:
+		if is_on_ceiling() or is_on_floor():
+			direction *= -1
 		
 
 #Si detecta otras areas, hay que usar area_entered
