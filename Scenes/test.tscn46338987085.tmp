@@ -344,11 +344,7 @@ tile_set = SubResource("TileSet_1bvp3")
 script = ExtResource("5_iaow0")
 
 [node name="TileMapLayer_Water" type="TileMapLayer" parent="WaterCurrent"]
-tile_map_data = PackedByteArray("AAD7/wIAAAAAAAcAABD7/wEAAAAAAAcAABD8/wEAAAAAAAcAABD8/wIAAAAAAAcAABD6/wIAAAAAAAcAABD6/wMAAAAAAAcAABD7/wMAAAAAAAcAABD8/wMAAAAAAAcAABD6/wEAAAAAAAcAABA=")
-tile_set = SubResource("TileSet_1bvp3")
-
-[node name="TileMapLayer_Water2" type="TileMapLayer" parent="WaterCurrent"]
-tile_map_data = PackedByteArray("AAD7/wEAAAAEAAUAAAD8/wEAAAAEAAMAAAD8/wIAAAAEAAQAAAD6/wIAAAAAAAQAAAD6/wMAAAAAAAIAAAD7/wMAAAAAAAUAAAD8/wMAAAAEAAIAAAD6/wEAAAAAAAMAAAA=")
+tile_map_data = PackedByteArray("AAD7/wIAAAAAAAcAAAD7/wEAAAAAAAcAAAD8/wEAAAAAAAcAAAD8/wIAAAAAAAcAAAD6/wIAAAAAAAcAAAD6/wMAAAAAAAcAAAD7/wMAAAAAAAcAAAD8/wMAAAAAAAcAAAD6/wEAAAAAAAcAAAA=")
 tile_set = SubResource("TileSet_1bvp3")
 
 [node name="Area2D" type="Area2D" parent="WaterCurrent"]
@@ -356,6 +352,10 @@ tile_set = SubResource("TileSet_1bvp3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCurrent/Area2D"]
 position = Vector2(-144, 80.5)
 shape = SubResource("RectangleShape2D_qpfo2")
+
+[node name="TileMapLayer_Water2" type="TileMapLayer" parent="WaterCurrent"]
+tile_map_data = PackedByteArray("AAD7/wEAAAAEAAUAAAD8/wEAAAAEAAMAAAD8/wIAAAAEAAQAAAD6/wIAAAAAAAQAAAD6/wMAAAAAAAIAAAD7/wMAAAAAAAUAAAD8/wMAAAAEAAIAAAD6/wEAAAAAAAMAAAA=")
+tile_set = SubResource("TileSet_1bvp3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

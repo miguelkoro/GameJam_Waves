@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6xpsi64jjpvp"
-path="res://.godot/imported/TileSet_Dungeon_Playa.png-256bc8d4ca2f20c6bc848a362338c69d.ctex"
+uid="uid://bw0kg1pjbopsx"
+path="res://.godot/imported/TileSet_Dungeon_Playa_Baja.png-3bd6b5634ac44fe61fc0fe46fb68fb9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/TileSet_Dungeon_Playa.png"
-dest_files=["res://.godot/imported/TileSet_Dungeon_Playa.png-256bc8d4ca2f20c6bc848a362338c69d.ctex"]
+source_file="res://TileMaps/TileSet_Dungeon_Playa_Baja.png"
+dest_files=["res://.godot/imported/TileSet_Dungeon_Playa_Baja.png-3bd6b5634ac44fe61fc0fe46fb68fb9d.ctex"]
 
 [params]
 
