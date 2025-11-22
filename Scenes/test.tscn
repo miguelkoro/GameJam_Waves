@@ -352,6 +352,7 @@ tile_map_data = PackedByteArray("AAD7/wEAAAAEAAUAAAD8/wEAAAAEAAMAAAD8/wIAAAAEAAQ
 tile_set = SubResource("TileSet_1bvp3")
 
 [node name="Area2D" type="Area2D" parent="WaterCurrent"]
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCurrent/Area2D"]
 position = Vector2(-144, 80.5)
@@ -364,13 +365,13 @@ script = ExtResource("6_i3aeo")
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Player" parent="YSort" groups=["Player"] instance=ExtResource("4_ys1qc")]
+[node name="Player" parent="YSort" instance=ExtResource("4_ys1qc")]
 
 [node name="Jellyfish" parent="YSort" instance=ExtResource("4_35xla")]
 position = Vector2(-69, -22)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.6020323, 0.72436595, 1, 1)
+color = Color(0.68403757, 0.78250575, 0.99999875, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

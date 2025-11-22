@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://qxnsc00hb5ae"]
+[gd_scene load_steps=16 format=3 uid="uid://qxnsc00hb5ae"]
 
 [ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Jellyfish.png" id="1_cytm7"]
+[ext_resource type="Script" uid="uid://bs0o5bo8i3ovo" path="res://Scripts/Enemy_Jellyfish.gd" id="1_ebxm7"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/PlayerShadow.png" id="2_m07os"]
 
 [sub_resource type="Gradient" id="Gradient_m07os"]
@@ -67,11 +68,16 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w24je"]
-radius = 9.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebxm7"]
 height = 26.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w24je"]
+radius = 9.0
+height = 22.0
+
 [node name="Jellyfish" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+script = ExtResource("1_ebxm7")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -8)
@@ -91,10 +97,27 @@ sprite_frames = SubResource("SpriteFrames_e6vho")
 autoplay = "default"
 frame_progress = 0.44162503
 
-[node name="AttackArea" type="Area2D" parent="."]
-visible = false
+[node name="HurtBox" type="Area2D" parent="." groups=["Enemy"]]
+collision_layer = 32
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-1, 18)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ebxm7")
+debug_color = Color(0.7490196, 0.4627451, 0, 0.3137255)
+
+[node name="AttackHitbox" type="Area2D" parent="." groups=["Enemy"]]
+position = Vector2(0, 18)
+rotation = 1.5707964
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
 modulate = Color(0.8618463, 2.8878452e-07, 0.49752194, 1)
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_w24je")
+debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
+
+[connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
+[connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]

@@ -13,12 +13,10 @@ func _physics_process(delta: float) -> void:
 		moving = false
 	#Añado la fuerza externa, si es afectado
 	var base_speed = input_dir.normalized() * PlayerStats.agility
-	#base_speed += external_force
-	#velocity += external_force
 	velocity = base_speed + external_force
-	
-	#velocity = input_dir.normalized() * PlayerStats.agility
-	move_and_slide()
-	
+	move_and_slide()	
 	#Quito la fuerza externa para que no se acumule
 	external_force = external_force.move_toward(Vector2.ZERO, 100 * delta)
+
+func take_damage(damage: float):
+	print("damage: ", damage)

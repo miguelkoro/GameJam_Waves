@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cbrtfy4j081xb"]
+[gd_scene load_steps=30 format=3 uid="uid://cbrtfy4j081xb"]
 
 [ext_resource type="Script" uid="uid://dhuh6x6mu73g2" path="res://Scripts/Player.gd" id="1_gntrk"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/PlayerShadow.png" id="2_5ixxa"]
@@ -491,7 +491,12 @@ gradient = SubResource("Gradient_5ixxa")
 fill = 1
 fill_from = Vector2(0.5, 0.5046729)
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ixxa"]
+radius = 7.0
+height = 26.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
 script = ExtResource("1_gntrk")
 
 [node name="Shadow" type="Sprite2D" parent="."]
@@ -531,3 +536,24 @@ vframes = 7
 scale = Vector2(2, 2)
 color = Color(0.9990373, 0.772047, 0.46663582, 0.4745098)
 texture = SubResource("GradientTexture2D_nn08x")
+
+[node name="AttackHitbox" type="Area2D" parent="." groups=["Enemy"]]
+light_mask = 8
+visibility_layer = 32
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackHitbox"]
+position = Vector2(-1.1920929e-07, 24.000002)
+rotation = 1.5707964
+scale = Vector2(19.505928, 1.5267857)
+polygon = PackedVector2Array(1.6917937, -9.824563, 1.1920929e-07, 9.320805e-07, 1.6917937, 9.824561)
+
+[node name="HurtBox" type="Area2D" parent="." groups=["Player"]]
+position = Vector2(0, 24)
+scale = Vector2(0.9599984, 0.92000127)
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_5ixxa")
+debug_color = Color(0.8886243, 0.00027261258, 0.8000676, 0.41960785)
