@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5kbgxhjewjf8"]
+
+[ext_resource type="Script" uid="uid://cml83mw5tf05x" path="res://Scripts/healing_item.gd" id="1_t7qv1"]
+[ext_resource type="Shader" uid="uid://c58wiyemjbnw1" path="res://Shaders/PickItem.gdshader" id="2_mjew7"]
+[ext_resource type="Texture2D" uid="uid://csotfci42tvci" path="res://Sprites/Fish_item.png" id="3_k4i46"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mie3u"]
+radius = 7.0
+height = 32.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7nf3m"]
+shader = ExtResource("2_mjew7")
+shader_parameter/speed = 2.0
+shader_parameter/amplitude = 0.1
+
+[node name="Item_HealingFish" type="Area2D"]
+collision_layer = 65
+collision_mask = 2
+script = ExtResource("1_t7qv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mie3u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_7nf3m")
+texture = ExtResource("3_k4i46")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

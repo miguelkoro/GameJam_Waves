@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=21 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Texture2D" uid="uid://bw0kg1pjbopsx" path="res://TileMaps/TileSet_Dungeon_Playa_Baja.png" id="1_2cgwh"]
 [ext_resource type="Texture2D" uid="uid://be1dx1v22lvha" path="res://TileMaps/TileSet_Dungeon_Playa.png" id="1_qc4db"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera.gd" id="6_i3aeo"]
 [ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="7_5wyu1"]
 [ext_resource type="Texture2D" uid="uid://c8mwlsofbjnej" path="res://Sprites/heart.png" id="8_0c07c"]
-[ext_resource type="PackedScene" uid="uid://c5kbgxhjewjf8" path="res://Scenes/item_healing_fish.tscn" id="10_aees8"]
 [ext_resource type="Script" uid="uid://c65jk0j0p761p" path="res://Scripts/hearts_ui.gd" id="10_qpfo2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iaow0"]
@@ -403,12 +402,9 @@ script = ExtResource("6_i3aeo")
 y_sort_enabled = true
 
 [node name="Player" parent="YSort" instance=ExtResource("4_ys1qc")]
-position = Vector2(-83, -9)
 
 [node name="Jellyfish" parent="YSort" instance=ExtResource("4_35xla")]
 position = Vector2(-45, -24)
-
-[node name="Item_HealingFish" parent="YSort" instance=ExtResource("10_aees8")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.68403757, 0.78250575, 0.99999875, 1)

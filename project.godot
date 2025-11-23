@@ -87,6 +87,7 @@ ui_down={
 2d_physics/layer_4="PlayerAttack"
 2d_physics/layer_5="EnemyAttack"
 2d_physics/layer_6="HurtBoxes"
+2d_physics/layer_7="Items"
 
 [rendering]
 
