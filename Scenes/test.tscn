@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=19 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="Texture2D" uid="uid://bw0kg1pjbopsx" path="res://TileMaps/TileSet_Dungeon_Playa_Baja.png" id="1_2cgwh"]
 [ext_resource type="Texture2D" uid="uid://be1dx1v22lvha" path="res://TileMaps/TileSet_Dungeon_Playa.png" id="1_qc4db"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera.gd" id="6_i3aeo"]
 [ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="7_5wyu1"]
 [ext_resource type="Texture2D" uid="uid://c8mwlsofbjnej" path="res://Sprites/heart.png" id="8_0c07c"]
+[ext_resource type="Script" uid="uid://c65jk0j0p761p" path="res://Scripts/hearts_ui.gd" id="10_qpfo2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iaow0"]
 texture = ExtResource("1_2cgwh")
@@ -386,25 +387,25 @@ color = Color(0, 0, 0, 0.27450982)
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="GUI"]
-position = Vector2(38, 37)
-scale = Vector2(4, 4)
-texture = ExtResource("8_0c07c")
-hframes = 3
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Sprite2D2" type="Sprite2D" parent="GUI"]
-position = Vector2(98, 37)
+[node name="HeartsUI" type="HBoxContainer" parent="GUI/Control" groups=["HeartsUI"]]
+layout_direction = 2
+layout_mode = 0
+offset_left = 20.0
+offset_right = 176.0
+offset_bottom = 16.0
 scale = Vector2(4, 4)
-texture = ExtResource("8_0c07c")
-hframes = 3
-frame = 1
-
-[node name="Sprite2D3" type="Sprite2D" parent="GUI"]
-position = Vector2(158, 37)
-scale = Vector2(4, 4)
-texture = ExtResource("8_0c07c")
-hframes = 3
-frame = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = -1
+script = ExtResource("10_qpfo2")
+heart_texture = ExtResource("8_0c07c")
 
 [connection signal="body_entered" from="WaterCurrent/Area2D" to="WaterCurrent" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="WaterCurrent/Area2D" to="WaterCurrent" method="_on_area_2d_body_exited"]
