@@ -5,7 +5,7 @@
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cffl8pntr8tt8" path="res://Animations/Player_anim_states.tres" id="2_dewec"]
 [ext_resource type="Script" uid="uid://0tu5t41r1hdk" path="res://Scripts/player_animation.gd" id="3_5ixxa"]
 [ext_resource type="Texture2D" uid="uid://dmxd7blpttnb3" path="res://Sprites/Cat.png" id="3_gntrk"]
-[ext_resource type="Shader" uid="uid://mj640dlaxrj2" path="res://Shaders/PlayerHurt.gdshader" id="5_nn08x"]
+[ext_resource type="Shader" uid="uid://mj640dlaxrj2" path="res://Shaders/Player.gdshader" id="5_nn08x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ys1qc"]
 radius = 6.0
@@ -485,9 +485,8 @@ node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"PlayerStates"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52ee3"]
 shader = ExtResource("5_nn08x")
-shader_parameter/flash_speed = 10.0
-shader_parameter/flash_intensity = 0.5
-shader_parameter/active = 0.0
+shader_parameter/mode = 0
+shader_parameter/intensity = 0.0
 
 [sub_resource type="Gradient" id="Gradient_5ixxa"]
 offsets = PackedFloat32Array(0, 0.5, 0.70666665)

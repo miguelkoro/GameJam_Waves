@@ -1,6 +1,4 @@
 extends CharacterBody2D
-#Prueba de git
-var unused := false
 #Variables para las animaciones
 var direction: Vector2 = Vector2.ZERO
 var attacking: bool = false
@@ -32,7 +30,9 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	#print("damage: ", damage)
 	PlayerStats.take_damage(damage)
 	#Aqui poner la accion de quitarle salud en el PlayerStats
-	sprite_2d.material.set_shader_parameter("active", invulnerabilityTime)
+	#sprite_2d.material.set_shader_parameter("active", invulnerabilityTime)
+	sprite_2d.material.set_shader_parameter("mode", 1)
+	sprite_2d.material.set_shader_parameter("intensity", 1.0)
 	#Efecto de knockback al sufrir daño
 	var knockback_dir = (global_position - attacker_pos).normalized()
 	external_force = knockback_dir * attacker_knockback
@@ -42,6 +42,16 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	var invul_time = 1.0
 	await get_tree().create_timer(invul_time).timeout
 	# Desactivar parpadeo y fuerza externa del knockback
-	sprite_2d.material.set_shader_parameter("active", 0.0)
+	sprite_2d.material.set_shader_parameter("intensity", 0.0)
+	sprite_2d.material.set_shader_parameter("mode", 0)
 	external_force = Vector2.ZERO
 	hurt = false
+
+func healing(amount: float):
+	PlayerStats.healing(amount)
+	sprite_2d.material.set_shader_parameter("mode", 2)
+	sprite_2d.material.set_shader_parameter("intensity", 1.0)
+
+	await get_tree().create_timer(0.4).timeout
+	sprite_2d.material.set_shader_parameter("intensity", 0.0)
+	sprite_2d.material.set_shader_parameter("mode", 0)
