@@ -1,4 +1,6 @@
 extends CharacterBody2D
+#Prueba de git
+var unused := false
 #Variables para las animaciones
 var direction: Vector2 = Vector2.ZERO
 var attacking: bool = false
