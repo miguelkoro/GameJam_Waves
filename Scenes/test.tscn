@@ -75,7 +75,15 @@ position = Vector2(-83, -9)
 [node name="Jellyfish" parent="YSort" instance=ExtResource("4_35xla")]
 position = Vector2(-45, -24)
 
-[node name="Item_HealingFish" parent="YSort" instance=ExtResource("10_aees8")]
+[node name="Item_HealingFish" parent="YSort" groups=["PearlsUI"] instance=ExtResource("10_aees8")]
+
+[node name="big_pearl" parent="YSort" instance=ExtResource("15_0qy5o")]
+position = Vector2(72, -42)
+
+[node name="small_pearl" parent="YSort" groups=["PearlsUI"] instance=ExtResource("14_0qy5o")]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(-129, -23)
 
 [node name="HealBox" parent="YSort" instance=ExtResource("7_iaow0")]
 position = Vector2(-188, -5)
@@ -144,12 +152,6 @@ theme_override_fonts/font = ExtResource("12_aees8")
 theme_override_font_sizes/font_size = 27
 text = "x 0"
 script = ExtResource("13_mie3u")
-
-[node name="small_pearl" parent="." instance=ExtResource("14_0qy5o")]
-position = Vector2(-129, -23)
-
-[node name="big_pearl" parent="." instance=ExtResource("15_0qy5o")]
-position = Vector2(72, -42)
 
 [connection signal="body_entered" from="WaterCurrent/Area2D" to="WaterCurrent" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="WaterCurrent/Area2D" to="WaterCurrent" method="_on_area_2d_body_exited"]

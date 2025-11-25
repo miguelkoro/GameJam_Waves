@@ -476,6 +476,7 @@ _data = {
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_dewec"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5ixxa"]
+graph_offset = Vector2(-248.4636, 3.8512383)
 nodes/output/position = Vector2(640, 100)
 nodes/PlayerStates/node = ExtResource("2_dewec")
 nodes/PlayerStates/position = Vector2(60, 100)
@@ -506,11 +507,10 @@ collision_layer = 2
 script = ExtResource("1_gntrk")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(0, 25)
+position = Vector2(0, 1)
 texture = ExtResource("2_5ixxa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 24)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ys1qc")
 
@@ -529,17 +529,20 @@ parameters/PlayerStates/Run/blend_position = Vector2(0, 0)
 parameters/TimeScale/scale = 1.0
 
 [node name="PlayerAnimation" type="Node2D" parent="." node_paths=PackedStringArray("animation_tree")]
+position = Vector2(0, -24)
 script = ExtResource("3_5ixxa")
 animation_tree = NodePath("../AnimationTree")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_52ee3")
+position = Vector2(0, -24)
 texture = ExtResource("3_gntrk")
 flip_h = true
 hframes = 8
 vframes = 7
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -24)
 scale = Vector2(2, 2)
 color = Color(0.9990373, 0.772047, 0.46663582, 0.4745098)
 texture = SubResource("GradientTexture2D_nn08x")
@@ -547,6 +550,7 @@ texture = SubResource("GradientTexture2D_nn08x")
 [node name="AttackHitbox" type="Area2D" parent="." groups=["Enemy"]]
 light_mask = 8
 visibility_layer = 32
+position = Vector2(0, -24)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackHitbox"]
 position = Vector2(-1.1920929e-07, 24.000002)
@@ -555,7 +559,6 @@ scale = Vector2(19.505928, 1.5267857)
 polygon = PackedVector2Array(1.6917937, -9.824563, 1.1920929e-07, 9.320805e-07, 1.6917937, 9.824561)
 
 [node name="HurtBox" type="Area2D" parent="." groups=["Player"]]
-position = Vector2(0, 24)
 scale = Vector2(0.9599984, 0.92000127)
 collision_layer = 32
 collision_mask = 16
@@ -566,3 +569,4 @@ shape = SubResource("CapsuleShape2D_5ixxa")
 debug_color = Color(0.8886243, 0.00027261258, 0.8000676, 0.41960785)
 
 [node name="Timers" type="Node2D" parent="."]
+position = Vector2(0, -24)

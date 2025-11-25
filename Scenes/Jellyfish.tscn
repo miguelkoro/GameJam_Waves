@@ -80,24 +80,26 @@ collision_layer = 4
 script = ExtResource("1_ebxm7")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -26)
 color = Color(0.6431373, 0.50980395, 1, 0.4392157)
 texture = SubResource("GradientTexture2D_ebxm7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 18)
+position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_m07os")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(-1, 18)
+position = Vector2(-1, 0)
 texture = ExtResource("2_m07os")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_e6vho")
 autoplay = "default"
 frame_progress = 0.44162503
 
 [node name="HurtBox" type="Area2D" parent="." groups=["Enemy"]]
+position = Vector2(0, -18)
 collision_layer = 32
 collision_mask = 8
 
@@ -108,7 +110,6 @@ shape = SubResource("CapsuleShape2D_ebxm7")
 debug_color = Color(0.7490196, 0.4627451, 0, 0.3137255)
 
 [node name="AttackHitbox" type="Area2D" parent="." groups=["Enemy"]]
-position = Vector2(0, 18)
 rotation = 1.5707964
 collision_layer = 16
 collision_mask = 32
