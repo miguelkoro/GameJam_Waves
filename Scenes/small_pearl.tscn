@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1jvgfhyjbaam"]
+
+[ext_resource type="Script" uid="uid://njrjlvcvwfcg" path="res://Scripts/pearl.gd" id="1_eaafl"]
+[ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Pearl_16.png" id="2_2bfx3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_77ere"]
+radius = 8.0
+
+[node name="small_pearl" type="Area2D"]
+collision_layer = 65
+collision_mask = 2
+script = ExtResource("1_eaafl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2bfx3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_77ere")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
