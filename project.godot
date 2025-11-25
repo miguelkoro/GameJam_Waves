@@ -37,6 +37,7 @@ folder_colors={
 Enemy=""
 Player=""
 HeartsUI=""
+PearlsUI=""
 
 [input]
 
