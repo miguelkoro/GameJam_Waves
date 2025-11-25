@@ -5,13 +5,9 @@ extends Node2D
 var last_facing_direction := Vector2(0,0)
 
 func _physics_process(delta: float) -> void:
-	var idle = !player.velocity
-	if !idle:
-		last_facing_direction = player.velocity.normalized()
-		
-	
-	animation_tree.set("parameters/PlayerStates/Idle/blend_position", last_facing_direction)
-	animation_tree.set("parameters/PlayerStates/Run/blend_position", last_facing_direction)
-	#animation_tree.set("parameters/PlayerStates/Attack/blend_position", last_facing_direction)
+	var anim_dir = player.direction  # ← viene de player.gd
 
-	animation_tree.set("parameters/TimeScale/scale", 1.0) #Para controlar la velocidad de todas las animaciones
+	animation_tree.set("parameters/PlayerStates/Idle/blend_position", anim_dir)
+	animation_tree.set("parameters/PlayerStates/Run/blend_position", anim_dir)
+
+	animation_tree.set("parameters/TimeScale/scale", 1.0)

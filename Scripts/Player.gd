@@ -11,17 +11,23 @@ var external_force: Vector2 = Vector2.ZERO #Esto lo uso para poder mover al pers
 
 
 func _physics_process(delta: float) -> void:
+	# -------- MOVIMIENTO --------
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	if input_dir != Vector2.ZERO:
-		moving = true
-	else:
-		moving = false
-	#Añado la fuerza externa, si es afectado
+
+	moving = input_dir != Vector2.ZERO
+
 	var base_speed = input_dir.normalized() * PlayerStats.agility
 	velocity = base_speed + external_force
-	move_and_slide()	
-	#Quito la fuerza externa para que no se acumule
+	move_and_slide()
+
 	external_force = external_force.move_toward(Vector2.ZERO, 180 * delta)
+
+	# -------- DIRECCIÓN HACIA EL RATÓN --------
+	var mouse_pos = get_global_mouse_position()
+	var to_mouse = (mouse_pos - global_position).normalized()
+
+	# Guardamos la dirección para las animaciones
+	direction = to_mouse
 
 func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float):
 	if hurt == true:
