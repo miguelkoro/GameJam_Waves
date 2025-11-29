@@ -8,6 +8,7 @@ var hurt: bool = false
 @export var invulnerabilityTime: float = 1.5 # Tiempo que es invulnerable
 var external_force: Vector2 = Vector2.ZERO #Esto lo uso para poder mover al personaje en aguas con corriente
 @onready var sprite_2d: Sprite2D = $Sprite2D #Para usar el shader del sprite y ponerle parpadeo cuando es invulnerable
+@onready var screen_fade: ColorRect = $CanvasLayer/ScreenFade
 
 
 func _physics_process(delta: float) -> void:
@@ -61,3 +62,31 @@ func healing(amount: float):
 	await get_tree().create_timer(0.4).timeout
 	sprite_2d.material.set_shader_parameter("intensity", 0.0)
 	sprite_2d.material.set_shader_parameter("mode", 0)
+	
+	
+func black_out_screen() -> void:
+	print("BLACK OUT LLAMADO")
+
+	# Nos aseguramos de que el color base es negro opaco
+	var base_color := screen_fade.color
+	base_color.a = 1.0
+	screen_fade.color = base_color
+
+	# Empezamos desde totalmente transparente (a nivel de modulate)
+	var mod := screen_fade.modulate
+	mod.a = 0.0
+	screen_fade.modulate = mod
+
+	var tween := create_tween()
+
+	# Negro semitransparente (por ejemplo 0.6)
+	var target_alpha := 0.6
+
+	# Fundido rápido a negro transparente
+	tween.tween_property(screen_fade, "modulate:a", target_alpha, 0.2)
+
+	# Mantenerlo un poco
+	tween.tween_interval(0.5)
+
+	# Volver a transparente
+	tween.tween_property(screen_fade, "modulate:a", 0.0, 0.4)

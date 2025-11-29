@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=19 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Jellyfish.tscn" id="4_35xla"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="7_5wyu1"]
 [ext_resource type="PackedScene" uid="uid://bk6uqs1huk1sl" path="res://Scenes/heal_box.tscn" id="7_iaow0"]
 [ext_resource type="Texture2D" uid="uid://c8mwlsofbjnej" path="res://Sprites/heart.png" id="8_0c07c"]
+[ext_resource type="PackedScene" uid="uid://bhu40cjsplpqc" path="res://Scenes/Squid.tscn" id="10_7nf3m"]
 [ext_resource type="PackedScene" uid="uid://c5kbgxhjewjf8" path="res://Scenes/item_healing_fish.tscn" id="10_aees8"]
 [ext_resource type="Script" uid="uid://c65jk0j0p761p" path="res://Scripts/hearts_ui.gd" id="10_qpfo2"]
 [ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Pearl_16.png" id="11_yb21e"]
@@ -87,6 +88,9 @@ position = Vector2(-129, -23)
 
 [node name="HealBox" parent="YSort" instance=ExtResource("7_iaow0")]
 position = Vector2(-188, -5)
+
+[node name="Squid" parent="YSort" instance=ExtResource("10_7nf3m")]
+position = Vector2(-25, 127)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.68403757, 0.78250575, 0.99999875, 1)

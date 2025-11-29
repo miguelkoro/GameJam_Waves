@@ -570,3 +570,10 @@ debug_color = Color(0.8886243, 0.00027261258, 0.8000676, 0.41960785)
 
 [node name="Timers" type="Node2D" parent="."]
 position = Vector2(0, -24)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScreenFade" type="ColorRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.6666667)
