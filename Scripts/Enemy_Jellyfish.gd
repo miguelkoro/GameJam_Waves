@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var speed: float = 50
 @export var direction: int = 1
 @export var knockback: float = 100 #Efecto de echar para atras al jugador al golpearle
+@export var health: float = 3
 
 enum PatrolMode {HORIZONTAL, VERTICAL}
 @export var patrol_mode: PatrolMode = PatrolMode.VERTICAL
@@ -35,3 +36,7 @@ func _physics_process(delta: float) -> void:
 func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
 		area.get_parent().take_damage(damage, global_position, knockback)
+
+func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float):
+	health-=damage
+	print("health:", health)
