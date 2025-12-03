@@ -9,5 +9,6 @@ func _physics_process(delta: float) -> void:
 
 	animation_tree.set("parameters/PlayerStates/Idle/blend_position", anim_dir)
 	animation_tree.set("parameters/PlayerStates/Run/blend_position", anim_dir)
+	animation_tree.set("parameters/PlayerStates/Attack/blend_position", anim_dir)
 
 	animation_tree.set("parameters/TimeScale/scale", 1.0)
