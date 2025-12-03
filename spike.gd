@@ -6,10 +6,6 @@ var velocity: Vector2 = Vector2.ZERO
 var lifetime: float = 20.0 
 var shooter: Node2D = null  
 
-func _ready() -> void:
-	body_entered.connect(_on_body_entered)
-	area_entered.connect(_on_area_entered)
-
 func set_direction(dir: Vector2, spd: float) -> void:
 	velocity = dir * spd
 	rotation = dir.angle() - PI/2
