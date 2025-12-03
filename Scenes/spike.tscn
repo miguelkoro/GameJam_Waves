@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://clir6q4tn6ptn"]
+
+[ext_resource type="Script" uid="uid://rvu4sc1suc1h" path="res://spike.gd" id="1_cdj5a"]
+
+[node name="Spike" type="Area2D" groups=["Enemy"]]
+rotation = 3.1084313
+scale = Vector2(2.5, 2.5)
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("1_cdj5a")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-3.198241, -0.10609676, 0, 0, -2.6490517, 15.779181)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-2.6490517, 15.779181, -3.198241, -0.10609676, 0, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

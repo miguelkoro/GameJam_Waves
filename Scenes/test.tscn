@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=21 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Jellyfish.tscn" id="4_35xla"]
@@ -16,9 +16,14 @@
 [ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/label.gd" id="13_mie3u"]
 [ext_resource type="PackedScene" uid="uid://b1jvgfhyjbaam" path="res://Scenes/small_pearl.tscn" id="14_0qy5o"]
 [ext_resource type="PackedScene" uid="uid://cc53wsts7tfmc" path="res://Scenes/big_pearl.tscn" id="15_0qy5o"]
+[ext_resource type="PackedScene" uid="uid://dwo113wvy1q4h" path="res://Scenes/urchin.tscn" id="17_2ocox"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpfo2"]
 size = Vector2(62, 63)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ocox"]
+radius = 9.0
+height = 22.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0c07c"]
 shader = ExtResource("7_5wyu1")
@@ -36,6 +41,7 @@ tile_map_data = PackedByteArray("AAD/////AgAAAAYAAAD//wAAAgAAAAYAAAD+/wAAAgAAAAY
 tile_set = ExtResource("1_2cgwh")
 
 [node name="Whirlpool" type="Node2D" parent="."]
+visible = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Whirlpool"]
 tile_map_data = PackedByteArray("AAD7/wUAAQAAAAUAAAD7/wYAAAAAAAcAAAD6/wYAAAAAAAcAAAD6/wUAAAAAAAcAAAD6/wQAAAAAAAcAAAD7/wQAAAAAAAcAAAD8/wQAAAAAAAcAAAD8/wUAAAAAAAcAAAD8/wYAAAAAAAcAAAA=")
@@ -46,6 +52,7 @@ tile_map_data = PackedByteArray("AAD7/wUAAQAAAAUAAAD6/wYAAAAAAAIAAAD8/wYAAAAEAAI
 tile_set = ExtResource("1_2cgwh")
 
 [node name="WaterCurrent" type="Node2D" parent="."]
+visible = false
 script = ExtResource("5_iaow0")
 
 [node name="TileMapLayer_Water" type="TileMapLayer" parent="WaterCurrent"]
@@ -57,11 +64,24 @@ tile_map_data = PackedByteArray("AAD7/wEAAAAEAAUAAAD8/wEAAAAEAAMAAAD8/wIAAAAEAAQ
 tile_set = ExtResource("1_2cgwh")
 
 [node name="Area2D" type="Area2D" parent="WaterCurrent"]
+visible = false
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCurrent/Area2D"]
 position = Vector2(-144, 80.5)
 shape = SubResource("RectangleShape2D_qpfo2")
+
+[node name="AttackHitbox" type="Area2D" parent="WaterCurrent/Area2D/CollisionShape2D" groups=["Enemy"]]
+visible = false
+rotation = 1.5707964
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCurrent/Area2D/CollisionShape2D/AttackHitbox"]
+modulate = Color(0.8618463, 2.8878452e-07, 0.49752194, 1)
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_2ocox")
+debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -74,6 +94,7 @@ y_sort_enabled = true
 position = Vector2(-83, -9)
 
 [node name="Jellyfish" parent="YSort" instance=ExtResource("4_35xla")]
+visible = false
 position = Vector2(-45, -24)
 
 [node name="Item_HealingFish" parent="YSort" groups=["PearlsUI"] instance=ExtResource("10_aees8")]
@@ -90,7 +111,10 @@ position = Vector2(-129, -23)
 position = Vector2(-188, -5)
 
 [node name="Squid" parent="YSort" instance=ExtResource("10_7nf3m")]
-position = Vector2(-25, 127)
+position = Vector2(470, -21)
+
+[node name="Urchin" parent="YSort" instance=ExtResource("17_2ocox")]
+position = Vector2(-202, 36)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.68403757, 0.78250575, 0.99999875, 1)

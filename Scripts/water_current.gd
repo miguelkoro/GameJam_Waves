@@ -10,9 +10,7 @@ func _ready():
 
 func _physics_process(delta):
 	for body in bodies_in_area:
-		#body.apply(current_direction * current_strength * delta)
-		#if body == CharacterBody2D:
-		if body is CharacterBody2D:
+		if body.is_in_group("Player"):
 			body.external_force += current_direction * current_strength * delta
 			
 
@@ -21,6 +19,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		bodies_in_area.append(body)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body is CharacterBody2D:
+	if body.is_in_group("Player"):
 		body.external_force = Vector2.ZERO
 	bodies_in_area.erase(body)

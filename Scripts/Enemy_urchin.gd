@@ -1,0 +1,56 @@
+extends CharacterBody2D
+
+@export var damage: float = 1
+@export var speed: float = 100
+@export var knockback: float = 100
+@export var spike_shoot_interval: float = 5.0  
+@export var spike_speed: float = 200
+
+var spike_scene: PackedScene = load("res://Scenes/spike.tscn")
+var direction: Vector2 = Vector2.ONE.normalized() 
+var shoot_timer: float = 0.0
+var external_force: Vector2 = Vector2.ZERO  
+
+func _ready() -> void:
+	randomize()
+	var angle = randf() * TAU 
+	direction = Vector2(cos(angle), sin(angle)).normalized()
+
+func _physics_process(delta: float) -> void:
+	velocity = direction * speed
+	move_and_slide()
+	if is_on_wall():
+		direction.x *= -1
+	if is_on_floor() or is_on_ceiling():
+		direction.y *= -1
+	
+	shoot_timer += delta
+	if shoot_timer >= spike_shoot_interval:
+		shoot_spikes()
+		shoot_timer = 0.0
+
+func shoot_spikes() -> void:
+	if spike_scene == null:
+		return
+	
+	for i in range(8):
+		var angle = i * PI / 4 
+		var spike_direction = Vector2(cos(angle), sin(angle))
+		
+		var spike = spike_scene.instantiate()
+		get_parent().add_child(spike)
+		spike.global_position = global_position
+		
+		if spike.has_method("set_shooter"):
+			spike.set_shooter(self)
+		if spike.has_method("set_direction"):
+			spike.set_direction(spike_direction, spike_speed)
+		elif "velocity" in spike:
+			spike.velocity = spike_direction * spike_speed
+		elif "direction" in spike and "speed" in spike:
+			spike.direction = spike_direction
+			spike.speed = spike_speed
+
+func _on_attack_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Player"):
+		area.get_parent().take_damage(damage, global_position, knockback)

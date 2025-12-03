@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwo113wvy1q4h"]
+
+[ext_resource type="Script" uid="uid://b6ec37lwwwyke" path="res://Scripts/Enemy_urchin.gd" id="1_ip3uh"]
+[ext_resource type="Texture2D" uid="uid://n3b5tkdvnp1o" path="res://icon.svg" id="2_rfacj"]
+
+[sub_resource type="Gradient" id="Gradient_m07os"]
+offsets = PackedFloat32Array(0, 0.7133333)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_154kc"]
+gradient = SubResource("Gradient_m07os")
+fill = 1
+fill_from = Vector2(0.5046729, 0.4906542)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip3uh"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rfacj"]
+size = Vector2(24, 24)
+
+[node name="Urchin" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_ip3uh")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_rfacj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.78125, 0.78125)
+color = Color(0.6431373, 0.50980395, 1, 0.4392157)
+texture = SubResource("GradientTexture2D_154kc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ip3uh")
+
+[node name="hurtbox" type="Area2D" parent="." groups=["Enemy"]]
+position = Vector2(10, -44)
+rotation = 1.5707964
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+modulate = Color(0.8618463, 2.8878452e-07, 0.49752194, 1)
+position = Vector2(44, 9.999998)
+shape = SubResource("RectangleShape2D_rfacj")
+debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
+
+[connection signal="area_entered" from="hurtbox" to="." method="_on_attack_hitbox_area_entered"]
