@@ -17,10 +17,10 @@ func _physics_process(delta: float) -> void:
 	if hide_lock:
 		return
 	#Si el jugador esta en el area de deteccion, procedemos a mirar si el cangrejo sale de su roca y se oculta (probabilidad del 10%)
-	if !player_near and randf() <= 0.005:
+	if !player_near and randf() <= 0.001:
 		enemy_appear_and_hide()
 	if player_near and hidding: #si el jugador esta cerca y el cangrejo esta escondido
-		await get_tree().create_timer(randf_range(2.0, 6.0)).timeout #Le ponemos tiempo random y hacemos que salga
+		await get_tree().create_timer(randf_range(2.0, 4.0)).timeout #Le ponemos tiempo random y hacemos que salga
 		enemy_appear()
 	if player_near and !hidding:
 		#Si el jugador esta cerca y el cangrejo esta fuera, el cangrejo ira a por el jugador
@@ -61,14 +61,16 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 		hide_lock = false
 
 
-func _on_detection_area_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Player"):
-		print("cerca")
+
+
+
+func _on_detection_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
 		player_near = true
-		player.get_parent() #Coge al jugador para poder perseguirle
-		
+		player=body #Coge al jugador para poder perseguirle
 
 
-func _on_detection_area_area_exited(area: Area2D) -> void:
-	if area.is_in_group("Player"):
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Player"):
 		player_near = false
+		enemy_hide()
