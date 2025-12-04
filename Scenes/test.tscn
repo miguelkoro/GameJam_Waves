@@ -111,7 +111,7 @@ position = Vector2(-129, -23)
 position = Vector2(-188, -5)
 
 [node name="Squid" parent="YSort" instance=ExtResource("10_7nf3m")]
-position = Vector2(470, -21)
+position = Vector2(3, 120)
 
 [node name="Urchin" parent="YSort" instance=ExtResource("17_2ocox")]
 position = Vector2(-202, 36)
