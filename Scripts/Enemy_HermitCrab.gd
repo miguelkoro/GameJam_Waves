@@ -1,5 +1,6 @@
 extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 @export var damage: float = 1
 @export var speed: float = 50
@@ -19,13 +20,18 @@ func _physics_process(delta: float) -> void:
 	#Si el jugador esta en el area de deteccion, procedemos a mirar si el cangrejo sale de su roca y se oculta (probabilidad del 10%)
 	if !player_near and randf() <= 0.001:
 		enemy_appear_and_hide()
+	if !player_near and hidding:
+		return
 	if player_near and hidding: #si el jugador esta cerca y el cangrejo esta escondido
 		await get_tree().create_timer(randf_range(2.0, 4.0)).timeout #Le ponemos tiempo random y hacemos que salga
 		enemy_appear()
+
 	if player_near and !hidding:
 		#Si el jugador esta cerca y el cangrejo esta fuera, el cangrejo ira a por el jugador
 		#Falta ponerle el movimiento con el navigationAgent
-		pass
+		navigation_agent.target_position = player.global_position
+		navigate_safe()
+		
 	
 	
 		
@@ -62,8 +68,6 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 
 
 
-
-
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player_near = true
@@ -71,6 +75,21 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player"):	
 		player_near = false
 		enemy_hide()
+		navigation_agent.target_position = get_parent().global_position#Se para en la posicion actual
+		navigation_agent.velocity = Vector2.ZERO
+
+func navigate_safe() -> void:
+	if navigation_agent.is_navigation_finished():
+		return
+	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
+	var new_velocity: Vector2 = (
+		global_position.direction_to(next_path_position) * speed
+	)
+	navigation_agent.velocity = new_velocity
+	
+
+func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	position += safe_velocity * get_physics_process_delta_time()
