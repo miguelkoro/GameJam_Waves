@@ -38,6 +38,7 @@ Enemy=""
 Player=""
 HeartsUI=""
 PearlsUI=""
+InkEffectUI=""
 
 [input]
 

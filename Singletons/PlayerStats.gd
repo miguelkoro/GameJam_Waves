@@ -33,3 +33,17 @@ func healing(amount: float) -> void:
 func update_hearts_ui() -> void:
 	var gui = get_tree().get_first_node_in_group("HeartsUI")
 	gui.update_hearts(last_health, health)
+	
+func screen_ink_effect() -> void: #Este metodo deberia refactorizarlo y meterlo en u nscript dentro del ColorRect
+	var screen = get_tree().get_first_node_in_group("InkEffectUI")
+	if screen == null:
+		return
+	var mat := screen.material as ShaderMaterial
+	if mat == null:
+		return
+
+	# Activamos
+	mat.set_shader_parameter("intensity", 1.0)
+	# Fade out suave
+	var tween := get_tree().create_tween()
+	tween.tween_property(mat, "shader_parameter/intensity", 0.0, 1.1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=27 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Jellyfish.tscn" id="4_35xla"]
@@ -10,11 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://c8mwlsofbjnej" path="res://Sprites/heart.png" id="8_0c07c"]
 [ext_resource type="PackedScene" uid="uid://bhu40cjsplpqc" path="res://Scenes/Squid.tscn" id="10_7nf3m"]
 [ext_resource type="PackedScene" uid="uid://c5kbgxhjewjf8" path="res://Scenes/item_healing_fish.tscn" id="10_aees8"]
+[ext_resource type="PackedScene" uid="uid://clk3wuc22eevs" path="res://Scenes/HermitCrab.tscn" id="10_kuf18"]
 [ext_resource type="Script" uid="uid://c65jk0j0p761p" path="res://Scripts/hearts_ui.gd" id="10_qpfo2"]
 [ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Pearl_16.png" id="11_yb21e"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="12_aees8"]
 [ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/label.gd" id="13_mie3u"]
 [ext_resource type="PackedScene" uid="uid://b1jvgfhyjbaam" path="res://Scenes/small_pearl.tscn" id="14_0qy5o"]
+[ext_resource type="Shader" uid="uid://brpstmb53oyjo" path="res://Scripts/inkEffect.gdshader" id="14_q8sys"]
 [ext_resource type="PackedScene" uid="uid://cc53wsts7tfmc" path="res://Scenes/big_pearl.tscn" id="15_0qy5o"]
 [ext_resource type="PackedScene" uid="uid://dwo113wvy1q4h" path="res://Scenes/urchin.tscn" id="17_2ocox"]
 
@@ -28,6 +30,21 @@ height = 22.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0c07c"]
 shader = ExtResource("7_5wyu1")
 shader_parameter/darkness = 0.6
+
+[sub_resource type="Gradient" id="Gradient_q8sys"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n0wup"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q8sys"]
+noise = SubResource("FastNoiseLite_n0wup")
+color_ramp = SubResource("Gradient_q8sys")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0wup"]
+shader = ExtResource("14_q8sys")
+shader_parameter/intensity = 0.0
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_q8sys")
+shader_parameter/fall_speed = 0.05
+shader_parameter/time_passed = 0.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -110,6 +127,9 @@ position = Vector2(-129, -23)
 [node name="HealBox" parent="YSort" instance=ExtResource("7_iaow0")]
 position = Vector2(-188, -5)
 
+[node name="HermitCrab" parent="YSort" instance=ExtResource("10_kuf18")]
+position = Vector2(-160, 117)
+
 [node name="Squid" parent="YSort" instance=ExtResource("10_7nf3m")]
 position = Vector2(3, 120)
 
@@ -129,6 +149,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.27450982)
+
+[node name="ColorRect_inkEffect" type="ColorRect" parent="CanvasLayer" groups=["InkEffectUI"]]
+material = SubResource("ShaderMaterial_n0wup")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
