@@ -49,7 +49,6 @@ shader_parameter/time_passed = 0.0
 [node name="Node2D" type="Node2D"]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
 color = Color(0.039215688, 0, 0.57254905, 0.9764706)
 energy = 0.41
 
@@ -58,7 +57,6 @@ tile_map_data = PackedByteArray("AAD/////AgAAAAYAAAD//wAAAgAAAAYAAAD+/wAAAgAAAAY
 tile_set = ExtResource("1_2cgwh")
 
 [node name="Whirlpool" type="Node2D" parent="."]
-visible = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Whirlpool"]
 tile_map_data = PackedByteArray("AAD7/wUAAQAAAAUAAAD7/wYAAAAAAAcAAAD6/wYAAAAAAAcAAAD6/wUAAAAAAAcAAAD6/wQAAAAAAAcAAAD7/wQAAAAAAAcAAAD8/wQAAAAAAAcAAAD8/wUAAAAAAAcAAAD8/wYAAAAAAAcAAAA=")
@@ -69,7 +67,6 @@ tile_map_data = PackedByteArray("AAD7/wUAAQAAAAUAAAD6/wYAAAAAAAIAAAD8/wYAAAAEAAI
 tile_set = ExtResource("1_2cgwh")
 
 [node name="WaterCurrent" type="Node2D" parent="."]
-visible = false
 script = ExtResource("5_iaow0")
 
 [node name="TileMapLayer_Water" type="TileMapLayer" parent="WaterCurrent"]
@@ -81,7 +78,6 @@ tile_map_data = PackedByteArray("AAD7/wEAAAAEAAUAAAD8/wEAAAAEAAMAAAD8/wIAAAAEAAQ
 tile_set = ExtResource("1_2cgwh")
 
 [node name="Area2D" type="Area2D" parent="WaterCurrent"]
-visible = false
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCurrent/Area2D"]
@@ -89,7 +85,6 @@ position = Vector2(-144, 80.5)
 shape = SubResource("RectangleShape2D_qpfo2")
 
 [node name="AttackHitbox" type="Area2D" parent="WaterCurrent/Area2D/CollisionShape2D" groups=["Enemy"]]
-visible = false
 rotation = 1.5707964
 collision_layer = 16
 collision_mask = 32
@@ -111,7 +106,6 @@ y_sort_enabled = true
 position = Vector2(-83, -9)
 
 [node name="Jellyfish" parent="YSort" instance=ExtResource("4_35xla")]
-visible = false
 position = Vector2(-45, -24)
 
 [node name="Item_HealingFish" parent="YSort" groups=["PearlsUI"] instance=ExtResource("10_aees8")]

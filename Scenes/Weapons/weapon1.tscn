@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6aseai6bggqo"]
+
+[ext_resource type="PackedScene" uid="uid://bwxe1ttcg1iro" path="res://Scenes/Weapons/weapons.tscn" id="1_w5ecp"]
+[ext_resource type="PackedScene" uid="uid://irpmi2hds1ji" path="res://Scenes/Bullets/bullet1.tscn" id="2_7llsw"]
+[ext_resource type="Texture2D" uid="uid://85ogp7bwaeo8" path="res://Sprites/weapon1.png" id="2_f8j8t"]
+[ext_resource type="Script" uid="uid://wuw0m4d1466y" path="res://Scripts/Weapons/weapon1.gd" id="3_f8j8t"]
+
+[node name="Weapons" instance=ExtResource("1_w5ecp")]
+script = ExtResource("3_f8j8t")
+bullet_scene = ExtResource("2_7llsw")
+
+[node name="MuzzlePosition" parent="." index="0"]
+position = Vector2(16, -2)
+
+[node name="weapon_sprite" type="Sprite2D" parent="." index="3"]
+scale = Vector2(0.034568787, 0.024032587)
+texture = ExtResource("2_f8j8t")
+script = ExtResource("3_f8j8t")
+bullet_scene = ExtResource("2_7llsw")

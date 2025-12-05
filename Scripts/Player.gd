@@ -10,11 +10,17 @@ var external_force: Vector2 = Vector2.ZERO #Esto lo uso para poder mover al pers
 @onready var sprite_2d: Sprite2D = $Sprite2D #Para usar el shader del sprite y ponerle parpadeo cuando es invulnerable
 @onready var screen_fade: ColorRect = $CanvasLayer/ScreenFade
 @onready var attack_hitbox: Area2D = $AttackHitbox
+@onready var weapon_position: Marker2D = $WeaponPosition
+
+var current_weapon: Weapon = null
 
 func _ready() -> void:
-	#Desactivo la hitbox de ataque para que solo se active al hacer click izq
+	#Desactivo la hitbox de ataque para que solo se active al hacer click der
 	attack_hitbox.visible = false
 	attack_hitbox.monitoring = false
+	
+	#Equipar arma inicial (weapon1).
+	equip_weapon(preload("res://Scenes/Weapons/weapon1.tscn"))
 
 func _physics_process(delta: float) -> void:
 		# -------- DIRECCIÓN HACIA EL RATÓN --------
@@ -23,11 +29,19 @@ func _physics_process(delta: float) -> void:
 	# Guardamos la dirección para las animaciones
 	direction = to_mouse
 	
-		# -------- ATAQUE --------
+		# -------- ATAQUE CON GARRAS--------
 	if Input.is_action_just_pressed("attack") and !attacking and !hurt:
 		attack_hitbox.look_at(mouse_pos)
 		attack()
 		return  # Evita que se mueva mientras ataca
+		
+		# -------- DISPAROS DEL ARMA CON CLICK DERECHO --------
+	if Input.is_action_just_pressed("shoot") and current_weapon and !hurt:
+		current_weapon.shoot()
+	
+	# -------- RECARGAR PULSANDO TECLA R -------- 
+	if Input.is_action_just_pressed("reload") and current_weapon and !hurt:
+		current_weapon.reload()
 	
 	# -------- MOVIMIENTO --------
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -40,7 +54,16 @@ func _physics_process(delta: float) -> void:
 	#Le añadimos a
 	external_force = external_force.move_toward(Vector2.ZERO, 180 * delta)
 
-
+func equip_weapon(weapon_scene: PackedScene) -> void:
+	# Eliminar arma anterior si existe
+	if current_weapon:
+		current_weapon.queue_free()
+	
+	# Instanciar nueva arma
+	current_weapon = weapon_scene.instantiate()
+	weapon_position.add_child(current_weapon)
+	
+	print("Arma equipada: ", current_weapon.weapon_name)
 
 func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float):
 	if hurt == true:

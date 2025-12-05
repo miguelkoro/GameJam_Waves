@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://irpmi2hds1ji"]
+
+[ext_resource type="PackedScene" uid="uid://j17dk1wy0ah1" path="res://Scenes/Bullets/bullets.tscn" id="1_u5ude"]
+[ext_resource type="Texture2D" uid="uid://dmuyl183hem65" path="res://Sprites/bullet1.png" id="2_u5ude"]
+[ext_resource type="Texture2D" uid="uid://db7h3xjrgooxk" path="res://Sprites/Flare_small.PNG" id="3_hctee"]
+
+[node name="Bullets" instance=ExtResource("1_u5ude")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+position = Vector2(-0.08129772, -0.5)
+scale = Vector2(0.007971285, 0.0087890625)
+texture = ExtResource("2_u5ude")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="3"]
+position = Vector2(-9.536743e-07, -9.536743e-07)
+scale = Vector2(0.68, 0.68)
+texture = ExtResource("3_hctee")

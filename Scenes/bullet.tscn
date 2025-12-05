@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://qlwisdfkmc6o"]
+
+[ext_resource type="Texture2D" uid="uid://n3b5tkdvnp1o" path="res://icon.svg" id="1_xjght"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oduel"]
+radius = 1.0
+
+[node name="Bullet" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.012695313, 0.01245117)
+texture = ExtResource("1_xjght")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_oduel")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(9, 9)
+rect = Rect2(-10, -10, 2, 2)
+
+[node name="LifeTimeTimer" type="Timer" parent="."]
