@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csotfci42tvci"
-path="res://.godot/imported/Fish_item.png-b588bc77b48eb8e5581362f2fea93378.ctex"
+uid="uid://b50jeswh5emie"
+path="res://.godot/imported/Tienda_playa.png-a53e248d7d6a6dfb578c69f1455fcce7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Fish_item.png"
-dest_files=["res://.godot/imported/Fish_item.png-b588bc77b48eb8e5581362f2fea93378.ctex"]
+source_file="res://Sprites/Town/Tienda_playa.png"
+dest_files=["res://.godot/imported/Tienda_playa.png-a53e248d7d6a6dfb578c69f1455fcce7.ctex"]
 
 [params]
 

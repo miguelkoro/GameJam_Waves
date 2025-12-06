@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5p3sna0jmnrm"
-path="res://.godot/imported/HermitCrab_Rock_SpriteSheet.png-687372dada815650dcd1154b275d45c4.ctex"
+uid="uid://bak8g5kgr0cjd"
+path="res://.godot/imported/seagull.png-94e4db849a6a0a08c3f8d053efba5c60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/HermitCrab_Rock_SpriteSheet.png"
-dest_files=["res://.godot/imported/HermitCrab_Rock_SpriteSheet.png-687372dada815650dcd1154b275d45c4.ctex"]
+source_file="res://Sprites/Town/seagull.png"
+dest_files=["res://.godot/imported/seagull.png-94e4db849a6a0a08c3f8d053efba5c60.ctex"]
 
 [params]
 

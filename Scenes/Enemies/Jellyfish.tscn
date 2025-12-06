@@ -1,8 +1,8 @@
 [gd_scene load_steps=16 format=3 uid="uid://qxnsc00hb5ae"]
 
-[ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Jellyfish.png" id="1_cytm7"]
-[ext_resource type="Script" uid="uid://bs0o5bo8i3ovo" path="res://Scripts/Enemy_Jellyfish.gd" id="1_ebxm7"]
-[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/PlayerShadow.png" id="2_m07os"]
+[ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Enemies/Jellyfish.png" id="1_cytm7"]
+[ext_resource type="Script" uid="uid://bs0o5bo8i3ovo" path="res://Scripts/Enemies/Enemy_Jellyfish.gd" id="1_ebxm7"]
+[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_m07os"]
 
 [sub_resource type="Gradient" id="Gradient_m07os"]
 offsets = PackedFloat32Array(0, 0.7133333)

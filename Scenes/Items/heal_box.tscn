@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bk6uqs1huk1sl"]
 
-[ext_resource type="Texture2D" uid="uid://c21y1b8n3ndg" path="res://Sprites/caja.png" id="1_2xpx5"]
+[ext_resource type="Texture2D" uid="uid://c21y1b8n3ndg" path="res://Sprites/Items/caja.png" id="1_2xpx5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iaow0"]
 radius = 7.452832

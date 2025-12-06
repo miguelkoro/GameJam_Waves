@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmxd7blpttnb3"
-path="res://.godot/imported/Cat.png-5ffd7693cee0264112036b4924ce039d.ctex"
+uid="uid://c21y1b8n3ndg"
+path="res://.godot/imported/caja.png-7dc013cc65037ba5e2a2ce20ff549471.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Cat.png"
-dest_files=["res://.godot/imported/Cat.png-5ffd7693cee0264112036b4924ce039d.ctex"]
+source_file="res://Sprites/Items/caja.png"
+dest_files=["res://.godot/imported/caja.png-7dc013cc65037ba5e2a2ce20ff549471.ctex"]
 
 [params]
 

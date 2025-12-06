@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
-[ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Shop.tscn" id="3_x76ya"]
+[ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Town/Shop.tscn" id="3_x76ya"]
 [ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera.gd" id="4_wruq3"]
 
 [node name="Town" type="Node2D"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://clk3wuc22eevs"]
 
-[ext_resource type="Script" uid="uid://bmb8emw4mbpq3" path="res://Scripts/Enemy_HermitCrab.gd" id="1_5llmy"]
-[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/PlayerShadow.png" id="2_7ftjq"]
-[ext_resource type="Texture2D" uid="uid://c5p3sna0jmnrm" path="res://Sprites/HermitCrab_Rock_SpriteSheet.png" id="3_5llmy"]
+[ext_resource type="Script" uid="uid://bmb8emw4mbpq3" path="res://Scripts/Enemies/Enemy_HermitCrab.gd" id="1_5llmy"]
+[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_7ftjq"]
+[ext_resource type="Texture2D" uid="uid://c5p3sna0jmnrm" path="res://Sprites/Enemies/HermitCrab_Rock_SpriteSheet.png" id="3_5llmy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m07os"]
 radius = 8.0

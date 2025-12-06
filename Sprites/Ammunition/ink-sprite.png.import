@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b50jeswh5emie"
-path="res://.godot/imported/Tienda_playa.png-5b112be996fff55e622dfa50bc57c677.ctex"
+uid="uid://17g03vuiwbq4"
+path="res://.godot/imported/ink-sprite.png-fcdb701ee9d2c2a21eed418c54571e21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tienda_playa.png"
-dest_files=["res://.godot/imported/Tienda_playa.png-5b112be996fff55e622dfa50bc57c677.ctex"]
+source_file="res://Sprites/Ammunition/ink-sprite.png"
+dest_files=["res://.godot/imported/ink-sprite.png-fcdb701ee9d2c2a21eed418c54571e21.ctex"]
 
 [params]
 

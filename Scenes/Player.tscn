@@ -1,10 +1,10 @@
 [gd_scene load_steps=40 format=3 uid="uid://cbrtfy4j081xb"]
 
-[ext_resource type="Script" uid="uid://dhuh6x6mu73g2" path="res://Scripts/Player.gd" id="1_gntrk"]
-[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/PlayerShadow.png" id="2_5ixxa"]
+[ext_resource type="Script" uid="uid://dhuh6x6mu73g2" path="res://Scripts/Player/Player.gd" id="1_gntrk"]
+[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_5ixxa"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cffl8pntr8tt8" path="res://Animations/Player_anim_states.tres" id="2_dewec"]
-[ext_resource type="Script" path="res://Scripts/player_animation.gd" id="3_5ixxa"]
-[ext_resource type="Texture2D" uid="uid://dmxd7blpttnb3" path="res://Sprites/Cat.png" id="3_gntrk"]
+[ext_resource type="Script" uid="uid://0tu5t41r1hdk" path="res://Scripts/Player/player_animation.gd" id="3_5ixxa"]
+[ext_resource type="Texture2D" uid="uid://dmxd7blpttnb3" path="res://Sprites/Player/Cat.png" id="3_gntrk"]
 [ext_resource type="Shader" uid="uid://mj640dlaxrj2" path="res://Shaders/Player.gdshader" id="5_nn08x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ys1qc"]

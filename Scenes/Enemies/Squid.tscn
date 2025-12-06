@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://bhu40cjsplpqc"]
 
-[ext_resource type="Script" uid="uid://3oea1stjchxl" path="res://Scripts/Enemy_Squid.gd" id="1_fwcaj"]
-[ext_resource type="Texture2D" uid="uid://d1tkhnl33xj5k" path="res://Sprites/squid-sprite.png" id="1_rpcwj"]
-[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/PlayerShadow.png" id="1_xs40p"]
+[ext_resource type="Script" uid="uid://3oea1stjchxl" path="res://Scripts/Enemies/Enemy_Squid.gd" id="1_fwcaj"]
+[ext_resource type="Texture2D" uid="uid://d1tkhnl33xj5k" path="res://Sprites/Enemies/squid-sprite.png" id="1_rpcwj"]
+[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="1_xs40p"]
 [ext_resource type="PackedScene" uid="uid://bk8lm4skrcx1f" path="res://Scenes/Ink.tscn" id="2_oh473"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oh473"]

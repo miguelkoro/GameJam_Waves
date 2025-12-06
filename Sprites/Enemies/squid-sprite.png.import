@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvv860att21pf"
-path="res://.godot/imported/Rocks_SpriteSheet.png-c7a8c5ac009ebf0ccf39c546d8c6d32d.ctex"
+uid="uid://d1tkhnl33xj5k"
+path="res://.godot/imported/squid-sprite.png-31eba6785e41e03e8db5c024457853cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Rocks_SpriteSheet.png"
-dest_files=["res://.godot/imported/Rocks_SpriteSheet.png-c7a8c5ac009ebf0ccf39c546d8c6d32d.ctex"]
+source_file="res://Sprites/Enemies/squid-sprite.png"
+dest_files=["res://.godot/imported/squid-sprite.png-31eba6785e41e03e8db5c024457853cc.ctex"]
 
 [params]
 

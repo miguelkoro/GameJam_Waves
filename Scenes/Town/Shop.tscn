@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cl2r7k5r6qay1"]
 
-[ext_resource type="Texture2D" uid="uid://b50jeswh5emie" path="res://Sprites/Tienda_playa.png" id="1_kjfcx"]
-[ext_resource type="Texture2D" uid="uid://bak8g5kgr0cjd" path="res://Sprites/seagull.png" id="2_iidq5"]
+[ext_resource type="Texture2D" uid="uid://b50jeswh5emie" path="res://Sprites/Town/Tienda_playa.png" id="1_kjfcx"]
+[ext_resource type="Texture2D" uid="uid://bak8g5kgr0cjd" path="res://Sprites/Town/seagull.png" id="2_iidq5"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="3_lagin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iidq5"]
@@ -55,7 +55,7 @@ sprite_frames = SubResource("SpriteFrames_lagin")
 position = Vector2(1, -4)
 sprite_frames = SubResource("SpriteFrames_e5ji4")
 autoplay = "default"
-frame_progress = 0.37099344
+frame_progress = 0.747722
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

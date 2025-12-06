@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bak8g5kgr0cjd"
-path="res://.godot/imported/seagull.png-a370398a7ceb8b5a24731a0c0836b82a.ctex"
+uid="uid://ibhonu5wjkpq"
+path="res://.godot/imported/Pearl_Special.png-ff96dfe11cddc6eb0412ac8587c5dffa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/seagull.png"
-dest_files=["res://.godot/imported/seagull.png-a370398a7ceb8b5a24731a0c0836b82a.ctex"]
+source_file="res://Sprites/Items/Pearl_Special.png"
+dest_files=["res://.godot/imported/Pearl_Special.png-ff96dfe11cddc6eb0412ac8587c5dffa.ctex"]
 
 [params]
 
