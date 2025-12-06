@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dhuh6x6mu73g2" path="res://Scripts/Player.gd" id="1_gntrk"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/PlayerShadow.png" id="2_5ixxa"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://cffl8pntr8tt8" path="res://Animations/Player_anim_states.tres" id="2_dewec"]
-[ext_resource type="Script" uid="uid://0tu5t41r1hdk" path="res://Scripts/player_animation.gd" id="3_5ixxa"]
+[ext_resource type="Script" path="res://Scripts/player_animation.gd" id="3_5ixxa"]
 [ext_resource type="Texture2D" uid="uid://dmxd7blpttnb3" path="res://Sprites/Cat.png" id="3_gntrk"]
 [ext_resource type="Shader" uid="uid://mj640dlaxrj2" path="res://Shaders/Player.gdshader" id="5_nn08x"]
 
@@ -778,8 +778,10 @@ debug_color = Color(0.8886243, 0.00027261258, 0.8000676, 0.41960785)
 position = Vector2(0, -24)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ScreenFade" type="ColorRect" parent="CanvasLayer"]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(0, 0, 0, 0.6666667)

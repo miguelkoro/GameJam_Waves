@@ -137,9 +137,9 @@ position = Vector2(92, -8)
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.68403757, 0.78250575, 0.99999875, 1)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ScreenEffects" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="ScreenEffects"]
 material = SubResource("ShaderMaterial_0c07c")
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,7 +148,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.27450982)
 
-[node name="ColorRect_inkEffect" type="ColorRect" parent="CanvasLayer" groups=["InkEffectUI"]]
+[node name="ColorRect_inkEffect" type="ColorRect" parent="ScreenEffects" groups=["InkEffectUI"]]
 material = SubResource("ShaderMaterial_n0wup")
 anchors_preset = 15
 anchor_right = 1.0

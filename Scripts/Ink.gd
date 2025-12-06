@@ -26,11 +26,12 @@ func _on_body_entered(body: Node2D) -> void:
 		# Daño al jugador
 		if body.has_method("take_damage"):
 			body.take_damage(damage, global_position, knockback)
+			#Mancharse de tinta (Necesita que haya el ScreenEffects)
 			PlayerStats.screen_ink_effect() #Para darle efecto de mancharse de tinta
 
 		# Pantalla negra
-		if body.has_method("black_out_screen"):
-			body.black_out_screen()
+		#if body.has_method("black_out_screen"):
+		#	body.black_out_screen()
 
 		queue_free()
 	elif body.is_in_group("World"):
