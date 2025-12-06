@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=29 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Enemies/Jellyfish.tscn" id="4_35xla"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cc53wsts7tfmc" path="res://Scenes/Items/big_pearl.tscn" id="15_0qy5o"]
 [ext_resource type="PackedScene" uid="uid://dwo113wvy1q4h" path="res://Scenes/Enemies/urchin.tscn" id="17_2ocox"]
 [ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Town/Shop.tscn" id="20_n0wup"]
+[ext_resource type="PackedScene" uid="uid://dx2nlpb8t6m0c" path="res://Scenes/Menus/pause_menu.tscn" id="21_wojap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpfo2"]
 size = Vector2(62, 63)
@@ -207,6 +208,12 @@ theme_override_fonts/font = ExtResource("12_aees8")
 theme_override_font_sizes/font_size = 27
 text = "x 0"
 script = ExtResource("13_mie3u")
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("21_wojap")]
 
 [connection signal="body_entered" from="WaterCurrent/Area2D" to="WaterCurrent" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="WaterCurrent/Area2D" to="WaterCurrent" method="_on_area_2d_body_exited"]
