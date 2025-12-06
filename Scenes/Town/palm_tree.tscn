@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://jotfsbiif6oj"]
+
+[ext_resource type="Texture2D" uid="uid://cakb5pueb64lg" path="res://Sprites/Town/Palmera.png" id="1_738pg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu4dc"]
+atlas = ExtResource("1_738pg")
+region = Rect2(0, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7edlf"]
+atlas = ExtResource("1_738pg")
+region = Rect2(128, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b1ed"]
+atlas = ExtResource("1_738pg")
+region = Rect2(256, 0, 128, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ylki5"]
+atlas = ExtResource("1_738pg")
+region = Rect2(384, 0, 128, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xy4dy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu4dc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7edlf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b1ed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ylki5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_egv3d"]
+radius = 6.0
+
+[node name="PalmTree" type="Node2D"]
+
+[node name="AnimatedSprite_Palmera" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -64)
+sprite_frames = SubResource("SpriteFrames_xy4dy")
+autoplay = "default"
+frame_progress = 0.21966533
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(4, -64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-5, 70)
+rotation = 1.5707964
+scale = Vector2(0.8981462, 1.1364905)
+shape = SubResource("CapsuleShape2D_egv3d")

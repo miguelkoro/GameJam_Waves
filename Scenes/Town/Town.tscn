@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=4 uid="uid://belg01ae6w6up"]
+[gd_scene load_steps=9 format=4 uid="uid://belg01ae6w6up"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
 [ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Town/Shop.tscn" id="3_x76ya"]
 [ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera.gd" id="4_wruq3"]
+[ext_resource type="PackedScene" uid="uid://bseyp0xucui4e" path="res://Scenes/Town/rock_1.tscn" id="4_xu4dc"]
+[ext_resource type="PackedScene" uid="uid://jotfsbiif6oj" path="res://Scenes/Town/palm_tree.tscn" id="5_egv3d"]
+[ext_resource type="PackedScene" uid="uid://bqm3q3wp4rjlw" path="res://Scenes/Town/rock_2.tscn" id="6_7edlf"]
+[ext_resource type="PackedScene" uid="uid://xoklaqaa0ilf" path="res://Scenes/Town/rock_3.tscn" id="7_7b1ed"]
 
 [node name="Town" type="Node2D"]
 
@@ -21,7 +25,19 @@ y_sort_enabled = true
 [node name="Player" parent="YSort" instance=ExtResource("2_wruq3")]
 position = Vector2(24, 177)
 
+[node name="PalmTree" parent="YSort" instance=ExtResource("5_egv3d")]
+position = Vector2(116, 65)
+
+[node name="Rock1" parent="YSort" instance=ExtResource("4_xu4dc")]
+position = Vector2(10, 62)
+
 [node name="Shop" parent="YSort" instance=ExtResource("3_x76ya")]
+
+[node name="Rock2" parent="YSort" instance=ExtResource("6_7edlf")]
+position = Vector2(-63, 76)
+
+[node name="Rock3" parent="YSort" instance=ExtResource("7_7b1ed")]
+position = Vector2(-187, 87)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

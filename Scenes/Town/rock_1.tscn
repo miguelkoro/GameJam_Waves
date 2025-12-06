@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bseyp0xucui4e"]
+
+[ext_resource type="Texture2D" uid="uid://dvv860att21pf" path="res://Sprites/Map/Rocks_SpriteSheet.png" id="1_brdq5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7edlf"]
+radius = 2.0
+
+[node name="Rock1" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("1_brdq5")
+hframes = 8
+frame = 3
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7edlf")
