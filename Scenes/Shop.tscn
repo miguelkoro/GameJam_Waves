@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://cl2r7k5r6qay1"]
+
+[ext_resource type="Texture2D" uid="uid://b50jeswh5emie" path="res://Sprites/Tienda_playa.png" id="1_kjfcx"]
+[ext_resource type="Texture2D" uid="uid://bak8g5kgr0cjd" path="res://Sprites/seagull.png" id="2_iidq5"]
+[ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="3_lagin"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iidq5"]
+atlas = ExtResource("1_kjfcx")
+region = Rect2(0, 0, 160, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lagin"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iidq5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lagin"]
+atlas = ExtResource("2_iidq5")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4qx4"]
+atlas = ExtResource("2_iidq5")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e5ji4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lagin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4qx4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iidq5"]
+radius = 13.0
+height = 126.0
+
+[node name="Shop" type="Node2D"]
+
+[node name="AnimatedSprite2D_shop" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -26)
+sprite_frames = SubResource("SpriteFrames_lagin")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -4)
+sprite_frames = SubResource("SpriteFrames_e5ji4")
+autoplay = "default"
+frame_progress = 0.37099344
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(4, 10)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_iidq5")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -14.0
+offset_top = -71.0
+offset_right = 26.0
+offset_bottom = -48.0
+theme_override_colors/font_color = Color(0.072842635, 0.072842635, 0.072842635, 1)
+theme_override_fonts/font = ExtResource("3_lagin")
+theme_override_font_sizes/font_size = 15
+text = "SHOP"

@@ -1,9 +1,9 @@
-[gd_scene load_steps=27 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=28 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Jellyfish.tscn" id="4_35xla"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="4_ys1qc"]
-[ext_resource type="Script" uid="uid://x4iwo0mqmfe5" path="res://Scripts/water_current.gd" id="5_iaow0"]
+[ext_resource type="Script" path="res://Scripts/water_current.gd" id="5_iaow0"]
 [ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera.gd" id="6_i3aeo"]
 [ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="7_5wyu1"]
 [ext_resource type="PackedScene" uid="uid://bk6uqs1huk1sl" path="res://Scenes/heal_box.tscn" id="7_iaow0"]
@@ -11,14 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://bhu40cjsplpqc" path="res://Scenes/Squid.tscn" id="10_7nf3m"]
 [ext_resource type="PackedScene" uid="uid://c5kbgxhjewjf8" path="res://Scenes/item_healing_fish.tscn" id="10_aees8"]
 [ext_resource type="PackedScene" uid="uid://clk3wuc22eevs" path="res://Scenes/HermitCrab.tscn" id="10_kuf18"]
-[ext_resource type="Script" uid="uid://c65jk0j0p761p" path="res://Scripts/hearts_ui.gd" id="10_qpfo2"]
+[ext_resource type="Script" path="res://Scripts/hearts_ui.gd" id="10_qpfo2"]
 [ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Pearl_16.png" id="11_yb21e"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="12_aees8"]
-[ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/label.gd" id="13_mie3u"]
+[ext_resource type="Script" path="res://Scripts/label.gd" id="13_mie3u"]
 [ext_resource type="PackedScene" uid="uid://b1jvgfhyjbaam" path="res://Scenes/small_pearl.tscn" id="14_0qy5o"]
-[ext_resource type="Shader" uid="uid://brpstmb53oyjo" path="res://Scripts/inkEffect.gdshader" id="14_q8sys"]
+[ext_resource type="Shader" uid="uid://brpstmb53oyjo" path="res://Shaders/inkEffect.gdshader" id="14_q8sys"]
 [ext_resource type="PackedScene" uid="uid://cc53wsts7tfmc" path="res://Scenes/big_pearl.tscn" id="15_0qy5o"]
 [ext_resource type="PackedScene" uid="uid://dwo113wvy1q4h" path="res://Scenes/urchin.tscn" id="17_2ocox"]
+[ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Shop.tscn" id="20_n0wup"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpfo2"]
 size = Vector2(62, 63)
@@ -129,6 +130,9 @@ position = Vector2(3, 120)
 
 [node name="Urchin" parent="YSort" instance=ExtResource("17_2ocox")]
 position = Vector2(-202, 36)
+
+[node name="Shop" parent="YSort" instance=ExtResource("20_n0wup")]
+position = Vector2(92, -8)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.68403757, 0.78250575, 0.99999875, 1)
