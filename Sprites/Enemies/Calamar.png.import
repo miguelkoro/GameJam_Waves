@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhij0f5830e8g"
-path="res://.godot/imported/TileSet_Playa_Acantilado.png-df01f24d02158dc27dc4e3e6f38d49f1.ctex"
+uid="uid://bkbfmorpxp6w6"
+path="res://.godot/imported/Calamar.png-0cd7c028e82835f76731070a4424c65e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileMaps/TileSet_Playa_Acantilado.png"
-dest_files=["res://.godot/imported/TileSet_Playa_Acantilado.png-df01f24d02158dc27dc4e3e6f38d49f1.ctex"]
+source_file="res://Sprites/Enemies/Calamar.png"
+dest_files=["res://.godot/imported/Calamar.png-0cd7c028e82835f76731070a4424c65e.ctex"]
 
 [params]
 

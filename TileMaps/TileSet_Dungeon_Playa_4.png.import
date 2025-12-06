@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddmkuo4mx3nsg"
-path="res://.godot/imported/TileSet_Export_Acantilado.png-af17774ae5ca17fee44bd72adf842938.ctex"
+uid="uid://wnvk3lvaejau"
+path="res://.godot/imported/TileSet_Dungeon_Playa_4.png-a413b6b9be44238b7d182425f90955e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileMaps/TileSet_Export_Acantilado.png"
-dest_files=["res://.godot/imported/TileSet_Export_Acantilado.png-af17774ae5ca17fee44bd72adf842938.ctex"]
+source_file="res://TileMaps/TileSet_Dungeon_Playa_4.png"
+dest_files=["res://.godot/imported/TileSet_Dungeon_Playa_4.png-a413b6b9be44238b7d182425f90955e8.ctex"]
 
 [params]
 
