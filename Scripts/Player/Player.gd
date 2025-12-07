@@ -1,4 +1,9 @@
 extends CharacterBody2D
+
+#Sonidos de pasos #En agua y arena
+@onready var audio_sand: AudioStreamPlayer2D = $AudioStreamPlayer_Sand
+
+
 #Variables para las animaciones
 var direction: Vector2 = Vector2.ZERO
 var attacking: bool = false
@@ -48,7 +53,11 @@ func _physics_process(delta: float) -> void:
 	moving = input_dir != Vector2.ZERO
 	var base_speed = input_dir.normalized() * PlayerStats.agility
 	velocity = base_speed + external_force
+	if(!moving):
+		audio_sand.stop()
 	if(!attacking): #Que no se mueva durante el ataque a mele??
+		if(moving and not audio_sand.playing): #Que reproduzca sonido de pasos
+			audio_sand.play()
 		move_and_slide()
 
 	#Le añadimos a

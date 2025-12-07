@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://belg01ae6w6up"]
+[gd_scene load_steps=16 format=4 uid="uid://belg01ae6w6up"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
@@ -9,6 +9,24 @@
 [ext_resource type="PackedScene" uid="uid://jotfsbiif6oj" path="res://Scenes/Town/palm_tree.tscn" id="5_egv3d"]
 [ext_resource type="PackedScene" uid="uid://bqm3q3wp4rjlw" path="res://Scenes/Town/rock_2.tscn" id="6_7edlf"]
 [ext_resource type="Texture2D" uid="uid://c1wm3cfgohcsq" path="res://Sprites/Town/Muelle.png" id="9_ylki5"]
+[ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Items/Pearl_16.png" id="10_62o6l"]
+[ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="11_nnguh"]
+[ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/UI/label.gd" id="12_ytd6y"]
+
+[sub_resource type="Animation" id="Animation_hyagj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("YSort/Boat:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.017453292]
+}
 
 [sub_resource type="Animation" id="Animation_xy4dy"]
 resource_name = "idle"
@@ -24,22 +42,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 1.9666667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.017453292, -0.017453292, 0.017453292519943295]
-}
-
-[sub_resource type="Animation" id="Animation_hyagj"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("YSort/Boat:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.017453292]
+"values": [0.017453292, -0.017453292, 0.01745329251994329]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_62o6l"]
@@ -125,3 +128,42 @@ polygon = PackedVector2Array(-461, 182, -452, 184, -444, 181, -443, 172, -391, 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Beach_Limit4"]
 polygon = PackedVector2Array(-447, 182, -448, 202, -442, 205, -441, 214, -392, 215, -389, 206, -384, 204, -379, 206, -377, 214, -337, 215, -336, 207, -334, 205, -327, 205, -324, 210, -324, 216, -266, 216, -263, 206, -259, 205, -254, 207, -254, 215, -250, 222, -253, 225, -251, 247, -259, 251, -268, 245, -272, 229, -466, 226, -464, 184)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -132.99994
+offset_top = 1.0
+offset_right = -59.0
+offset_bottom = 34.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
+
+[node name="PearlsUI" type="HBoxContainer" parent="GUI/Control/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Control/MarginContainer/PearlsUI"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("10_62o6l")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Control/MarginContainer/PearlsUI"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_nnguh")
+theme_override_font_sizes/font_size = 27
+text = "x 0"
+script = ExtResource("12_ytd6y")

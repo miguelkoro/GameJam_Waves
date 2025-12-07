@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cbrtfy4j081xb"]
+[gd_scene load_steps=41 format=3 uid="uid://cbrtfy4j081xb"]
 
 [ext_resource type="Script" uid="uid://dhuh6x6mu73g2" path="res://Scripts/Player/Player.gd" id="1_gntrk"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_5ixxa"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://0tu5t41r1hdk" path="res://Scripts/Player/player_animation.gd" id="3_5ixxa"]
 [ext_resource type="Texture2D" uid="uid://dmxd7blpttnb3" path="res://Sprites/Player/Cat.png" id="3_gntrk"]
 [ext_resource type="Shader" uid="uid://mj640dlaxrj2" path="res://Shaders/Player.gdshader" id="5_nn08x"]
+[ext_resource type="AudioStream" uid="uid://2ty76heihddf" path="res://Audios/footsteps_beach.ogg" id="7_52ee3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ys1qc"]
 radius = 6.0
@@ -788,5 +789,12 @@ color = Color(0, 0, 0, 0.6666667)
 
 [node name="WeaponPosition" type="Marker2D" parent="."]
 position = Vector2(11, -13)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[node name="AudioStreamPlayer_Sand" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_52ee3")
+bus = &"Steps"
 
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
