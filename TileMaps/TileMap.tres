@@ -1,9 +1,10 @@
-[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://de4ecwe5la85f"]
+[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://de4ecwe5la85f"]
 
 [ext_resource type="Texture2D" uid="uid://bw0kg1pjbopsx" path="res://TileMaps/TileSet_Dungeon_Playa_Baja.png" id="1_fg5ng"]
 [ext_resource type="Texture2D" uid="uid://dn11006ec4yfx" path="res://TileMaps/TileSet_Dungeon_Playa_Baja_waves.png" id="2_3g0wu"]
 [ext_resource type="Texture2D" uid="uid://be1dx1v22lvha" path="res://TileMaps/TileSet_Dungeon_Playa.png" id="3_cnlvm"]
 [ext_resource type="Texture2D" uid="uid://wnvk3lvaejau" path="res://TileMaps/TileSet_Dungeon_Playa_4.png" id="4_ggvp6"]
+[ext_resource type="Texture2D" uid="uid://dh0yghgprdqab" path="res://TileMaps/TileSet_Dungeon_Playa_Baja_1.png" id="5_fg5ng"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iaow0"]
 texture = ExtResource("1_fg5ng")
@@ -435,6 +436,40 @@ texture_region_size = Vector2i(32, 32)
 4:7/0 = 0
 4:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 8, 0, 8, 0, 16, -16, 16, -16, -16, 16, -16)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3g0wu"]
+texture = ExtResource("5_fg5ng")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/0 = 0
+4:0/animation_frame_0/duration = 1.0
+4:0/animation_frame_1/duration = 1.0
+4:0/animation_frame_2/duration = 1.0
+4:0/animation_frame_3/duration = 1.0
+4:0/0 = 0
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/animation_frame_2/duration = 1.0
+0:1/animation_frame_3/duration = 1.0
+0:1/0 = 0
+4:1/animation_frame_0/duration = 1.0
+4:1/animation_frame_1/duration = 1.0
+4:1/animation_frame_2/duration = 1.0
+4:1/animation_frame_3/duration = 1.0
+4:1/0 = 0
+0:2/animation_frame_0/duration = 1.0
+0:2/animation_frame_1/duration = 1.0
+0:2/animation_frame_2/duration = 1.0
+0:2/animation_frame_3/duration = 1.0
+0:2/0 = 0
+4:2/animation_frame_0/duration = 1.0
+4:2/animation_frame_1/duration = 1.0
+4:2/animation_frame_2/duration = 1.0
+4:2/animation_frame_3/duration = 1.0
+4:2/0 = 0
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -443,3 +478,4 @@ sources/2 = SubResource("TileSetAtlasSource_ys1qc")
 sources/0 = SubResource("TileSetAtlasSource_iaow0")
 sources/1 = SubResource("TileSetAtlasSource_aees8")
 sources/5 = SubResource("TileSetAtlasSource_fg5ng")
+sources/6 = SubResource("TileSetAtlasSource_3g0wu")
