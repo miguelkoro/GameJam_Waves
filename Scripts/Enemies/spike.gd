@@ -3,7 +3,7 @@ extends Area2D
 var velocity: Vector2 = Vector2.ZERO
 @export var damage: float = 0.5
 @export var knockback: float = 50
-var lifetime: float = 20.0 
+var lifetime: float = 10.0 
 var shooter: Node2D = null  
 
 func set_direction(dir: Vector2, spd: float) -> void:

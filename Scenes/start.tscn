@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=4 uid="uid://c2dfnnalv4o3u"]
 
 [ext_resource type="Texture2D" uid="uid://dn11006ec4yfx" path="res://TileMaps/TileSet_Dungeon_Playa_Baja_waves.png" id="1_5bn4p"]
-[ext_resource type="Script" uid="uid://bnqxw671ajxuj" path="res://Scenes/start.gd" id="1_knwj7"]
+[ext_resource type="Script" uid="uid://bnqxw671ajxuj" path="res://Scripts/start.gd" id="1_knwj7"]
 [ext_resource type="Texture2D" uid="uid://dh0yghgprdqab" path="res://TileMaps/TileSet_Dungeon_Playa_Baja_1.png" id="2_qmsyr"]
 [ext_resource type="Texture2D" uid="uid://bw0kg1pjbopsx" path="res://TileMaps/TileSet_Dungeon_Playa_Baja.png" id="3_knwj7"]
 [ext_resource type="Texture2D" uid="uid://wnvk3lvaejau" path="res://TileMaps/TileSet_Dungeon_Playa_4.png" id="4_jwunu"]

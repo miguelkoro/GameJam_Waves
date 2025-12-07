@@ -1,9 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyp1rjaglys1a"]
+[gd_scene load_steps=22 format=3 uid="uid://dyp1rjaglys1a"]
 
 [ext_resource type="Script" uid="uid://bdeb8svo674rg" path="res://Scripts/map_generation.gd" id="1_fvud7"]
 [ext_resource type="Texture2D" uid="uid://dn11006ec4yfx" path="res://TileMaps/TileSet_Dungeon_Playa_Baja_waves.png" id="2_fvud7"]
 [ext_resource type="Texture2D" uid="uid://be1dx1v22lvha" path="res://TileMaps/TileSet_Dungeon_Playa.png" id="4_2uixv"]
+[ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera.gd" id="5_1stcq"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="5_x1jte"]
+[ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="6_38vmx"]
+[ext_resource type="Shader" uid="uid://brpstmb53oyjo" path="res://Shaders/inkEffect.gdshader" id="7_aed1y"]
+[ext_resource type="Script" uid="uid://c65jk0j0p761p" path="res://Scripts/UI/hearts_ui.gd" id="8_ju8nf"]
+[ext_resource type="Texture2D" uid="uid://c8mwlsofbjnej" path="res://Sprites/UI/heart.png" id="9_tqely"]
+[ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Items/Pearl_16.png" id="10_gm0nl"]
+[ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="11_81teg"]
+[ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/UI/label.gd" id="12_wxb0n"]
+[ext_resource type="PackedScene" uid="uid://dx2nlpb8t6m0c" path="res://Scenes/Menus/pause_menu.tscn" id="13_cxj3y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x1jte"]
 texture = ExtResource("2_fvud7")
@@ -87,6 +96,7 @@ texture = ExtResource("2_fvud7")
 1:5/0 = 0
 2:5/0 = 0
 3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:5/0 = 0
 5:5/0 = 0
 6:5/0 = 0
@@ -504,6 +514,7 @@ texture = ExtResource("4_2uixv")
 15:14/0 = 0
 0:15/0 = 0
 1:15/0 = 0
+1:15/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:15/0 = 0
 3:15/0 = 0
 4:15/0 = 0
@@ -520,8 +531,28 @@ texture = ExtResource("4_2uixv")
 15:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_lfj8e"]
+physics_layer_0/collision_layer = 1
 sources/4 = SubResource("TileSetAtlasSource_musqe")
 sources/1 = SubResource("TileSetAtlasSource_x1jte")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bu230"]
+shader = ExtResource("6_38vmx")
+shader_parameter/darkness = 0.6
+
+[sub_resource type="Gradient" id="Gradient_tj0er"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6x6wq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q8sys"]
+noise = SubResource("FastNoiseLite_6x6wq")
+color_ramp = SubResource("Gradient_tj0er")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_22ocb"]
+shader = ExtResource("7_aed1y")
+shader_parameter/intensity = 0.0
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_q8sys")
+shader_parameter/fall_speed = 0.05
+shader_parameter/time_passed = 0.0
 
 [node name="MapGeneration" type="Node2D"]
 script = ExtResource("1_fvud7")
@@ -530,3 +561,88 @@ script = ExtResource("1_fvud7")
 tile_set = SubResource("TileSet_lfj8e")
 
 [node name="Player" parent="." instance=ExtResource("5_x1jte")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+script = ExtResource("5_1stcq")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.68403757, 0.78250575, 0.99999875, 1)
+
+[node name="ScreenEffects" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ScreenEffects"]
+material = SubResource("ShaderMaterial_bu230")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.27450982)
+
+[node name="ColorRect_inkEffect" type="ColorRect" parent="ScreenEffects" groups=["InkEffectUI"]]
+material = SubResource("ShaderMaterial_22ocb")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeartsUI" type="HBoxContainer" parent="GUI/Control" groups=["HeartsUI"]]
+layout_direction = 2
+layout_mode = 0
+offset_left = 20.0
+offset_right = 176.0
+offset_bottom = 16.0
+scale = Vector2(4, 4)
+size_flags_horizontal = 3
+theme_override_constants/separation = -1
+script = ExtResource("8_ju8nf")
+heart_texture = ExtResource("9_tqely")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -132.99994
+offset_top = 1.0
+offset_right = -59.0
+offset_bottom = 34.0
+grow_horizontal = 0
+scale = Vector2(1.5, 1.5)
+
+[node name="PearlsUI" type="HBoxContainer" parent="GUI/Control/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="GUI/Control/MarginContainer/PearlsUI"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("10_gm0nl")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="GUI/Control/MarginContainer/PearlsUI"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("11_81teg")
+theme_override_font_sizes/font_size = 27
+text = "x 0"
+script = ExtResource("12_wxb0n")
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("13_cxj3y")]

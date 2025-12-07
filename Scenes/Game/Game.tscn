@@ -11,3 +11,4 @@ script = ExtResource("1_xbxml")
 visible = false
 
 [node name="test" parent="." instance=ExtResource("2_xbxml")]
+visible = false
