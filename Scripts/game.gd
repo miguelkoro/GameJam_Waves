@@ -1,7 +1,5 @@
 extends Node
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	call_deferred("_go_to_menu")
 

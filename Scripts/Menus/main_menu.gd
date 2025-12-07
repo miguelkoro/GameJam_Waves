@@ -10,15 +10,9 @@ func _ready() -> void:
 	title.visible = true
 	controls.visible = false
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
 func _on_start_game_pressed() -> void:
 	print("Start Game pressed")
-	get_tree().change_scene_to_file("res://Scenes/test.tscn") # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/start.tscn") # Replace with function body.
 
 
 func _on_controls_pressed() -> void:
