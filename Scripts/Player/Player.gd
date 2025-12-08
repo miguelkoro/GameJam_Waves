@@ -7,6 +7,8 @@ extends CharacterBody2D
 #Sonido de recibir daño
 @onready var audio_hurt: AudioStreamPlayer2D = $AudioStreamPlayer_Hurt
 
+#Variable para controlar cuando esta en la caja y no deberia moverse de ahi o no queremos que haga nada
+@export var inactive: bool = false
 
 #Variables para las animaciones
 var direction: Vector2 = Vector2.ZERO
@@ -33,6 +35,9 @@ func _ready() -> void:
 	equip_weapon(preload("res://Scenes/Weapons/weapon1.tscn"))
 
 func _physics_process(delta: float) -> void:
+	if inactive:
+		return
+	
 		# -------- DIRECCIÓN HACIA EL RATÓN --------
 	var mouse_pos = get_global_mouse_position()
 	var to_mouse = (mouse_pos - global_position).normalized()

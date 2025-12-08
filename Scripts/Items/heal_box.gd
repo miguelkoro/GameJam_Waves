@@ -35,6 +35,7 @@ func start_healing() ->void:
 	healing = true
 	animated_sprite.play("full")
 	player.visible = false
+	player.inactive = true
 	timer_heal.start()
 	panel.visible = false
 	if not audio_cardboard_in.playing:
@@ -48,6 +49,7 @@ func stop_healing() -> void:
 	healing = false
 	timer_heal.stop()
 	player.visible = true
+	player.inactive = false
 	animated_sprite.play("idle")
 	panel.visible = true
 	if not audio_cardboard_out.playing:
