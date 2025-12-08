@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=4 uid="uid://belg01ae6w6up"]
+[gd_scene load_steps=18 format=4 uid="uid://belg01ae6w6up"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
 [ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Town/Shop.tscn" id="3_x76ya"]
 [ext_resource type="Texture2D" uid="uid://ceacljw5yqrrv" path="res://Sprites/Town/Barcos.png" id="3_xy4dy"]
-[ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera_aux.gd" id="4_wruq3"]
+[ext_resource type="Script" uid="uid://fesx7xmwf7vf" path="res://Scripts/camera.gd" id="4_wruq3"]
 [ext_resource type="PackedScene" uid="uid://bseyp0xucui4e" path="res://Scenes/Town/rock_1.tscn" id="4_xu4dc"]
 [ext_resource type="PackedScene" uid="uid://jotfsbiif6oj" path="res://Scenes/Town/palm_tree.tscn" id="5_egv3d"]
 [ext_resource type="PackedScene" uid="uid://bqm3q3wp4rjlw" path="res://Scenes/Town/rock_2.tscn" id="6_7edlf"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Items/Pearl_16.png" id="10_62o6l"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="11_nnguh"]
 [ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/UI/label.gd" id="12_ytd6y"]
+[ext_resource type="AudioStream" uid="uid://rjqbixqx7syy" path="res://Audios/Music_Town.ogg" id="13_nnguh"]
+[ext_resource type="AudioStream" uid="uid://djniuwwtik8nj" path="res://Audios/Beach.ogg" id="14_ytd6y"]
 
 [sub_resource type="Animation" id="Animation_hyagj"]
 length = 0.001
@@ -167,3 +169,20 @@ theme_override_fonts/font = ExtResource("11_nnguh")
 theme_override_font_sizes/font_size = 27
 text = "x 0"
 script = ExtResource("12_ytd6y")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_nnguh")
+autoplay = true
+bus = &"Music"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-283, 7)
+stream = ExtResource("14_ytd6y")
+autoplay = true
+bus = &"Effects"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-317, 457)
+stream = ExtResource("14_ytd6y")
+autoplay = true
+bus = &"Effects"

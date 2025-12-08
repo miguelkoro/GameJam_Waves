@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cbrtfy4j081xb"]
+[gd_scene load_steps=50 format=3 uid="uid://cbrtfy4j081xb"]
 
 [ext_resource type="Script" uid="uid://dhuh6x6mu73g2" path="res://Scripts/Player/Player.gd" id="1_gntrk"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_5ixxa"]
@@ -653,6 +653,233 @@ tracks/1/keys = {
 "values": [47, 48, 49, 50, 51, 52]
 }
 
+[sub_resource type="Animation" id="Animation_utwlt"]
+resource_name = "Shoot_South"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [86, 87, 87]
+}
+
+[sub_resource type="Animation" id="Animation_kih0c"]
+resource_name = "Shoot_North"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.23333332),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [88, 90, 90]
+}
+
+[sub_resource type="Animation" id="Animation_lyrkg"]
+resource_name = "Shoot_Right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [91, 92, 93]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0006400986),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_c43xd"]
+resource_name = "Shoot_Left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [91, 92, 93]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_avx33"]
+resource_name = "Shoot_South_Right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [96, 98, 98]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_rxg2u"]
+resource_name = "Shoot_South_Left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [96, 98, 98]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xixlo"]
+resource_name = "Shoot_North_Right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [94, 95, 94]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bfbt0"]
+resource_name = "Shoot_North_Left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [94, 95, 94]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_wosd6"]
+resource_name = "Get_Up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.46666667, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [104, 103, 102, 100]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_miouo"]
 _data = {
 &"Attack_Left": SubResource("Animation_i2e8t"),
@@ -663,6 +890,7 @@ _data = {
 &"Attack_South": SubResource("Animation_m0x7a"),
 &"Attack_SouthLeft": SubResource("Animation_u7x0b"),
 &"Attack_SouthRight": SubResource("Animation_8flut"),
+&"Get_Up": SubResource("Animation_wosd6"),
 &"Idle_Left": SubResource("Animation_bhhdu"),
 &"Idle_North": SubResource("Animation_nn08x"),
 &"Idle_NorthEast": SubResource("Animation_ksbbd"),
@@ -679,12 +907,21 @@ _data = {
 &"Run_Right": SubResource("Animation_o3h8g"),
 &"Run_South": SubResource("Animation_glx4g"),
 &"Run_SouthEast": SubResource("Animation_ulo2v"),
-&"Run_SouthWest": SubResource("Animation_1iu4k")
+&"Run_SouthWest": SubResource("Animation_1iu4k"),
+&"Shoot_Left": SubResource("Animation_c43xd"),
+&"Shoot_North": SubResource("Animation_kih0c"),
+&"Shoot_North_Left": SubResource("Animation_bfbt0"),
+&"Shoot_North_Right": SubResource("Animation_xixlo"),
+&"Shoot_Right": SubResource("Animation_lyrkg"),
+&"Shoot_South": SubResource("Animation_utwlt"),
+&"Shoot_South_Left": SubResource("Animation_rxg2u"),
+&"Shoot_South_Right": SubResource("Animation_avx33")
 }
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_dewec"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5ixxa"]
+graph_offset = Vector2(-38.545593, 74.65204)
 nodes/output/position = Vector2(640, 100)
 nodes/PlayerStates/node = ExtResource("2_dewec")
 nodes/PlayerStates/position = Vector2(60, 100)
@@ -735,6 +972,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/PlayerStates/Attack/blend_position = Vector2(-0.5151515, 0.54017854)
 parameters/PlayerStates/Idle/blend_position = Vector2(0, 0)
 parameters/PlayerStates/Run/blend_position = Vector2(0, 0)
+parameters/PlayerStates/Shoot/blend_position = Vector2(-0.14660114, -0.55813956)
 parameters/TimeScale/scale = 1.0
 
 [node name="PlayerAnimation" type="Node2D" parent="." node_paths=PackedStringArray("animation_tree")]
@@ -748,7 +986,7 @@ position = Vector2(0, -24)
 texture = ExtResource("3_gntrk")
 flip_h = true
 hframes = 8
-vframes = 11
+vframes = 14
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -24)
