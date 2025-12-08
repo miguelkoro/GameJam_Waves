@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjhwe57k4ubw0"]
+
+[ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="1_o1e52"]
+[ext_resource type="Shader" uid="uid://brpstmb53oyjo" path="res://Shaders/inkEffect.gdshader" id="2_6akcw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0c07c"]
+shader = ExtResource("1_o1e52")
+shader_parameter/darkness = 0.6
+
+[sub_resource type="Gradient" id="Gradient_q8sys"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n0wup"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wojap"]
+noise = SubResource("FastNoiseLite_n0wup")
+color_ramp = SubResource("Gradient_q8sys")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0wup"]
+shader = ExtResource("2_6akcw")
+shader_parameter/intensity = 0.0
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_wojap")
+shader_parameter/fall_speed = 0.05
+shader_parameter/time_passed = 0.0
+
+[node name="ScreenEffects" type="CanvasLayer"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0c07c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.27450982)
+
+[node name="ColorRect_inkEffect" type="ColorRect" parent="." groups=["InkEffectUI"]]
+material = SubResource("ShaderMaterial_n0wup")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)

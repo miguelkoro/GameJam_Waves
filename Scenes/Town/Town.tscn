@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
 [ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Town/Shop.tscn" id="3_x76ya"]
 [ext_resource type="Texture2D" uid="uid://ceacljw5yqrrv" path="res://Sprites/Town/Barcos.png" id="3_xy4dy"]
-[ext_resource type="Script" uid="uid://fesx7xmwf7vf" path="res://Scripts/camera.gd" id="4_wruq3"]
 [ext_resource type="PackedScene" uid="uid://bseyp0xucui4e" path="res://Scenes/Town/rock_1.tscn" id="4_xu4dc"]
 [ext_resource type="PackedScene" uid="uid://jotfsbiif6oj" path="res://Scenes/Town/palm_tree.tscn" id="5_egv3d"]
 [ext_resource type="PackedScene" uid="uid://bqm3q3wp4rjlw" path="res://Scenes/Town/rock_2.tscn" id="6_7edlf"]
 [ext_resource type="Texture2D" uid="uid://c1wm3cfgohcsq" path="res://Sprites/Town/Muelle.png" id="9_ylki5"]
+[ext_resource type="PackedScene" uid="uid://vg6woi7a14ui" path="res://Scenes/camera.tscn" id="9_ytd6y"]
 [ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Items/Pearl_16.png" id="10_62o6l"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="11_nnguh"]
 [ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/UI/label.gd" id="12_ytd6y"]
@@ -101,9 +101,7 @@ position = Vector2(155, 111)
 [node name="Rock2" parent="YSort" instance=ExtResource("6_7edlf")]
 position = Vector2(-63, 76)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-script = ExtResource("4_wruq3")
+[node name="Camera2D" parent="." instance=ExtResource("9_ytd6y")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
