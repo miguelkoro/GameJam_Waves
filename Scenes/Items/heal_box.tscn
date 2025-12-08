@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bk6uqs1huk1sl"]
+[gd_scene load_steps=18 format=3 uid="uid://bk6uqs1huk1sl"]
 
 [ext_resource type="Texture2D" uid="uid://c21y1b8n3ndg" path="res://Sprites/Items/caja.png" id="1_2xpx5"]
 [ext_resource type="Script" uid="uid://b0ygjmtw7aik2" path="res://Scripts/Items/heal_box.gd" id="1_s0m1r"]
+[ext_resource type="Shader" uid="uid://ifwp68fiiquw" path="res://Shaders/heal_box.gdshader" id="3_2akyi"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="3_l6opj"]
+[ext_resource type="AudioStream" uid="uid://dp8rk1386sqpu" path="res://Audios/cardboard_in.ogg" id="4_mcqrq"]
+[ext_resource type="AudioStream" uid="uid://bh575kvpy1txd" path="res://Audios/cardboard_out.ogg" id="5_2akyi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iaow0"]
 radius = 7.452832
@@ -61,6 +64,12 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_size = 3
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6aib"]
+shader = ExtResource("3_2akyi")
+shader_parameter/healing = false
+shader_parameter/pulse_speed = 2.0
+shader_parameter/glow_color = Color(0, 1, 0, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6opj"]
 atlas = ExtResource("1_2xpx5")
 region = Rect2(64, 0, 64, 64)
@@ -107,8 +116,6 @@ position = Vector2(-1, 15)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_qpfo2")
 debug_color = Color(0.6357176, 0.3509134, 0.984114, 0.41960785)
-
-[node name="AudioStreamPlayer_Cardboard" type="AudioStreamPlayer2D" parent="."]
 
 [node name="ShowLabel" type="Area2D" parent="."]
 collision_layer = 0
@@ -158,6 +165,7 @@ text = "E"
 horizontal_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_e6aib")
 position = Vector2(1, -16)
 sprite_frames = SubResource("SpriteFrames_mcqrq")
 animation = &"full"
@@ -165,6 +173,14 @@ autoplay = "idle"
 
 [node name="Timer_Heal" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="AudioStreamPlayer_Cardboard2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_mcqrq")
+bus = &"Effects"
+
+[node name="AudioStreamPlayer_Cardboard3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2akyi")
+bus = &"Effects"
 
 [connection signal="body_entered" from="ShowLabel" to="." method="_on_show_label_body_entered"]
 [connection signal="body_exited" from="ShowLabel" to="." method="_on_show_label_body_exited"]

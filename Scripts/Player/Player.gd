@@ -158,3 +158,7 @@ func attack():
 func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemy"):
 		area.get_parent().take_damage(PlayerStats.strenght, global_position, PlayerStats.knockback)
+
+
+func _on_show_label_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

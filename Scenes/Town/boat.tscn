@@ -1,0 +1,122 @@
+[gd_scene load_steps=10 format=3 uid="uid://cmfmaehico4c6"]
+
+[ext_resource type="Script" uid="uid://cq2lnrs1qp6xc" path="res://Scripts/boat.gd" id="1_7sl6l"]
+[ext_resource type="Texture2D" uid="uid://ceacljw5yqrrv" path="res://Sprites/Town/Barcos.png" id="2_w3x8h"]
+[ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="3_popgu"]
+[ext_resource type="AudioStream" uid="uid://yanmot1oko5r" path="res://Audios/boat_horn.ogg" id="4_w3x8h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ytd6y"]
+bg_color = Color(0.10747967, 0.10747974, 0.10747973, 1)
+border_color = Color(0.62967473, 0.62967485, 0.62967455, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 3
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxixf"]
+radius = 42.0
+height = 122.0
+
+[sub_resource type="Animation" id="Animation_k855i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_5fawm"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(1, 1.1486984),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_om6qc"]
+_data = {
+&"RESET": SubResource("Animation_k855i"),
+&"idle": SubResource("Animation_5fawm")
+}
+
+[node name="Boat" type="Node2D"]
+script = ExtResource("1_7sl6l")
+
+[node name="Sprite_Boat" type="Sprite2D" parent="."]
+position = Vector2(-8, -30)
+rotation = 0.017453292
+texture = ExtResource("2_w3x8h")
+flip_h = true
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = -15.0
+offset_top = -78.0
+offset_right = 9.0
+offset_bottom = -54.0
+scale = Vector2(1.1, 1.1)
+pivot_offset = Vector2(12, 12)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ytd6y")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -12.0
+offset_right = 13.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(6.4807873, 7.4807873)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_popgu")
+theme_override_font_sizes/font_size = 19
+text = "E"
+horizontal_alignment = 1
+
+[node name="ShowLabel" type="Area2D" parent="."]
+position = Vector2(-1, 14)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShowLabel"]
+position = Vector2(-2, 2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xxixf")
+
+[node name="AudioStreamPlayer_Boat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_w3x8h")
+volume_db = 3.029
+bus = &"Effects"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_om6qc")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="ShowLabel" to="." method="_on_show_label_body_entered"]
+[connection signal="body_exited" from="ShowLabel" to="." method="_on_show_label_body_exited"]
