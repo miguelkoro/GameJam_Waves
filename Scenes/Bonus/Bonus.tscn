@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bv786a45llsmj"]
+[gd_scene load_steps=16 format=4 uid="uid://bv786a45llsmj"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2xhx1"]
 [ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Town/Shop.tscn" id="2_f5da6"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cssa44hppqvt8" path="res://Scenes/Town/rock_4.tscn" id="8_j0p5g"]
 [ext_resource type="PackedScene" uid="uid://bqm3q3wp4rjlw" path="res://Scenes/Town/rock_2.tscn" id="9_5dioy"]
 [ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="10_5dioy"]
+[ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="11_yp7eq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yp7eq"]
 shader = ExtResource("10_5dioy")
@@ -162,3 +163,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_xn1vm")
 }
 autoplay = "Idle"
+
+[node name="GUI" parent="." instance=ExtResource("11_yp7eq")]

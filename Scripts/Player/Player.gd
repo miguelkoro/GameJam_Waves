@@ -2,6 +2,10 @@ extends CharacterBody2D
 
 #Sonidos de pasos #En agua y arena
 @onready var audio_sand: AudioStreamPlayer2D = $AudioStreamPlayer_Sand
+#Sonido de arañazo
+@onready var audio_swing: AudioStreamPlayer2D = $AudioStreamPlayer_Swing
+#Sonido de recibir daño
+@onready var audio_hurt: AudioStreamPlayer2D = $AudioStreamPlayer_Hurt
 
 
 #Variables para las animaciones
@@ -9,6 +13,7 @@ var direction: Vector2 = Vector2.ZERO
 var attacking: bool = false
 var moving: bool = false
 var hurt: bool = false
+var shooting: bool = false
 
 @export var invulnerabilityTime: float = 1.5 # Tiempo que es invulnerable
 var external_force: Vector2 = Vector2.ZERO #Esto lo uso para poder mover al personaje en aguas con corriente
@@ -42,7 +47,10 @@ func _physics_process(delta: float) -> void:
 		
 		# -------- DISPAROS DEL ARMA CON CLICK DERECHO --------
 	if Input.is_action_just_pressed("shoot") and current_weapon and !hurt:
+		shooting = true		
 		current_weapon.shoot()
+		await get_tree().create_timer(0.3).timeout
+		shooting = false
 	
 	# -------- RECARGAR PULSANDO TECLA R -------- 
 	if Input.is_action_just_pressed("reload") and current_weapon and !hurt:
@@ -80,6 +88,8 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	hurt = true
 	#print("damage: ", damage)
 	PlayerStats.take_damage(damage)
+	if not audio_hurt.playing:
+		audio_hurt.play()
 	#Aqui poner la accion de quitarle salud en el PlayerStats
 	#sprite_2d.material.set_shader_parameter("active", invulnerabilityTime)
 	sprite_2d.material.set_shader_parameter("mode", 1)
@@ -135,6 +145,8 @@ func attack():
 	#Activamos la hitbox de ataque
 	attack_hitbox.visible = true
 	attack_hitbox.monitoring = true
+	if not audio_swing.playing:
+		audio_swing.play()
 	# Tiempo que dura el ataque (igual que la animación)
 	await get_tree().create_timer(0.5).timeout
 	#Desactivamos la hitbox de ataque

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=19 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Enemies/Jellyfish.tscn" id="4_35xla"]
@@ -6,17 +6,13 @@
 [ext_resource type="Script" uid="uid://x4iwo0mqmfe5" path="res://Scripts/Map/water_current.gd" id="5_iaow0"]
 [ext_resource type="Script" uid="uid://fesx7xmwf7vf" path="res://Scripts/camera.gd" id="6_i3aeo"]
 [ext_resource type="PackedScene" uid="uid://bk6uqs1huk1sl" path="res://Scenes/Items/heal_box.tscn" id="7_iaow0"]
-[ext_resource type="Texture2D" uid="uid://c8mwlsofbjnej" path="res://Sprites/UI/heart.png" id="8_0c07c"]
 [ext_resource type="PackedScene" uid="uid://bhu40cjsplpqc" path="res://Scenes/Enemies/Squid.tscn" id="10_7nf3m"]
 [ext_resource type="PackedScene" uid="uid://c5kbgxhjewjf8" path="res://Scenes/Items/item_healing_fish.tscn" id="10_aees8"]
 [ext_resource type="PackedScene" uid="uid://clk3wuc22eevs" path="res://Scenes/Enemies/HermitCrab.tscn" id="10_kuf18"]
-[ext_resource type="Script" uid="uid://c65jk0j0p761p" path="res://Scripts/UI/hearts_ui.gd" id="10_qpfo2"]
-[ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Items/Pearl_16.png" id="11_yb21e"]
-[ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="12_aees8"]
-[ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/UI/label.gd" id="13_mie3u"]
 [ext_resource type="PackedScene" uid="uid://b1jvgfhyjbaam" path="res://Scenes/Items/small_pearl.tscn" id="14_0qy5o"]
 [ext_resource type="PackedScene" uid="uid://bjhwe57k4ubw0" path="res://Scenes/screen_effects.tscn" id="14_n0wup"]
 [ext_resource type="PackedScene" uid="uid://cc53wsts7tfmc" path="res://Scenes/Items/big_pearl.tscn" id="15_0qy5o"]
+[ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="15_7nf3m"]
 [ext_resource type="PackedScene" uid="uid://dwo113wvy1q4h" path="res://Scenes/Enemies/urchin.tscn" id="17_2ocox"]
 [ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Town/Shop.tscn" id="20_n0wup"]
 [ext_resource type="PackedScene" uid="uid://dx2nlpb8t6m0c" path="res://Scenes/Menus/pause_menu.tscn" id="21_wojap"]
@@ -129,57 +125,7 @@ color = Color(0.68403757, 0.78250575, 0.99999875, 1)
 
 [node name="ScreenEffects" parent="." instance=ExtResource("14_n0wup")]
 
-[node name="GUI" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Control" type="Control" parent="GUI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HeartsUI" type="HBoxContainer" parent="GUI/Control" groups=["HeartsUI"]]
-layout_direction = 2
-layout_mode = 0
-offset_left = 20.0
-offset_right = 176.0
-offset_bottom = 16.0
-scale = Vector2(4, 4)
-size_flags_horizontal = 3
-theme_override_constants/separation = -1
-script = ExtResource("10_qpfo2")
-heart_texture = ExtResource("8_0c07c")
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -132.99994
-offset_top = 1.0
-offset_right = -59.0
-offset_bottom = 34.0
-grow_horizontal = 0
-scale = Vector2(1.5, 1.5)
-
-[node name="PearlsUI" type="HBoxContainer" parent="GUI/Control/MarginContainer"]
-layout_mode = 2
-alignment = 2
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Control/MarginContainer/PearlsUI"]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 2
-texture = ExtResource("11_yb21e")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="GUI/Control/MarginContainer/PearlsUI"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("12_aees8")
-theme_override_font_sizes/font_size = 27
-text = "x 0"
-script = ExtResource("13_mie3u")
+[node name="GUI" parent="." instance=ExtResource("15_7nf3m")]
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 process_mode = 3

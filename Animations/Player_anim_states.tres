@@ -94,7 +94,7 @@ triangles = PackedInt32Array(0, 4, 5, 3, 4, 5, 3, 5, 6, 2, 5, 6, 3, 6, 7, 1, 6, 
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_102xs"]
-animation = &"Shoot_South"
+animation = &"Shoot_North"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qt6fq"]
 animation = &"Shoot_South"
@@ -119,21 +119,21 @@ animation = &"Shoot_South_Right"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_pvbtg"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_102xs")
-blend_point_0/pos = Vector2(0, 1)
+blend_point_0/pos = Vector2(0, -1)
 blend_point_1/node = SubResource("AnimationNodeAnimation_qt6fq")
-blend_point_1/pos = Vector2(0, -1)
+blend_point_1/pos = Vector2(0, 1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_nj61y")
 blend_point_2/pos = Vector2(1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_75cdr")
 blend_point_3/pos = Vector2(-1, 0)
 blend_point_4/node = SubResource("AnimationNodeAnimation_u0x0n")
-blend_point_4/pos = Vector2(-0.4, 0.6)
+blend_point_4/pos = Vector2(-0.4, -0.6)
 blend_point_5/node = SubResource("AnimationNodeAnimation_mpkdq")
-blend_point_5/pos = Vector2(0.4, 0.6)
+blend_point_5/pos = Vector2(0.4, -0.6)
 blend_point_6/node = SubResource("AnimationNodeAnimation_2jvp6")
-blend_point_6/pos = Vector2(-0.4, -0.6)
+blend_point_6/pos = Vector2(-0.4, 0.6)
 blend_point_7/node = SubResource("AnimationNodeAnimation_6lqxw")
-blend_point_7/pos = Vector2(0.4, -0.6)
+blend_point_7/pos = Vector2(0.4, 0.6)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iok00"]

@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk6uqs1huk1sl"]
+[gd_scene load_steps=14 format=3 uid="uid://bk6uqs1huk1sl"]
 
 [ext_resource type="Texture2D" uid="uid://c21y1b8n3ndg" path="res://Sprites/Items/caja.png" id="1_2xpx5"]
+[ext_resource type="Script" uid="uid://b0ygjmtw7aik2" path="res://Scripts/Items/heal_box.gd" id="1_s0m1r"]
+[ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="3_l6opj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iaow0"]
 radius = 7.452832
@@ -9,31 +11,91 @@ height = 46.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qpfo2"]
 height = 58.0
 
-[node name="HealBox" type="StaticBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0m1r"]
+radius = 37.0
+height = 154.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -15)
-texture = ExtResource("1_2xpx5")
-hframes = 2
-frame = 1
+[sub_resource type="Animation" id="Animation_l6opj"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.56666106),
+"transitions": PackedFloat32Array(1, 1.2311445),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+}
+
+[sub_resource type="Animation" id="Animation_4fxs5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.0679395, 1.0679395)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mcqrq"]
+_data = {
+&"RESET": SubResource("Animation_4fxs5"),
+&"idle": SubResource("Animation_l6opj")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fxs5"]
+bg_color = Color(0.10747967, 0.10747974, 0.10747973, 1)
+border_color = Color(0.62967473, 0.62967485, 0.62967455, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 3
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6opj"]
+atlas = ExtResource("1_2xpx5")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fxs5"]
+atlas = ExtResource("1_2xpx5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mcqrq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6opj")
+}],
+"loop": true,
+"name": &"full",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fxs5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="HealBox" type="StaticBody2D"]
+script = ExtResource("1_s0m1r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.536743e-07)
 rotation = 1.5707964
 scale = Vector2(1.1392393, 1.0659615)
 shape = SubResource("CapsuleShape2D_iaow0")
-
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_left = -28.0
-offset_top = -56.0
-offset_right = 32.0
-offset_bottom = -33.0
-theme_override_colors/font_color = Color(0.109699436, 4.9622806e-05, 0.38611954, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
-text = "PRESS E"
-horizontal_alignment = 1
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(1, -15)
@@ -45,3 +107,64 @@ position = Vector2(-1, 15)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_qpfo2")
 debug_color = Color(0.6357176, 0.3509134, 0.984114, 0.41960785)
+
+[node name="AudioStreamPlayer_Cardboard" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ShowLabel" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShowLabel"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_s0m1r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mcqrq")
+}
+autoplay = "idle"
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_left = -13.299168
+offset_top = -67.299164
+offset_right = 10.700832
+offset_bottom = -43.299164
+scale = Vector2(1.0679395, 1.0679395)
+pivot_offset = Vector2(12, 12)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4fxs5")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -12.0
+offset_right = 13.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(6.4807873, 7.4807873)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_l6opj")
+theme_override_font_sizes/font_size = 19
+text = "E"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -16)
+sprite_frames = SubResource("SpriteFrames_mcqrq")
+animation = &"full"
+autoplay = "idle"
+
+[node name="Timer_Heal" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="ShowLabel" to="." method="_on_show_label_body_entered"]
+[connection signal="body_exited" from="ShowLabel" to="." method="_on_show_label_body_exited"]
