@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bdeb8svo674rg" path="res://Scripts/map_generation.gd" id="1_fvud7"]
 [ext_resource type="Texture2D" uid="uid://dn11006ec4yfx" path="res://TileMaps/TileSet_Dungeon_Playa_Baja_waves.png" id="2_fvud7"]
 [ext_resource type="Texture2D" uid="uid://be1dx1v22lvha" path="res://TileMaps/TileSet_Dungeon_Playa.png" id="4_2uixv"]
-[ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera.gd" id="5_1stcq"]
+[ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera_aux.gd" id="5_1stcq"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="5_x1jte"]
 [ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="6_38vmx"]
 [ext_resource type="Shader" uid="uid://brpstmb53oyjo" path="res://Shaders/inkEffect.gdshader" id="7_aed1y"]

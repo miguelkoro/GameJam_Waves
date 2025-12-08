@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Enemies/Jellyfish.tscn" id="4_35xla"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="4_ys1qc"]
 [ext_resource type="Script" uid="uid://x4iwo0mqmfe5" path="res://Scripts/Map/water_current.gd" id="5_iaow0"]
-[ext_resource type="Script" uid="uid://468bvteqf5nk" path="res://Scripts/camera.gd" id="6_i3aeo"]
+[ext_resource type="Script" uid="uid://fesx7xmwf7vf" path="res://Scripts/camera.gd" id="6_i3aeo"]
 [ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="7_5wyu1"]
 [ext_resource type="PackedScene" uid="uid://bk6uqs1huk1sl" path="res://Scenes/Items/heal_box.tscn" id="7_iaow0"]
 [ext_resource type="Texture2D" uid="uid://c8mwlsofbjnej" path="res://Sprites/UI/heart.png" id="8_0c07c"]
