@@ -1,11 +1,40 @@
-[gd_scene load_steps=10 format=3 uid="uid://bypixsr42whsa"]
+[gd_scene load_steps=16 format=3 uid="uid://bypixsr42whsa"]
 
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="1_38aua"]
 [ext_resource type="Script" uid="uid://u88r32y1biub" path="res://Scripts/Menus/main_menu.gd" id="1_penys"]
-[ext_resource type="Texture2D" uid="uid://l668eklehwbl" path="res://Sprites/main_menu_font.png" id="1_pha2q"]
+[ext_resource type="Texture2D" uid="uid://b503yxm1t0n3r" path="res://Sprites/UI/help_icon_hover.png" id="4_5wi6m"]
+[ext_resource type="Texture2D" uid="uid://d068q12ne2wjb" path="res://Sprites/UI/help_icon.png" id="4_aur2u"]
+[ext_resource type="Texture2D" uid="uid://bvksjujfluo1f" path="res://Sprites/UI/exit_icon.png" id="5_chkef"]
+[ext_resource type="Texture2D" uid="uid://cbh84p5nqr1fy" path="res://Sprites/UI/exit_icon_hover.png" id="6_neey8"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_penys"]
-texture = ExtResource("1_pha2q")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fgt5"]
+bg_color = Color(0, 0, 0, 0)
+border_color = Color(0.14117648, 0.14117648, 0.14117648, 0.7411765)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.25490198)
+shadow_size = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wi6m"]
+bg_color = Color(0.2159017, 0.21590173, 0.21590161, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.28627452)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_neey8"]
+bg_color = Color(0.19215687, 0.19215687, 0.19215687, 0.7647059)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.3764706)
+shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pha2q"]
 bg_color = Color(0.23497263, 0.28999346, 0.64567965, 1)
@@ -41,6 +70,13 @@ shadow_offset = Vector2(3, 3)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_penys"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chkef"]
+bg_color = Color(0.12591091, 0.12591082, 0.12591082, 0.8235294)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -49,15 +85,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_penys")
-
-[node name="Background" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_penys")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -69,73 +96,90 @@ offset_top = 104.0
 offset_right = 225.0
 offset_bottom = 181.0
 grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_38aua")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_4fgt5")
 text = "Fishery Fisher"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainButtons" type="VBoxContainer" parent="."]
+[node name="ControlsButton" type="MarginContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -220.375
-offset_top = -72.0
-offset_right = 220.375
-offset_bottom = 222.0
+offset_left = 15.145
+offset_top = 17.11
+offset_right = 95.145004
+offset_bottom = 97.11
+
+[node name="Panel" type="Panel" parent="ControlsButton"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5wi6m")
+
+[node name="controlsButton" type="TextureButton" parent="ControlsButton"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("4_aur2u")
+texture_hover = ExtResource("4_5wi6m")
+stretch_mode = 4
+
+[node name="ExitButton" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.435
+offset_top = -85.78497
+offset_right = 93.435
+offset_bottom = -5.784973
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="ExitButton"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_neey8")
+
+[node name="exitButton" type="TextureButton" parent="ExitButton"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("5_chkef")
+texture_hover = ExtResource("6_neey8")
+stretch_mode = 4
+flip_h = true
+
+[node name="StartButton" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 355.625
+offset_top = 423.625
+offset_right = 795.625
+offset_bottom = 509.485
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
 
-[node name="StartGame" type="Button" parent="MainButtons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="StartButton"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="StartGame" type="Button" parent="StartButton/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/align_to_largest_stylebox = 8
 theme_override_fonts/font = ExtResource("1_38aua")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 70
 theme_override_styles/normal = SubResource("StyleBoxFlat_pha2q")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_penys")
 theme_override_styles/hover = SubResource("StyleBoxFlat_aur2u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pha2q")
-text = "Start Game"
-
-[node name="Controls" type="Button" parent="MainButtons"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_38aua")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_pha2q")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_penys")
-theme_override_styles/hover = SubResource("StyleBoxFlat_aur2u")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_pha2q")
-text = "Controls"
-
-[node name="Exit" type="Button" parent="MainButtons"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("1_38aua")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_pha2q")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_penys")
-theme_override_styles/hover = SubResource("StyleBoxFlat_aur2u")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_pha2q")
-text = "Exit"
+text = "Start"
 
 [node name="Controls" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -149,6 +193,12 @@ offset_bottom = 244.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_penys")
+
+[node name="Panel" type="Panel" parent="Controls"]
+layout_mode = 0
+offset_right = 488.5
+offset_bottom = 390.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_chkef")
 
 [node name="ControlsText" type="Label" parent="Controls"]
 layout_mode = 1
@@ -213,7 +263,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_aur2u")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pha2q")
 text = "Back"
 
-[connection signal="pressed" from="MainButtons/StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="MainButtons/Controls" to="." method="_on_controls_pressed"]
-[connection signal="pressed" from="MainButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="ControlsButton/controlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="ExitButton/exitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="StartButton/HBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="Controls/Back" to="." method="_on_back_pressed"]
