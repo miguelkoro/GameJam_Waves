@@ -1,0 +1,148 @@
+[gd_scene load_steps=17 format=4 uid="uid://dokgw3lrthp7u"]
+
+[ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_yb5h5"]
+[ext_resource type="Texture2D" uid="uid://c1wm3cfgohcsq" path="res://Sprites/Town/Muelle.png" id="3_c4idq"]
+[ext_resource type="Texture2D" uid="uid://ceacljw5yqrrv" path="res://Sprites/Town/Barcos.png" id="4_nqwsx"]
+[ext_resource type="PackedScene" uid="uid://jotfsbiif6oj" path="res://Scenes/Town/palm_tree.tscn" id="5_b1nnh"]
+[ext_resource type="Texture2D" uid="uid://dmxd7blpttnb3" path="res://Sprites/Player/Cat.png" id="6_4xs04"]
+[ext_resource type="AudioStream" uid="uid://djniuwwtik8nj" path="res://Audios/Beach.ogg" id="7_nqwsx"]
+[ext_resource type="PackedScene" uid="uid://bypixsr42whsa" path="res://Scenes/Menus/main_menu.tscn" id="7_yb5h5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_124ee"]
+atlas = ExtResource("6_4xs04")
+region = Rect2(128, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4idq"]
+atlas = ExtResource("6_4xs04")
+region = Rect2(192, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep5c1"]
+atlas = ExtResource("6_4xs04")
+region = Rect2(256, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1nnh"]
+atlas = ExtResource("6_4xs04")
+region = Rect2(320, 320, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fjpu"]
+atlas = ExtResource("6_4xs04")
+region = Rect2(384, 320, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34k83"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_124ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4idq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep5c1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1nnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fjpu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_nqwsx"]
+resource_name = "idle"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("YSort/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.6, 7.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-410, 131), Vector2(-390, 130), Vector2(-377, 136)]
+}
+
+[sub_resource type="Animation" id="Animation_4xs04"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("YSort/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-412, 130)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yb5h5"]
+_data = {
+&"RESET": SubResource("Animation_4xs04"),
+&"idle": SubResource("Animation_nqwsx")
+}
+
+[node name="MainScene" type="Node2D"]
+
+[node name="TileMapLayer_water" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AADy/wEAAgAAAAcAAADy/wIAAgAAAAcAAADy/wMAAgAAAAcAAADy/wQAAgAAAAcAAADy/wUAAgAAAAcAAADy/wYAAgAAAAcAAADy/wcAAgAAAAcAAADy/wgAAgAAAAcAAADy/wkAAgAAAAcAAADz/wEAAgAAAAcAAADz/wIAAgAAAAcAAADz/wMAAgAAAAcAAADz/wQAAgAAAAcAAADz/wUAAgAAAAcAAADz/wYAAgAAAAcAAADz/wcAAgAAAAcAAADz/wgAAgAAAAcAAADz/wkAAgAAAAcAAAD0/wEAAgAAAAcAAAD0/wIAAgAAAAcAAAD0/wMAAgAAAAcAAAD0/wQAAgAAAAcAAAD0/wUAAgAAAAcAAAD0/wYAAgAAAAcAAAD0/wcAAgAAAAcAAAD0/wgAAgAAAAcAAAD0/wkAAgAAAAcAAAD1/wEAAgAAAAcAAAD1/wIAAgAAAAcAAAD1/wMAAgAAAAcAAAD1/wQAAgAAAAcAAAD1/wUAAgAAAAcAAAD1/wYAAgAAAAcAAAD1/wcAAgAAAAcAAAD1/wgAAgAAAAcAAAD1/wkAAgAAAAcAAAD2/wQAAgAAAAcAAAD2/wUAAgAAAAcAAAD2/wYAAgAAAAcAAAD2/wcAAgAAAAcAAAD2/wgAAgAAAAcAAAD2/wkAAgAAAAcAAAD3/wUAAgAAAAcAAAD3/wYAAgAAAAcAAAD3/wcAAgAAAAcAAAD3/wgAAgAAAAcAAAD3/wkAAgAAAAcAAAD4/wgAAgAAAAcAAAD4/wkAAgAAAAcAAAD5/wgAAgAAAAcAAAD5/wkAAgAAAAcAAADu/wEAAgAAAAcAAADu/wIAAgAAAAcAAADu/wMAAgAAAAcAAADu/wQAAgAAAAcAAADu/wUAAgAAAAcAAADu/wYAAgAAAAcAAADu/wcAAgAAAAcAAADu/wgAAgAAAAcAAADu/wkAAgAAAAcAAADv/wEAAgAAAAcAAADv/wIAAgAAAAcAAADv/wMAAgAAAAcAAADv/wQAAgAAAAcAAADv/wUAAgAAAAcAAADv/wYAAgAAAAcAAADv/wcAAgAAAAcAAADv/wgAAgAAAAcAAADv/wkAAgAAAAcAAADw/wEAAgAAAAcAAADw/wIAAgAAAAcAAADw/wMAAgAAAAcAAADw/wQAAgAAAAcAAADw/wUAAgAAAAcAAADw/wYAAgAAAAcAAADw/wcAAgAAAAcAAADw/wgAAgAAAAcAAADw/wkAAgAAAAcAAADx/wEAAgAAAAcAAADx/wIAAgAAAAcAAADx/wMAAgAAAAcAAADx/wQAAgAAAAcAAADx/wUAAgAAAAcAAADx/wYAAgAAAAcAAADx/wcAAgAAAAcAAADx/wgAAgAAAAcAAADx/wkAAgAAAAcAAADw/wAAAgAAAAcAAADx/wAAAgAAAAcAAADy/wAAAgAAAAcAAADz/wAAAgAAAAcAAAD0/wAAAgAAAAcAAAD1/wAAAgAAAAcAAAD2/wAAAgAAAAcAAAD2/wEAAgAAAAcAAAD2/wIAAgAAAAcAAAD2/wMAAgAAAAcAAAD3/wAAAgAAAAcAAAD3/wEAAgAAAAcAAAD3/wIAAgAAAAcAAAD3/wMAAgAAAAcAAAD3/wQAAgAAAAcAAAD4/wAAAgAAAAcAAAD4/wEAAgAAAAcAAAD4/wIAAgAAAAcAAAD4/wMAAgAAAAcAAAD5/wAAAgAAAAcAAAD5/wEAAgAAAAcAAAD5/wIAAgAAAAcAAAD5/wMAAgAAAAcAAAD6/wAAAgAAAAcAAAD6/wEAAgAAAAcAAAD6/wIAAgAAAAcAAAD6/wMAAgAAAAcAAADt/wAAAgAAAAcAAADt/wEAAgAAAAcAAADt/wIAAgAAAAcAAADt/wMAAgAAAAcAAADu/wAAAgAAAAcAAADv/wAAAgAAAAcAAADq/wAAAgAAAAcAAADq/wEAAgAAAAcAAADq/wIAAgAAAAcAAADq/wMAAgAAAAcAAADq/wQAAgAAAAcAAADq/wUAAgAAAAcAAADq/wYAAgAAAAcAAADq/wcAAgAAAAcAAADq/wgAAgAAAAcAAADq/wkAAgAAAAcAAADr/wAAAgAAAAcAAADr/wEAAgAAAAcAAADr/wIAAgAAAAcAAADr/wMAAgAAAAcAAADr/wQAAgAAAAcAAADr/wUAAgAAAAcAAADr/wYAAgAAAAcAAADr/wcAAgAAAAcAAADr/wgAAgAAAAcAAADr/wkAAgAAAAcAAADs/wAAAgAAAAcAAADs/wEAAgAAAAcAAADs/wIAAgAAAAcAAADs/wMAAgAAAAcAAADs/wQAAgAAAAcAAADs/wUAAgAAAAcAAADs/wYAAgAAAAcAAADs/wcAAgAAAAcAAADs/wgAAgAAAAcAAADs/wkAAgAAAAcAAADt/wQAAgAAAAcAAADt/wUAAgAAAAcAAADt/wYAAgAAAAcAAADt/wcAAgAAAAcAAADt/wgAAgAAAAcAAADt/wkAAgAAAAcAAAA=")
+tile_set = ExtResource("1_yb5h5")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD3/wMAAAAAAAAAAAD3/wQAAAAEAAQAAAD3/wUAAAAEAAQAAAD3/wYAAAAEAAQAAAD3/wcAAAAEAAQAAAD3/wgAAAAAAAEAAAD4/wMAAAAAAAUAAAD4/wQAAgAAAAYAAAD4/wUAAgAAAAYAAAD4/wYAAgAAAAYAAAD4/wcAAgAAAAYAAAD4/wgAAAAEAAMAAAD4/wkAAAAEAAQAAAD5/wIAAAAAAAAAAAD5/wMAAAAEAAIAAAD5/wQAAgAAAAYAAAD5/wUAAgAAAAYAAAD5/wYAAgAAAAYAAAD5/wcAAgAAAAYAAAD5/wgAAgAAAAYAAAD5/wkAAgAAAAYAAAD6////AAAAAAAAAAD6/wAAAAAEAAQAAAD6/wEAAAAEAAQAAAD6/wIAAAAEAAIAAAD6/wMAAgAAAAYAAAD6/wQAAgAAAAYAAAD6/wUAAgAAAAYAAAD6/wYAAgAAAAYAAAD6/wcAAgAAAAYAAAD6/wgAAgAAAAYAAAD6/wkAAgAAAAYAAAD7////AAAAAAUAAAD7/wAAAgAAAAYAAAD7/wEAAgAAAAYAAAD7/wIAAgAAAAYAAAD7/wMAAgAAAAYAAAD7/wQAAgAAAAYAAAD7/wUAAgAAAAYAAAD7/wYAAgAAAAYAAAD7/wcAAgAAAAYAAAD7/wgAAgAAAAYAAAD7/wkAAgAAAAYAAAD8////BgAAAAEAAAD8/wAAAgAAAAYAAAD8/wEAAgAAAAYAAAD8/wIAAgAAAAYAAAD8/wMAAgAAAAYAAAD8/wQAAgAAAAYAAAD8/wUAAgAAAAYAAAD8/wYAAgAAAAYAAAD8/wcAAgAAAAYAAAD8/wgAAgAAAAYAAAD8/wkAAgAAAAYAAAD9////AgAEAAYAAAD9/wAAAgAAAAYAAAD9/wEAAgAAAAYAAAD9/wIAAgAAAAYAAAD9/wMAAgAAAAYAAAD9/wQAAgAAAAYAAAD9/wUAAgAAAAYAAAD9/wYAAgAAAAYAAAD9/wcAAgAAAAYAAAD9/wgAAgAAAAYAAAD9/wkAAgAAAAYAAADz/wkAAgAEAAAAAADu/wEAAgAEAAAAAAD2/wMAAgAEAAAAAAA=")
+tile_set = ExtResource("1_yb5h5")
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Node2D" type="Node2D" parent="YSort"]
+position = Vector2(-352, 175)
+
+[node name="Dock" type="Sprite2D" parent="YSort/Node2D"]
+position = Vector2(0, 31)
+texture = ExtResource("3_c4idq")
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort"]
+position = Vector2(-412, 130)
+texture = ExtResource("4_nqwsx")
+flip_h = true
+
+[node name="PalmTree" parent="YSort" instance=ExtResource("5_b1nnh")]
+position = Vector2(-222, 183)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort"]
+position = Vector2(-436, 180)
+sprite_frames = SubResource("SpriteFrames_34k83")
+autoplay = "default"
+frame_progress = 0.74105227
+offset = Vector2(0, -15)
+
+[node name="MainMenu" parent="." instance=ExtResource("7_yb5h5")]
+offset_left = -350.00003
+offset_top = 161.0
+offset_right = -350.00003
+offset_bottom = 161.0
+scale = Vector2(0.23999937, 0.24000016)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-348, 147)
+zoom = Vector2(4, 4)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-358, 264)
+stream = ExtResource("7_nqwsx")
+autoplay = true
+bus = &"Effects"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yb5h5")
+}
+autoplay = "idle"

@@ -6,12 +6,15 @@ extends CharacterBody2D
 @export var knockback: float = 100 #Efecto de echar para atras al jugador al golpearle
 @export var health: float = 3
 
+
+
 enum PatrolMode {HORIZONTAL, VERTICAL}
 @export var patrol_mode: PatrolMode = PatrolMode.VERTICAL
 const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
+@onready var audio_hit: AudioStreamPlayer2D = $AudioStreamPlayer_hit
 
 		
 func _physics_process(delta: float) -> void:
@@ -45,8 +48,10 @@ func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 		area.get_parent().take_damage(damage, global_position, knockback)
 
 func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float):
+	if not audio_hit.playing:
+		audio_hit.play()
 	health-=damage
-		# Knockback
+	# Knockback
 	var direction = (global_position - attacker_pos).normalized()
 	knockback_velocity = direction * attacker_knockback
 	flash_damage()

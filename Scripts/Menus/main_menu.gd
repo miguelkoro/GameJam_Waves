@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _on_start_game_pressed() -> void:
 	print("Start Game pressed")
-	get_tree().change_scene_to_file("res://Scenes/start.tscn") # Replace with function body.
+	get_tree().change_scene_to_file("res://Scenes/Town/Town.tscn") # Replace with function body.
 
 
 func _on_controls_pressed() -> void:

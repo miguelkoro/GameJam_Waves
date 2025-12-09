@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://belg01ae6w6up"]
+[gd_scene load_steps=16 format=4 uid="uid://belg01ae6w6up"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cmfmaehico4c6" path="res://Scenes/Town/boat.tscn" id="4_ytd6y"]
 [ext_resource type="PackedScene" uid="uid://jotfsbiif6oj" path="res://Scenes/Town/palm_tree.tscn" id="5_egv3d"]
 [ext_resource type="PackedScene" uid="uid://bqm3q3wp4rjlw" path="res://Scenes/Town/rock_2.tscn" id="6_7edlf"]
-[ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Enemies/Jellyfish.tscn" id="9_crp13"]
 [ext_resource type="Texture2D" uid="uid://c1wm3cfgohcsq" path="res://Sprites/Town/Muelle.png" id="9_ylki5"]
 [ext_resource type="PackedScene" uid="uid://vg6woi7a14ui" path="res://Scenes/camera.tscn" id="9_ytd6y"]
 [ext_resource type="AudioStream" uid="uid://rjqbixqx7syy" path="res://Audios/Music_Town.ogg" id="13_nnguh"]
@@ -107,9 +106,6 @@ position = Vector2(-63, 76)
 
 [node name="Rock5" parent="YSort" instance=ExtResource("6_7edlf")]
 position = Vector2(262, -62)
-
-[node name="Jellyfish" parent="YSort" instance=ExtResource("9_crp13")]
-position = Vector2(67, 222)
 
 [node name="Camera2D" parent="." instance=ExtResource("9_ytd6y")]
 
