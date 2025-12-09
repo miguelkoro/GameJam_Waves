@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkojkgnvtpjx0"]
+
+[ext_resource type="AudioStream" uid="uid://r8appoira4i" path="res://Audios/Pick_item.ogg" id="1_h0nbd"]
+
+[node name="AudioStreamPlayer_Eat" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_h0nbd")
+volume_db = 6.058
+bus = &"Effects"

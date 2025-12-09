@@ -4,6 +4,8 @@ extends StaticBody2D
 @onready var panel: Panel = $Panel
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer_heal: Timer = $Timer_Heal
+@onready var audio_cardboard_in: AudioStreamPlayer2D = $AudioStreamPlayer_Cardboard2
+@onready var audio_cardboard_out: AudioStreamPlayer2D = $AudioStreamPlayer_Cardboard3
 
 var player_in_range: bool = false #Si el jugador esta cerca
 var healing: bool = false #Si esta curando
@@ -33,15 +35,29 @@ func start_healing() ->void:
 	healing = true
 	animated_sprite.play("full")
 	player.visible = false
+	player.inactive = true
 	timer_heal.start()
 	panel.visible = false
+	if not audio_cardboard_in.playing:
+		audio_cardboard_in.play()
+	#Shadder
+	var mat := animated_sprite.material
+	if mat is ShaderMaterial:
+		mat.set_shader_parameter("healing", true)
 
 func stop_healing() -> void:
 	healing = false
 	timer_heal.stop()
 	player.visible = true
+	player.inactive = false
 	animated_sprite.play("idle")
 	panel.visible = true
+	if not audio_cardboard_out.playing:
+		audio_cardboard_out.play()
+		#Shadder
+	var mat := animated_sprite.material
+	if mat is ShaderMaterial:
+		mat.set_shader_parameter("healing", false)
 
 func _on_heal_tick() -> void:
 	if player and healing:
