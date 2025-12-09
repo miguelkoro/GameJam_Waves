@@ -5,9 +5,11 @@ var player_is_near: bool = false
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 var player = null
 var gui = null
+@onready var label: Label = $CanvasLayer/Control/PearlsUI/Label
+
 
 func _ready() -> void:
-	gui = get_tree().get_first_node_in_group("HeartsUI")
+	gui = get_tree().get_first_node_in_group("GUI")
 
 func _process(delta: float) -> void:
 	if not player_is_near:
@@ -16,14 +18,17 @@ func _process(delta: float) -> void:
 		if not audio_Seagull.playing:
 			audio_Seagull.play()
 		#Aqui poner lo de abrir el menu de la tienda
-		print("Abrir tienda")
-		canvas_layer.visible = true
-		if player != null:
-			player.inactive = true
-
-		gui.visible = false
+		open_shop()
 		
 
+func open_shop() -> void:
+	print("Abrir tienda")
+	canvas_layer.visible = true
+	if player != null:
+		player.inactive = true
+
+		gui.visible = false
+	label.text = "X " + str(GameManager.currency)
 
 func _on_show_label_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):

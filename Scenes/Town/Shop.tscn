@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cl2r7k5r6qay1"]
+[gd_scene load_steps=25 format=3 uid="uid://cl2r7k5r6qay1"]
 
 [ext_resource type="Texture2D" uid="uid://b50jeswh5emie" path="res://Sprites/Town/Tienda_playa.png" id="1_kjfcx"]
 [ext_resource type="Script" uid="uid://bk508hx0y7a6s" path="res://Scripts/Map/shop.gd" id="1_sq27l"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cllaqojstr6na" path="res://Sprites/Weapons/Weapon_Rifle_icon.png" id="7_80xwd"]
 [ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Items/Pearl_16.png" id="8_smrw6"]
 [ext_resource type="Texture2D" uid="uid://c7khyucrixhmj" path="res://Sprites/UI/shop_icon.png" id="9_yurop"]
+[ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/UI/label.gd" id="10_smrw6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iidq5"]
 atlas = ExtResource("1_kjfcx")
@@ -214,6 +215,18 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.56
+texture = ExtResource("6_n3jhh")
+stretch_mode = 5
+
 [node name="Panel" type="Panel" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 15
@@ -228,16 +241,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.19
+offset_top = 116.025
+offset_right = -9.650024
+offset_bottom = -23.569458
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.56
-texture = ExtResource("6_n3jhh")
-stretch_mode = 5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2
@@ -396,6 +406,55 @@ icon = ExtResource("9_yurop")
 autowrap_trim_flags = 0
 icon_alignment = 1
 
+[node name="Item4" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4"]
+layout_mode = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lagin")
+theme_override_font_sizes/font_size = 41
+text = "Weapon Name"
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_80xwd")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Pearl" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("8_smrw6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Price" type="Label" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lagin")
+theme_override_font_sizes/font_size = 71
+text = "X 25"
+
+[node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_80xwd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_smrw6")
+icon = ExtResource("9_yurop")
+autowrap_trim_flags = 0
+icon_alignment = 1
+
 [node name="BackButton" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 0
 offset_left = 47.0
@@ -408,6 +467,27 @@ theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 60
 text = "Back"
+
+[node name="PearlsUI" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 911.0
+offset_top = 53.0
+offset_right = 1065.565
+offset_bottom = 119.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/PearlsUI"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("8_smrw6")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PearlsUI"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_lagin")
+theme_override_font_sizes/font_size = 54
+text = "x 0"
+script = ExtResource("10_smrw6")
 
 [connection signal="body_entered" from="ShowLabel" to="." method="_on_show_label_body_entered"]
 [connection signal="body_exited" from="ShowLabel" to="." method="_on_show_label_body_exited"]

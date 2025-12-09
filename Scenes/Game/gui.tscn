@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="4_1isjq"]
 [ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/UI/label.gd" id="5_l7p21"]
 
-[node name="GUI" type="CanvasLayer"]
+[node name="GUI" type="CanvasLayer" groups=["GUI"]]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

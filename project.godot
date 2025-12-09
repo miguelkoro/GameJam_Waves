@@ -39,6 +39,7 @@ Player=""
 HeartsUI=""
 PearlsUI=""
 InkEffectUI=""
+GUI=""
 
 [input]
 
