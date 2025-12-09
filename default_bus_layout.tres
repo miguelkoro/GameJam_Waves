@@ -4,7 +4,7 @@
 resource_name = "LowPassFilter"
 
 [resource]
-bus/0/volume_db = -4.002995
+bus/0/volume_db = -4.2500257
 bus/1/name = &"Steps"
 bus/1/solo = false
 bus/1/mute = false

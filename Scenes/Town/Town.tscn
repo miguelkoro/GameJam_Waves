@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://belg01ae6w6up"]
+[gd_scene load_steps=17 format=4 uid="uid://belg01ae6w6up"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bqm3q3wp4rjlw" path="res://Scenes/Town/rock_2.tscn" id="6_7edlf"]
 [ext_resource type="Texture2D" uid="uid://c1wm3cfgohcsq" path="res://Sprites/Town/Muelle.png" id="9_ylki5"]
 [ext_resource type="PackedScene" uid="uid://vg6woi7a14ui" path="res://Scenes/camera.tscn" id="9_ytd6y"]
+[ext_resource type="PackedScene" uid="uid://bhu40cjsplpqc" path="res://Scenes/Enemies/Squid.tscn" id="13_crp13"]
 [ext_resource type="AudioStream" uid="uid://rjqbixqx7syy" path="res://Audios/Music_Town.ogg" id="13_nnguh"]
 [ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="13_ytd6y"]
 [ext_resource type="AudioStream" uid="uid://djniuwwtik8nj" path="res://Audios/Beach.ogg" id="14_ytd6y"]
@@ -153,3 +154,6 @@ autoplay = true
 bus = &"Effects"
 
 [node name="GUI" parent="." instance=ExtResource("13_ytd6y")]
+
+[node name="Squid" parent="." instance=ExtResource("13_crp13")]
+position = Vector2(42, 218)

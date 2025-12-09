@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://cfveuxic7ufkk"]
+
+[ext_resource type="Texture2D" uid="uid://c3e68wf016hv2" path="res://Sprites/Ammunition/ink.png" id="1_mipxl"]
+[ext_resource type="Script" uid="uid://beqwql2nwx13v" path="res://Scripts/Ammunition/ink_splash.gd" id="1_nsnll"]
+[ext_resource type="AudioStream" uid="uid://c5a8bhq1sqj2r" path="res://Audios/ink_splash.ogg" id="3_u43sr"]
+
+[sub_resource type="Animation" id="Animation_xml0p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lkrh1"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19504923, 0.39748666, 0.60140175, 0.8082721),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_5ogmf"]
+resource_name = "splash"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1.7411014),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rogbx"]
+_data = {
+&"RESET": SubResource("Animation_xml0p"),
+&"idle": SubResource("Animation_lkrh1"),
+&"splash": SubResource("Animation_5ogmf")
+}
+
+[node name="InkSplash" type="Node2D"]
+script = ExtResource("1_nsnll")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mipxl")
+hframes = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rogbx")
+}
+autoplay = "splash"
+
+[node name="AudioStreamPlayer_Splash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_u43sr")
+volume_db = -0.155
+autoplay = true
+bus = &"Effects"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
