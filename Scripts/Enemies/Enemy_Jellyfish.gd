@@ -8,20 +8,27 @@ extends CharacterBody2D
 
 enum PatrolMode {HORIZONTAL, VERTICAL}
 @export var patrol_mode: PatrolMode = PatrolMode.VERTICAL
-
+const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+var knockback_velocity: Vector2 = Vector2.ZERO
+var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
 
 		
 func _physics_process(delta: float) -> void:
 	#Movemos horizontalmente el enemigo
 	#velocity.x = direction * speed
 	#velocity.y = 0
-	match patrol_mode:
-		PatrolMode.HORIZONTAL:
-			velocity.y = 0
-			velocity.x = direction * speed
-		PatrolMode.VERTICAL:
-			velocity.x = 0
-			velocity.y = direction * speed
+	if knockback_velocity.length() > 1:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+	else:
+		match patrol_mode:
+			PatrolMode.HORIZONTAL:
+				velocity.y = 0
+				velocity.x = direction * speed
+			PatrolMode.VERTICAL:
+				velocity.x = 0
+				velocity.y = direction * speed
 	move_and_slide()
 	
 	#Si hay colision con un muro, que se de la vuelta
@@ -39,4 +46,24 @@ func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 
 func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float):
 	health-=damage
+		# Knockback
+	var direction = (global_position - attacker_pos).normalized()
+	knockback_velocity = direction * attacker_knockback
+	flash_damage()
+	if health <= 0:
+		die()
 	print("health:", health)
+
+func die() -> void:
+	var death_effect = ENEMY_DEATH.instantiate()
+	get_parent().add_child(death_effect)
+	death_effect.global_position = global_position
+	queue_free()
+	pass
+
+
+func flash_damage():
+	var mat := animated_sprite.material
+	mat.set("shader_param/hit_flash", 1.0)
+	await get_tree().create_timer(0.12).timeout
+	mat.set("shader_param/hit_flash", 0.0)

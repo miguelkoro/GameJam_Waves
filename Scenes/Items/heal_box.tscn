@@ -18,6 +18,21 @@ height = 58.0
 radius = 37.0
 height = 154.0
 
+[sub_resource type="Animation" id="Animation_4fxs5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.0679395, 1.0679395)]
+}
+
 [sub_resource type="Animation" id="Animation_l6opj"]
 resource_name = "idle"
 loop_mode = 1
@@ -32,21 +47,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1.2311445),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.1, 1.1)]
-}
-
-[sub_resource type="Animation" id="Animation_4fxs5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1.0679395, 1.0679395)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mcqrq"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://qxnsc00hb5ae"]
+[gd_scene load_steps=18 format=3 uid="uid://qxnsc00hb5ae"]
 
 [ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Enemies/Jellyfish.png" id="1_cytm7"]
 [ext_resource type="Script" uid="uid://bs0o5bo8i3ovo" path="res://Scripts/Enemies/Enemy_Jellyfish.gd" id="1_ebxm7"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_m07os"]
+[ext_resource type="Shader" uid="uid://ccw4rackyrbfn" path="res://Shaders/enemy_hurt.gdshader" id="3_724dr"]
 
 [sub_resource type="Gradient" id="Gradient_m07os"]
 offsets = PackedFloat32Array(0, 0.7133333)
@@ -17,6 +18,10 @@ fill_to = Vector2(1, 1)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m07os"]
 radius = 8.0
 height = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6vec"]
+shader = ExtResource("3_724dr")
+shader_parameter/hit_flash = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebxm7"]
 atlas = ExtResource("1_cytm7")
@@ -93,6 +98,7 @@ position = Vector2(-1, 0)
 texture = ExtResource("2_m07os")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_n6vec")
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_e6vho")
 autoplay = "default"
