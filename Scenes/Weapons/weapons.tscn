@@ -11,3 +11,5 @@ position = Vector2(14, -2)
 [node name="Timer" type="Timer" parent="."]
 
 [node name="ReloadTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

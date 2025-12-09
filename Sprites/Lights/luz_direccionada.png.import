@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://85ogp7bwaeo8"
-path="res://.godot/imported/weapon1.png-0137fc2da7c6ddd450a33e2146b5af23.ctex"
+uid="uid://dvmgknp24fyrs"
+path="res://.godot/imported/luz_direccionada.png-4cca83883b385d1094500e8790ea32fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/weapon1.png"
-dest_files=["res://.godot/imported/weapon1.png-0137fc2da7c6ddd450a33e2146b5af23.ctex"]
+source_file="res://Sprites/Lights/luz_direccionada.png"
+dest_files=["res://.godot/imported/luz_direccionada.png-4cca83883b385d1094500e8790ea32fc.ctex"]
 
 [params]
 

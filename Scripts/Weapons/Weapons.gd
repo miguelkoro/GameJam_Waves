@@ -4,6 +4,8 @@ class_name Weapon
 # Referencias a nodos (OPCIONALES porque no todas las armas los tienen)
 @onready var muzzle_position: Marker2D = $MuzzlePosition if has_node("MuzzlePosition") else null
 @onready var timer: Timer = $Timer if has_node("Timer") else null
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
 # Propiedades comunes
 @export var weapon_name: String = "Base Weapon"
 @export var damage: int = 10
@@ -51,8 +53,11 @@ func shoot() -> void:
 	
 	if weapon_type == WeaponType.RANGED:
 		_shoot_ranged()
+		if current_ammo>0:
+			audio_stream_player_2d.play()
 	elif weapon_type == WeaponType.MELEE:
 		_attack_melee()
+		audio_stream_player_2d.play()
 	
 	# Iniciar cooldown
 	can_shoot = false
@@ -66,7 +71,7 @@ func _shoot_ranged() -> void:
 	_spawn_bullet()
 	current_ammo -= 1
 
-# Función virtual para armas cuerpo a cuerpo
+# Función para armas cuerpo a cuerpo
 func _attack_melee() -> void:
 	# Las armas cuerpo a cuerpo sobrescribirán esto
 	pass

@@ -5,9 +5,9 @@ extends Weapon
 func _ready() -> void:
 	super._ready()
 	
-	weapon_name = "Pistola"
+	weapon_name = "Fusil"
 	weapon_type = WeaponType.RANGED
-	damage = 15
+	damage = 10
 	fire_rate = 0.3
 	bullet_speed = 600.0
 	max_ammo = 100

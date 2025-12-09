@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://irpmi2hds1ji"]
 
 [ext_resource type="PackedScene" uid="uid://j17dk1wy0ah1" path="res://Scenes/Bullets/bullets.tscn" id="1_u5ude"]
-[ext_resource type="Texture2D" uid="uid://dmuyl183hem65" path="res://Sprites/bullet1.png" id="2_u5ude"]
-[ext_resource type="Texture2D" uid="uid://db7h3xjrgooxk" path="res://Sprites/Flare_small.PNG" id="3_hctee"]
+[ext_resource type="Texture2D" uid="uid://dmuyl183hem65" path="res://Sprites/Ammunition/bullet1.png" id="2_u5ude"]
+[ext_resource type="Texture2D" uid="uid://db7h3xjrgooxk" path="res://Sprites/Lights/Flare_small.PNG" id="3_hctee"]
 
 [node name="Bullets" instance=ExtResource("1_u5ude")]
 

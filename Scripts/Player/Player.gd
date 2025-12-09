@@ -30,7 +30,7 @@ func _ready() -> void:
 	attack_hitbox.monitoring = false
 	
 	#Equipar arma inicial (weapon1).
-	equip_weapon(preload("res://Scenes/Weapons/weapon1.tscn"))
+	equip_weapon(preload("res://Scenes/Weapons/weapon2.tscn"))
 
 func _physics_process(delta: float) -> void:
 		# -------- DIRECCIÓN HACIA EL RATÓN --------
@@ -52,7 +52,8 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.3).timeout
 		shooting = false
 	
-	# -------- RECARGAR PULSANDO TECLA R -------- 
+	# -------- RECARGAR ARMA PULSANDO TECLA R -------- 
+	#Implementar que aparezca una R cuando se acaben las balas.
 	if Input.is_action_just_pressed("reload") and current_weapon and !hurt:
 		current_weapon.reload()
 	
