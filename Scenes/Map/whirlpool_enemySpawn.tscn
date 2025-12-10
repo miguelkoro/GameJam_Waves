@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://cri1jyoa5y8ye"]
+[gd_scene load_steps=11 format=4 uid="uid://cri1jyoa5y8ye"]
 
 [ext_resource type="Script" uid="uid://bbadpuilmdllv" path="res://Scripts/Map/EnemySpawn.gd" id="1_2gntp"]
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_i22lm"]
+[ext_resource type="PackedScene" uid="uid://bhu40cjsplpqc" path="res://Scenes/Enemies/Squid.tscn" id="2_n2vp1"]
+[ext_resource type="PackedScene" uid="uid://dwo113wvy1q4h" path="res://Scenes/Enemies/urchin.tscn" id="3_sfvgo"]
 
 [sub_resource type="Gradient" id="Gradient_i22lm"]
 offsets = PackedFloat32Array(0, 0.5, 0.5933333, 0.6933333)
@@ -11,35 +13,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0.17307693, 0.17307693, 0.17307693, 1, 0.0
 gradient = SubResource("Gradient_i22lm")
 fill = 1
 fill_from = Vector2(0.48598132, 0.5046729)
-
-[sub_resource type="Animation" id="Animation_eyorn"]
-resource_name = "idle"
-length = 3.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:energy")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.93333334, 1.8666667, 2.9333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [2.15, 0.0, 0.0, 3.23]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PointLight2D:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.4333333, 2.9),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0.73180974, 0.03814314, 0.21169287, 1), Color(0.64404404, 0.00030967325, 0.6443337, 1), Color(0.73180974, 0.03814314, 0.21169287, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_n2vp1"]
 length = 0.001
@@ -179,6 +152,35 @@ tracks/4/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_eyorn"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.8666667, 2.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.15, 0.0, 0.0, 3.23]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4333333, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.73180974, 0.03814314, 0.21169287, 1), Color(0.64404404, 0.00030967325, 0.6443337, 1), Color(0.73180974, 0.03814314, 0.21169287, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sfvgo"]
 _data = {
 &"RESET": SubResource("Animation_n2vp1"),
@@ -188,6 +190,7 @@ _data = {
 
 [node name="Whirlpool" type="Node2D"]
 script = ExtResource("1_2gntp")
+enemies = Array[PackedScene]([ExtResource("2_n2vp1"), ExtResource("3_sfvgo")])
 
 [node name="TileMapLayerWater" type="TileMapLayer" parent="."]
 visible = false
@@ -214,3 +217,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_sfvgo")
 }
 autoplay = "idle"
+
+[node name="Timer_Spawn" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer_Spawn" to="." method="_on_timer_spawn_timeout"]

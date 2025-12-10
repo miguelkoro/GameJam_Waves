@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://d1rl3mwuj6hux"]
+[gd_scene load_steps=19 format=4 uid="uid://d1rl3mwuj6hux"]
 
 [ext_resource type="Script" uid="uid://b43s7kqhhfeyt" path="res://Scripts/Map/room.gd" id="1_y264i"]
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="2_5wmef"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bseyp0xucui4e" path="res://Scenes/Town/rock_1.tscn" id="2_vjn8x"]
 [ext_resource type="PackedScene" uid="uid://8lnqdm6hpusp" path="res://Scenes/Map/Hill.tscn" id="3_bc83e"]
 [ext_resource type="PackedScene" uid="uid://bqm3q3wp4rjlw" path="res://Scenes/Town/rock_2.tscn" id="3_vhpso"]
-[ext_resource type="PackedScene" uid="uid://cri1jyoa5y8ye" path="res://Scenes/Map/whirlpool.tscn" id="3_vjn8x"]
+[ext_resource type="PackedScene" uid="uid://cri1jyoa5y8ye" path="res://Scenes/Map/whirlpool_enemySpawn.tscn" id="3_vjn8x"]
 [ext_resource type="PackedScene" uid="uid://wu2yahlgvtd" path="res://Scenes/Map/water_current_2.tscn" id="4_s53jc"]
 [ext_resource type="PackedScene" uid="uid://vg6woi7a14ui" path="res://Scenes/camera.tscn" id="4_vhpso"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="5_7rqus"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="7_bc83e"]
 [ext_resource type="PackedScene" uid="uid://bey276fdad1pf" path="res://Scenes/Town/rock_Spikes_2.tscn" id="7_s53jc"]
 [ext_resource type="PackedScene" uid="uid://dx2nlpb8t6m0c" path="res://Scenes/Menus/pause_menu.tscn" id="8_s53jc"]
+[ext_resource type="PackedScene" uid="uid://clk3wuc22eevs" path="res://Scenes/Enemies/HermitCrab.tscn" id="9_7yyds"]
+[ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Enemies/Jellyfish.tscn" id="10_bai86"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7rqus"]
 
@@ -22,6 +24,7 @@
 script = ExtResource("1_y264i")
 arrayObstacles = Array[PackedScene]([ExtResource("2_vhpso"), ExtResource("3_bc83e"), ExtResource("4_s53jc")])
 arrayRocks = Array[PackedScene]([ExtResource("2_vjn8x"), ExtResource("3_vhpso"), ExtResource("5_8io4b"), ExtResource("7_s53jc")])
+arrayEnemies = Array[PackedScene]([ExtResource("9_7yyds"), ExtResource("10_bai86")])
 noise = SubResource("FastNoiseLite_7rqus")
 
 [node name="TileMapLayer_water" type="TileMapLayer" parent="."]

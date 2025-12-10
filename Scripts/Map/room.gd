@@ -15,8 +15,8 @@ const TILE_SIZE: int = 32 #Pixeles de cada tile 32x32
 @onready var exit_rocks: Node2D = $YSort/ExitRocks #Para tapar la salida, cuando se matan a todos los enemeigos, que se abra (eliminamos las rocas)
 
 #umbrales de ruido
-@export var enemy_threshols: float = 0.1 #Enemigos
-@export var rock_threshold: float = 0.2 #Rocas (Normales y pinchudas)
+@export var enemy_threshols: float = 0.4 #Enemigos
+@export var rock_threshold: float = 0.1 #Rocas (Normales y pinchudas)
 @export var obstacle_threshold: float = 0.3 #Obstaculos grandes
 
 var occupancy: Array = [] #Grid para marcar que zonas estan ocupadas y no superponer obstaculos
@@ -43,9 +43,9 @@ func _create_map() -> void:
 			#Vemos la probailidad de una roca
 			elif n > rock_threshold:
 				_try_place_rock(x,y)
-			else: #Probamos a colocar un enemigo
-				#_try_place_enemy(x,y)
-				pass
+			elif n > enemy_threshols: #Probamos a colocar un enemigo
+				_try_place_enemy(x,y)
+				
 				
 func _try_place_rock(x:int, y:int) -> void:
 	if occupancy[y][x] or arrayRocks.is_empty():
@@ -59,6 +59,19 @@ func _try_place_rock(x:int, y:int) -> void:
 	var pos = initial_position.global_position+Vector2(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2)
 	rock.global_position = pos
 	y_sort.add_child(rock)
+
+func _try_place_enemy(x:int, y:int) -> void:
+	if occupancy[y][x] or arrayEnemies.is_empty():
+		return
+	var enemy_scene = arrayEnemies.pick_random() #Cogemos una roca aleatoria
+	var enemy = enemy_scene.instantiate()
+	
+	#Marcamos la casilla como ocupada
+	occupancy[y][x] = true
+	#La posiconamos
+	var pos = initial_position.global_position+Vector2(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2)
+	enemy.global_position = pos
+	y_sort.add_child(enemy)
 
 func _try_place_large_obstacle(x: int, y: int) -> void:
 	if arrayObstacles.is_empty():
