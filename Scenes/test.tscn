@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://d2syatk0fq20k"]
+[gd_scene load_steps=18 format=4 uid="uid://d2syatk0fq20k"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2cgwh"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Enemies/Jellyfish.tscn" id="4_35xla"]
@@ -20,10 +20,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpfo2"]
 size = Vector2(62, 63)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ocox"]
-radius = 9.0
-height = 22.0
-
 [node name="Node2D" type="Node2D"]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
@@ -41,7 +37,6 @@ tile_map_data = PackedByteArray("AAD/////AgAAAAYAAAD//wAAAgAAAAYAAAD+/wAAAgAAAAY
 tile_set = ExtResource("1_2cgwh")
 
 [node name="Whirlpool" type="Node2D" parent="."]
-visible = false
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Whirlpool"]
 tile_map_data = PackedByteArray("AAD7/wUAAQAAAAUAAAD7/wYAAAAAAAcAAAD6/wYAAAAAAAcAAAD6/wUAAAAAAAcAAAD6/wQAAAAAAAcAAAD7/wQAAAAAAAcAAAD8/wQAAAAAAAcAAAD8/wUAAAAAAAcAAAD8/wYAAAAAAAcAAAA=")
@@ -52,7 +47,6 @@ tile_map_data = PackedByteArray("AAD7/wUAAQAAAAUAAAD6/wYAAAAAAAIAAAD8/wYAAAAEAAI
 tile_set = ExtResource("1_2cgwh")
 
 [node name="WaterCurrent" type="Node2D" parent="."]
-visible = false
 script = ExtResource("5_iaow0")
 
 [node name="TileMapLayer_Water" type="TileMapLayer" parent="WaterCurrent"]
@@ -69,17 +63,6 @@ collision_mask = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCurrent/Area2D"]
 position = Vector2(-144, 80.5)
 shape = SubResource("RectangleShape2D_qpfo2")
-
-[node name="AttackHitbox" type="Area2D" parent="WaterCurrent/Area2D/CollisionShape2D" groups=["Enemy"]]
-rotation = 1.5707964
-collision_layer = 16
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterCurrent/Area2D/CollisionShape2D/AttackHitbox"]
-modulate = Color(0.8618463, 2.8878452e-07, 0.49752194, 1)
-position = Vector2(0, 1)
-shape = SubResource("CapsuleShape2D_2ocox")
-debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 visible = false
