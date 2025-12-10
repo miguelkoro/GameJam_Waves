@@ -1,13 +1,216 @@
-[gd_scene load_steps=2 format=4 uid="uid://cri1jyoa5y8ye"]
+[gd_scene load_steps=9 format=4 uid="uid://cri1jyoa5y8ye"]
 
+[ext_resource type="Script" uid="uid://bbadpuilmdllv" path="res://Scripts/Map/EnemySpawn.gd" id="1_2gntp"]
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_i22lm"]
 
-[node name="Whirlpool" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_i22lm"]
+offsets = PackedFloat32Array(0, 0.5, 0.5933333, 0.6933333)
+colors = PackedColorArray(1, 1, 1, 1, 0.17307693, 0.17307693, 0.17307693, 1, 0.07758619, 0.07758619, 0.07758619, 1, 0, 0, 0, 1)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD7/wUAAQAAAAUAAAD7/wYAAAAAAAcAAAD6/wYAAAAAAAcAAAD6/wUAAAAAAAcAAAD6/wQAAAAAAAcAAAD7/wQAAAAAAAcAAAD8/wQAAAAAAAcAAAD8/wUAAAAAAAcAAAD8/wYAAAAAAAcAAAA=")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2gntp"]
+gradient = SubResource("Gradient_i22lm")
+fill = 1
+fill_from = Vector2(0.48598132, 0.5046729)
+
+[sub_resource type="Animation" id="Animation_eyorn"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.93333334, 1.8666667, 2.9333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.15, 0.0, 0.0, 3.23]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4333333, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.73180974, 0.03814314, 0.21169287, 1), Color(0.64404404, 0.00030967325, 0.6443337, 1), Color(0.73180974, 0.03814314, 0.21169287, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n2vp1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.73180974, 0.03814314, 0.21169287, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TileMapLayerWater:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TileMapLayerWater:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TileMapLayerWhirl:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TileMapLayerWhirl:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2gntp"]
+resource_name = "broken"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TileMapLayerWater:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TileMapLayerWater:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.100000024),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TileMapLayerWhirl:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TileMapLayerWhirl:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PointLight2D:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sfvgo"]
+_data = {
+&"RESET": SubResource("Animation_n2vp1"),
+&"broken": SubResource("Animation_2gntp"),
+&"idle": SubResource("Animation_eyorn")
+}
+
+[node name="Whirlpool" type="Node2D"]
+script = ExtResource("1_2gntp")
+
+[node name="TileMapLayerWater" type="TileMapLayer" parent="."]
+visible = false
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAcAAAAAAAEAAAAAAAcAAAAAAAIAAAAAAAcAAAABAAAAAAAAAAcAAAABAAEAAAAAAAcAAAABAAIAAAAAAAcAAAACAAAAAAAAAAcAAAACAAEAAAAAAAcAAAACAAIAAAAAAAcAAAA=")
+tile_set = ExtResource("1_i22lm")
+
+[node name="TileMapLayerWhirl" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAYAAAAAAAEAAQAAAAYAAAAAAAIAAQAAAAYAAAABAAAAAQAEAAYAAAABAAEAAQAAAAUAAAABAAIAAQAEAAYAAAACAAAAAQAAAAcAAAACAAEAAQAAAAcAAAACAAIAAQAAAAcAAAA=")
 tile_set = ExtResource("1_i22lm")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD7/wUAAQAAAAUAAAD6/wYAAAAAAAIAAAD8/wYAAAAEAAIAAAD7/wQAAAAEAAUAAAD8/wQAAAAEAAMAAAD6/wQAAAAAAAMAAAD6/wUAAAAAAAQAAAD7/wYAAAAAAAUAAAD8/wUAAAAEAAQAAAA=")
+tile_map_data = PackedByteArray("AAAAAAIAAAAAAAIAAAACAAIAAAAEAAIAAAABAAIAAAAAAAUAAAACAAEAAAAEAAQAAAAAAAEAAAAAAAQAAAAAAAAAAAAAAAMAAAABAAAAAAAEAAUAAAACAAAAAAAEAAMAAAA=")
 tile_set = ExtResource("1_i22lm")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(47.000004, 47.000004)
+scale = Vector2(2.44, 2.44)
+color = Color(0.73180974, 0.03814314, 0.21169287, 1)
+energy = 0.0
+texture = SubResource("GradientTexture2D_2gntp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sfvgo")
+}
+autoplay = "idle"

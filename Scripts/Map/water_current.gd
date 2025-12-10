@@ -3,8 +3,8 @@ extends Node2D
 @export var current_direction: Vector2 = Vector2.RIGHT
 @export var current_strength: float = 250.0 #250 Corriente suave, 350 corriente media, 500 corriente fuerte
 
-var width = 3
-var height = 3
+@export var width = 3
+@export var height = 3
 
 var bodies_in_area: Array = []
 
