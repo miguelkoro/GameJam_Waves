@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=4 uid="uid://8lnqdm6hpusp"]
+
+[ext_resource type="Script" uid="uid://ccdagtbdath4h" path="res://Scripts/Map/hill.gd" id="1_ghtca"]
+[ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="2_ix4u0"]
+
+[node name="Hill" type="Node2D"]
+script = ExtResource("1_ghtca")
+width = 4
+height = 4
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAEAAQADAAAAAAAAAAAAAQAAAAAAAAABAAAAAQABAAAAAAACAAAAAQABAAAAAAADAAAAAQACAAAAAAABAAMAAQAAAAEAAAACAAMAAQAGAAAAAAABAAIAAQADAAEAAAAAAAIAAQAAAAEAAAADAAMAAQAHAAAAAAADAAIAAQAFAAAAAAADAAEAAQAFAAAAAAABAAEAAQAEAAAAAAACAAEAAQAEAAAAAAACAAIAAQAEAAAAAAA=")
+tile_set = ExtResource("2_ix4u0")

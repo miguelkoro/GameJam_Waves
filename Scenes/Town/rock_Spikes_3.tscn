@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3a52paqe8psb"]
+
+[ext_resource type="Script" uid="uid://cafuinwgbha00" path="res://Scripts/Map/rock_spikes.gd" id="1_5mrtw"]
+[ext_resource type="Texture2D" uid="uid://dvv860att21pf" path="res://Sprites/Map/Rocks_SpriteSheet.png" id="2_4alc4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7edlf"]
+radius = 3.0
+height = 22.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4nepa"]
+radius = 5.0
+height = 28.0
+
+[node name="Rock_Spykes_1" type="Node2D"]
+script = ExtResource("1_5mrtw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("2_4alc4")
+hframes = 8
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(1, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_7edlf")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(0, -3)
+radius = 11.46
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+position = Vector2(0, 1)
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+position = Vector2(1, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_4nepa")
+
+[connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]

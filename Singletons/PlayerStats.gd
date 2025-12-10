@@ -4,7 +4,7 @@ extends Node
 var last_health:float = health #Para poder comparar en la gui si se ha perdido o ganado vida 
 #@export var max_health: float = 7 #Corazones maximos que puede tener
 @export var max_health: float = 3 #Corazones que tiene disponibles
-@export var agility: float = 120 #Velocidad a la que se mueve
+@export var agility: float = 150 #Velocidad a la que se mueve
 @export var strenght: float = 1 #Daño que hace a los enemigos (mas luego lo que haga el arma de daño)
 @export var endurance: float = 50 #Resistencia a los ataques
 @export var knockback: float = 50 #Retroceso que aplica a los enemigos

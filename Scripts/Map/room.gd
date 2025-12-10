@@ -12,10 +12,12 @@ const TILE_SIZE: int = 32 #Pixeles de cada tile 32x32
 @onready var initial_position: Marker2D = $initialPosition #Posicion desde donde empezar a poner los obstaculos
 @onready var obstacles: Node2D = $Obstacles #Donde colocar los obstaculos
 
+@onready var exit_rocks: Node2D = $YSort/ExitRocks #Para tapar la salida, cuando se matan a todos los enemeigos, que se abra (eliminamos las rocas)
+
 #umbrales de ruido
 @export var enemy_threshols: float = 0.1 #Enemigos
-@export var rock_threshold: float = 0.3 #Rocas (Normales y pinchudas)
-@export var obstacle_threshold: float = 0.4 #Obstaculos grandes
+@export var rock_threshold: float = 0.2 #Rocas (Normales y pinchudas)
+@export var obstacle_threshold: float = 0.3 #Obstaculos grandes
 
 var occupancy: Array = [] #Grid para marcar que zonas estan ocupadas y no superponer obstaculos
 
@@ -33,6 +35,7 @@ func _create_map() -> void:
 			#var y: float = j
 			
 			var n = noise.get_noise_2d(x/sc, y/sc)
+			print(n)
 			#Vemos la probabilidad de un obstaculo grande
 			if n > obstacle_threshold:
 				_try_place_large_obstacle(x,y) #Probamos a ver si cabe el obstaculo
@@ -53,7 +56,7 @@ func _try_place_rock(x:int, y:int) -> void:
 	#Marcamos la casilla como ocupada
 	occupancy[y][x] = true
 	#La posiconamos
-	var pos = initial_position.global_position+Vector2(x * TILE_SIZE, y*TILE_SIZE)
+	var pos = initial_position.global_position+Vector2(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2)
 	rock.global_position = pos
 	y_sort.add_child(rock)
 
@@ -83,7 +86,7 @@ func _try_place_large_obstacle(x: int, y: int) -> void:
 	#)
 
 	ob.global_position = initial_position.global_position+Vector2(x * TILE_SIZE, y*TILE_SIZE)
-	y_sort.add_child(ob)
+	obstacles.add_child(ob)
 
 
 

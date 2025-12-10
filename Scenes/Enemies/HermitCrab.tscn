@@ -160,6 +160,7 @@ position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_m07os")
 
 [node name="Shadow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-1, 0)
 texture = ExtResource("2_7ftjq")
 
