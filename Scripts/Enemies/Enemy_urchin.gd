@@ -3,13 +3,17 @@ extends CharacterBody2D
 @export var damage: float = 1
 @export var speed: float = 100
 @export var knockback: float = 100
-@export var spike_shoot_interval: float = 5.0  
-@export var spike_speed: float = 200
+@export var spike_shoot_interval: float = 7.0  
+@export var spike_speed: float = 180
 
 var spike_scene: PackedScene = load("res://Scenes/spike.tscn")
 var direction: Vector2 = Vector2.ONE.normalized() 
 var shoot_timer: float = 0.0
 var external_force: Vector2 = Vector2.ZERO  
+var shooting: bool = false
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 
 func _ready() -> void:
 	randomize()
@@ -32,6 +36,8 @@ func _physics_process(delta: float) -> void:
 func shoot_spikes() -> void:
 	if spike_scene == null:
 		return
+	animation_player.play("Attack")
+	
 	
 	for i in range(8):
 		var angle = i * PI / 4 
@@ -40,6 +46,7 @@ func shoot_spikes() -> void:
 		var spike = spike_scene.instantiate()
 		get_parent().add_child(spike)
 		spike.global_position = global_position
+		
 		
 		if spike.has_method("set_shooter"):
 			spike.set_shooter(self)
@@ -54,3 +61,11 @@ func shoot_spikes() -> void:
 func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
 		area.get_parent().take_damage(damage, global_position, knockback)
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Attack":
+		if direction.x > 0:
+			animation_player.play("idle_Right")
+		else: 
+			animation_player.play("idle_Left")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://belg01ae6w6up"]
+[gd_scene load_steps=23 format=4 uid="uid://belg01ae6w6up"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
@@ -9,10 +9,38 @@
 [ext_resource type="PackedScene" uid="uid://bqm3q3wp4rjlw" path="res://Scenes/Town/rock_2.tscn" id="6_7edlf"]
 [ext_resource type="Texture2D" uid="uid://c1wm3cfgohcsq" path="res://Sprites/Town/Muelle.png" id="9_ylki5"]
 [ext_resource type="PackedScene" uid="uid://vg6woi7a14ui" path="res://Scenes/camera.tscn" id="9_ytd6y"]
+[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="10_crp13"]
+[ext_resource type="Texture2D" uid="uid://csutblnqkg57v" path="res://Sprites/Town/sealBeach.png" id="11_xxixf"]
 [ext_resource type="PackedScene" uid="uid://c015fge073arr" path="res://Scenes/Map/water_current.tscn" id="13_crp13"]
 [ext_resource type="AudioStream" uid="uid://rjqbixqx7syy" path="res://Audios/Music_Town.ogg" id="13_nnguh"]
 [ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="13_ytd6y"]
 [ext_resource type="AudioStream" uid="uid://djniuwwtik8nj" path="res://Audios/Beach.ogg" id="14_ytd6y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7a8k"]
+atlas = ExtResource("11_xxixf")
+region = Rect2(0, 0, 92, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ll38"]
+atlas = ExtResource("11_xxixf")
+region = Rect2(92, 0, 92, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfpq5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7a8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ll38")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crp13"]
+radius = 5.0
+height = 60.0
 
 [sub_resource type="Animation" id="Animation_hyagj"]
 length = 0.001
@@ -110,6 +138,25 @@ position = Vector2(-63, 76)
 
 [node name="Rock5" parent="YSort" instance=ExtResource("6_7edlf")]
 position = Vector2(262, -62)
+
+[node name="Seal" type="Node2D" parent="YSort"]
+position = Vector2(-129, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="YSort/Seal"]
+position = Vector2(-16, 6)
+texture = ExtResource("10_crp13")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/Seal"]
+position = Vector2(1, -11)
+sprite_frames = SubResource("SpriteFrames_xfpq5")
+autoplay = "default"
+frame_progress = 0.45623383
+
+[node name="StaticBody2D" type="StaticBody2D" parent="YSort/Seal"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Seal/StaticBody2D"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_crp13")
 
 [node name="Camera2D" parent="." instance=ExtResource("9_ytd6y")]
 

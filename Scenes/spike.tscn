@@ -1,18 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://clir6q4tn6ptn"]
+[gd_scene load_steps=5 format=3 uid="uid://clir6q4tn6ptn"]
 
 [ext_resource type="Script" uid="uid://rvu4sc1suc1h" path="res://Scripts/Enemies/spike.gd" id="1_cdj5a"]
+[ext_resource type="Texture2D" uid="uid://domf1o77in1s8" path="res://Sprites/Ammunition/spike.png" id="2_1hotg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mnih"]
+atlas = ExtResource("2_1hotg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhxds"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mnih")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Spike" type="Area2D" groups=["Enemy"]]
-rotation = 3.1084313
-scale = Vector2(2.5, 2.5)
 collision_layer = 16
 collision_mask = 32
 script = ExtResource("1_cdj5a")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(-3.198241, -0.10609676, 0, 0, -2.6490517, 15.779181)
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.39999998, 7.2)
+rotation = -3.1415925
+sprite_frames = SubResource("SpriteFrames_fhxds")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.8711043
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-2.6490517, 15.779181, -3.198241, -0.10609676, 0, 0)
+position = Vector2(1.9999998, 2.3841858e-07)
+polygon = PackedVector2Array(-2.043724, 13.942139, -5.1973786, -0.1651113, 1.9989916, 0.06350446)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
