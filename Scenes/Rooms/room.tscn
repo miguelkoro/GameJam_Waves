@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://d1rl3mwuj6hux"]
+[gd_scene load_steps=20 format=4 uid="uid://d1rl3mwuj6hux"]
 
 [ext_resource type="Script" uid="uid://b43s7kqhhfeyt" path="res://Scripts/Map/room.gd" id="1_y264i"]
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="2_5wmef"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dx2nlpb8t6m0c" path="res://Scenes/Menus/pause_menu.tscn" id="8_s53jc"]
 [ext_resource type="PackedScene" uid="uid://clk3wuc22eevs" path="res://Scenes/Enemies/HermitCrab.tscn" id="9_7yyds"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Enemies/Jellyfish.tscn" id="10_bai86"]
+[ext_resource type="PackedScene" uid="uid://bn8d7rp5dle0e" path="res://Scenes/Map/whirlpool_exit.tscn" id="12_bai86"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7rqus"]
 
@@ -42,6 +43,9 @@ tile_set = ExtResource("2_5wmef")
 [node name="TileMapLayer_SandObjects" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAANABIAAgABAAAAAAAHAAwAAgABAAAAAAADAAkAAgABAAAAAAAaAAwAAgABAAAAAAAaAAYAAgABAAAAAAAQAAYAAgABAAAAAAAKAAgAAgABAAAAAFAZAAsAAgABAAAAAFAMABAAAgABAAAAAFAEAA8AAgABAAAAAFAAAAUAAgABAAAAAFD//woAAgABAAAAAFAMAAQAAgABAAAAAFAXAAQAAgABAAAAAFAgAAgAAgABAAAAAFAaABEAAgABAAAAAFAIABMAAgACAAAAAAAfABQAAgACAAAAAAAhAAsAAgACAAAAAAAiAAcAAgACAAAAAAAQAA0AAgADAAAAAAAFAAkAAgADAAAAAAACAA4AAgADAAAAAAACAAQAAgADAAAAAAAdAAcAAgAAAAAAAAAYAAQAAgADAAAAAAAbABEAAgADAAAAAAAVABMAAgAAAAAAAAASAAwAAgAAAAAAAAAVAAgAAgACAAYAAAAEAAUAAgAAAAAAAAAIABEAAgAAAAAAAAAPAAkAAgAAAAAAAAAXAA8AAgAAAAAAAGAeAAoAAgAAAAAAAGAJAAQAAgAAAAAAAGACABEAAgAAAAAAAGD9/wcAAgAAAAAAAGAdABMAAgABAAYAAAAfAAoAAgABAAYAAAAZAAcAAgABAAYAAAAWAA4AAgABAAYAAAAEAAsAAgABAAYAAAAGAAIAAgABAAYAAAASAAIAAgABAAYAAAAZAAEAAgABAAYAAAAMAA4AAgABAAYAAAAKAA0AAgACAAYAAAAeAAkAAgACAAYAAAAcAA8AAgACAAYAAAAGAAgAAgACAAYAAAAAAAgAAgACAAYAAAAUAAIAAgACAAYAAAALAAcAAgADAAYAAAAXABMAAgADAAYAAAAVAAUAAgADAAYAAAA=")
 tile_set = ExtResource("2_5wmef")
+
+[node name="Whirlpool_exit" parent="." instance=ExtResource("12_bai86")]
+position = Vector2(192, -256)
 
 [node name="initialPosition" type="Marker2D" parent="."]
 position = Vector2(32, 32)
@@ -70,14 +74,6 @@ y_sort_enabled = true
 
 [node name="Player" parent="YSort" instance=ExtResource("5_7rqus")]
 position = Vector2(536, 680)
-
-[node name="ExitRocks" type="Node2D" parent="YSort"]
-
-[node name="Rock1" parent="YSort/ExitRocks" instance=ExtResource("2_vjn8x")]
-position = Vector2(224, -69)
-
-[node name="Rock2" parent="YSort/ExitRocks" instance=ExtResource("3_vhpso")]
-position = Vector2(254, -69)
 
 [node name="GUI" parent="." instance=ExtResource("7_bc83e")]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bv786a45llsmj"]
+[gd_scene load_steps=18 format=4 uid="uid://bv786a45llsmj"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2xhx1"]
 [ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Town/Shop.tscn" id="2_f5da6"]
@@ -12,8 +12,7 @@
 [ext_resource type="Shader" uid="uid://bh675h6qp2rh" path="res://Shaders/darkness.gdshader" id="10_5dioy"]
 [ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="11_yp7eq"]
 [ext_resource type="AudioStream" uid="uid://coqme5yv6057u" path="res://Audios/Music_Bonus.ogg" id="12_xn1vm"]
-[ext_resource type="PackedScene" uid="uid://c5kbgxhjewjf8" path="res://Scenes/Items/item_healing_fish.tscn" id="13_c6phv"]
-[ext_resource type="PackedScene" uid="uid://cc53wsts7tfmc" path="res://Scenes/Items/big_pearl.tscn" id="14_fbp66"]
+[ext_resource type="PackedScene" uid="uid://cma78puf7sont" path="res://Scenes/Map/whirlpool_exit_bonus.tscn" id="13_c6phv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yp7eq"]
 shader = ExtResource("10_5dioy")
@@ -115,6 +114,9 @@ tile_set = ExtResource("1_2xhx1")
 tile_map_data = PackedByteArray("AAD+/wAAAgABAAAAAAAEAP//AgABAAAAAGD6//3/AgADAAAAAAACAAAAAgACAAAAAAD8//z/AgACAAAAAAAGAPz/AgAAAAAAAAAAAAEAAgAAAAAAAFABAP3/AgAAAAAAAAA=")
 tile_set = ExtResource("1_2xhx1")
 
+[node name="Whirlpool_exit" parent="." instance=ExtResource("13_c6phv")]
+position = Vector2(-59, -197)
+
 [node name="Camera2D" parent="." instance=ExtResource("6_xn1vm")]
 
 [node name="YSort" type="Node2D" parent="."]
@@ -173,9 +175,3 @@ autoplay = "Idle"
 stream = ExtResource("12_xn1vm")
 autoplay = true
 bus = &"Music"
-
-[node name="Item_HealingFish" parent="." instance=ExtResource("13_c6phv")]
-position = Vector2(4, -119)
-
-[node name="big_pearl" parent="." instance=ExtResource("14_fbp66")]
-position = Vector2(78, -22)

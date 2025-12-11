@@ -12,7 +12,7 @@ const TILE_SIZE: int = 32 #Pixeles de cada tile 32x32
 @onready var initial_position: Marker2D = $initialPosition #Posicion desde donde empezar a poner los obstaculos
 @onready var obstacles: Node2D = $Obstacles #Donde colocar los obstaculos
 
-@onready var exit_rocks: Node2D = $YSort/ExitRocks #Para tapar la salida, cuando se matan a todos los enemeigos, que se abra (eliminamos las rocas)
+#@onready var exit_rocks: Node2D = $YSort/ExitRocks #Para tapar la salida, cuando se matan a todos los enemeigos, que se abra (eliminamos las rocas)
 
 #umbrales de ruido
 @export var enemy_threshols: float = 0.4 #Enemigos
@@ -35,7 +35,7 @@ func _create_map() -> void:
 			#var y: float = j
 			
 			var n = noise.get_noise_2d(x/sc, y/sc)
-			print(n)
+			#print(n)
 			#Vemos la probabilidad de un obstaculo grande
 			if n > obstacle_threshold:
 				_try_place_large_obstacle(x,y) #Probamos a ver si cabe el obstaculo
