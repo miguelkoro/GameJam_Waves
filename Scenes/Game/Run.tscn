@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://djrqbuanqttx2"]
+
+[ext_resource type="Script" uid="uid://qk0hshmx6vr5" path="res://Scripts/Game/run.gd" id="1_prdqi"]
+[ext_resource type="PackedScene" uid="uid://d1rl3mwuj6hux" path="res://Scenes/Rooms/room.tscn" id="2_34hvs"]
+[ext_resource type="PackedScene" uid="uid://bv786a45llsmj" path="res://Scenes/Bonus/Bonus.tscn" id="2_df0bc"]
+
+[node name="Run" type="Node2D"]
+script = ExtResource("1_prdqi")
+bonusRoom = ExtResource("2_df0bc")
+rooms = Array[PackedScene]([ExtResource("2_34hvs")])

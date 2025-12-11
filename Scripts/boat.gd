@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 			audio_boat.play()
 		#Aqui generar el mapa y el efecto de viajar ¿?
 		print("Nueva run")
-		get_tree().change_scene_to_file("res://Scenes/Rooms/room.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Game/Run.tscn")
 		pass
 
 func _on_show_label_body_entered(body: Node2D) -> void:
