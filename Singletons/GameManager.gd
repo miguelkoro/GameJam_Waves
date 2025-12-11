@@ -14,9 +14,9 @@ func add_currency(amount: int):
 func enemyDefeated():
 	enemiesDefeated+=1
 	
-func setNewRoom(enemies: int):
-	enemiesDefeated = 0
-	enemiesToDefeat = enemies
+func nextRoom():
+	var run = get_tree().get_first_node_in_group("Run")
+	run.changeRoom()
 
 func checkCompleteRoom() -> bool:
 	if enemiesToDefeat <= enemiesDefeated:

@@ -36,8 +36,7 @@ func _on_body_entered(body: Node2D) -> void:
 		#	body.black_out_screen()
 
 		queue_free()
-	elif body.is_in_group("World"):
-	#elif body.get_collision_layer() & (1 << 1): #Valor de World
+	elif body.is_in_group("WorldCollider"):
 		# Choca con el escenario
 		ink_splash()
 		queue_free()

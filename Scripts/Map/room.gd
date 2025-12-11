@@ -12,6 +12,7 @@ const TILE_SIZE: int = 32 #Pixeles de cada tile 32x32
 @onready var initial_position: Marker2D = $initialPosition #Posicion desde donde empezar a poner los obstaculos
 @onready var obstacles: Node2D = $Obstacles #Donde colocar los obstaculos
 
+
 #@onready var exit_rocks: Node2D = $YSort/ExitRocks #Para tapar la salida, cuando se matan a todos los enemeigos, que se abra (eliminamos las rocas)
 
 #umbrales de ruido
@@ -19,11 +20,19 @@ const TILE_SIZE: int = 32 #Pixeles de cada tile 32x32
 @export var rock_threshold: float = 0.1 #Rocas (Normales y pinchudas)
 @export var obstacle_threshold: float = 0.3 #Obstaculos grandes
 
+@onready var enemy_spawns: Node2D = $EnemySpawns
+@onready var whirlpool_exit: Node2D = $Whirlpool_exit
+
 var occupancy: Array = [] #Grid para marcar que zonas estan ocupadas y no superponer obstaculos
 
 func _ready() -> void:
 	_init_occupancy()
 	_create_map()
+	
+
+func _add_enemies(enemiesAmount: int) -> void:
+	for spawn in enemy_spawns.get_children():
+		spawn.enemies_amount = enemiesAmount
 
 func _create_map() -> void:
 	noise.seed = randi() #Crea una semilla aleatoria

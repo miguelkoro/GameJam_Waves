@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d1rl3mwuj6hux" path="res://Scenes/Rooms/room.tscn" id="2_34hvs"]
 [ext_resource type="PackedScene" uid="uid://bv786a45llsmj" path="res://Scenes/Bonus/Bonus.tscn" id="2_df0bc"]
 
-[node name="Run" type="Node2D"]
+[node name="Run" type="Node2D" groups=["Run"]]
 script = ExtResource("1_prdqi")
 bonusRoom = ExtResource("2_df0bc")
 rooms = Array[PackedScene]([ExtResource("2_34hvs")])
