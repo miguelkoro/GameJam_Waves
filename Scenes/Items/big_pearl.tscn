@@ -54,6 +54,7 @@ collision_layer = 65
 collision_mask = 2
 script = ExtResource("1_ashfw")
 pearl_amount = 5
+pearl_spawn_prob = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_w1k5v")

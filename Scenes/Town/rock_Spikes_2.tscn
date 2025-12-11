@@ -11,7 +11,7 @@ height = 22.0
 radius = 5.0
 height = 28.0
 
-[node name="Rock_Spykes_1" type="Node2D"]
+[node name="Rock_Spykes_1" type="Node2D" groups=["WorldCollider"]]
 script = ExtResource("1_kvu8f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,7 +20,7 @@ texture = ExtResource("2_3d4dw")
 hframes = 8
 frame = 6
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["WorldCollider"]]
 position = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

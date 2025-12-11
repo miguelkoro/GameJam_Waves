@@ -19,8 +19,8 @@ animations = [{
 }]
 
 [node name="Spike" type="Area2D" groups=["Enemy"]]
-collision_layer = 16
-collision_mask = 32
+collision_layer = 17
+collision_mask = 33
 script = ExtResource("1_cdj5a")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -40,3 +40,4 @@ position = Vector2(1.9999998, 2.3841858e-07)
 polygon = PackedVector2Array(-2.043724, 13.942139, -5.1973786, -0.1651113, 1.9989916, 0.06350446)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

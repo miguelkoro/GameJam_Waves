@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var heal_amount: float = 1.0
+@export var item_prob: float = 0.2
 const AUDIO_STREAM_PLAYER_EAT = preload("uid://bkojkgnvtpjx0")
 
 func _on_body_entered(body: Node2D) -> void:

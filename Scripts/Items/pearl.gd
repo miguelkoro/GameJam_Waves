@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var pearl_amount: int = 1
+@export var pearl_spawn_prob: float = 0.2
 const AUDIO_STREAM_PLAYER_PICK_ITEM = preload("uid://bkojkgnvtpjx0")
 
 func _on_body_entered(body: Node2D) -> void:

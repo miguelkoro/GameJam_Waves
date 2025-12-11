@@ -5,7 +5,7 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7edlf"]
 radius = 2.0
 
-[node name="Rock2" type="Node2D"]
+[node name="Rock2" type="Node2D" groups=["WorldCollider"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9)
@@ -15,7 +15,7 @@ frame = 4
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" groups=["WorldCollider"]]
 position = Vector2(0, -1)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_7edlf")

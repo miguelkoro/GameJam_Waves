@@ -149,7 +149,7 @@ _data = {
 &"idle": SubResource("Animation_x3rkt")
 }
 
-[node name="Rock4" type="Node2D"]
+[node name="Rock4" type="Node2D" groups=["WorldCollider"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9)

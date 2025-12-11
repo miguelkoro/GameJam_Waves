@@ -20,14 +20,16 @@ func _physics_process(delta: float) -> void:
 		queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body == shooter:
-		return
-	if body.is_in_group("Player"):
-		body.take_damage(damage, global_position, knockback)
-	queue_free()
+	if body.is_in_group("WorldCollider"):
+		queue_free()
+	#if body.is_in_group("Player"):
+	#	body.take_damage(damage, global_position, knockback)
+	#queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
 		area.get_parent().take_damage(damage, global_position, knockback)
+		queue_free()
+	elif area.is_in_group("WorldCollider"):
 		queue_free()
