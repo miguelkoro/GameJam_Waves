@@ -1,27 +1,38 @@
 extends CharacterBody2D
 
-@export var damage: float = 1
-@export var speed: float = 100
+@export var damage: float = 0.5
+@export var speed: float = 80
 @export var knockback: float = 100
-@export var spike_shoot_interval: float = 7.0  
-@export var spike_speed: float = 180
+@export var spike_shoot_interval: float = 6.0  
+@export var spike_speed: float = 160
+@export var health: float = 3
 
 var spike_scene: PackedScene = load("res://Scenes/spike.tscn")
+const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
 var direction: Vector2 = Vector2.ONE.normalized() 
 var shoot_timer: float = 0.0
 var external_force: Vector2 = Vector2.ZERO  
 var shooting: bool = false
+@onready var icon: Sprite2D = $Icon
+@onready var audio_hit: AudioStreamPlayer2D = $AudioStreamPlayer_hit
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+var knockback_velocity: Vector2 = Vector2.ZERO
+var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
 
 func _ready() -> void:
 	randomize()
 	var angle = randf() * TAU 
 	direction = Vector2(cos(angle), sin(angle)).normalized()
+	var mat := icon.material
+	icon.material = mat.duplicate()
 
 func _physics_process(delta: float) -> void:
-	velocity = direction * speed
+	if knockback_velocity.length() > 1:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+	else:
+		velocity = direction * speed
 	move_and_slide()
 	if is_on_wall():
 		direction.x *= -1
@@ -69,3 +80,30 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			animation_player.play("idle_Right")
 		else: 
 			animation_player.play("idle_Left")
+
+func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float):
+	if not audio_hit.playing:
+		audio_hit.play()
+	health-=damage
+	# Knockback
+	var direction = (global_position - attacker_pos).normalized()
+	knockback_velocity = direction * attacker_knockback
+	#direction *= -1
+	flash_damage()
+	if health <= 0:
+		die()
+	print("health:", health)
+
+func die() -> void:
+	var death_effect = ENEMY_DEATH.instantiate()
+	get_parent().add_child(death_effect)
+	death_effect.global_position = global_position
+	queue_free()
+	pass
+
+
+func flash_damage():
+	var mat := icon.material
+	mat.set("shader_param/hit_flash", 1.0)
+	await get_tree().create_timer(0.12).timeout
+	mat.set("shader_param/hit_flash", 0.0)

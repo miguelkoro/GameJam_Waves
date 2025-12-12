@@ -11,3 +11,9 @@ height = 4
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["WorldCollider"]]
 tile_map_data = PackedByteArray("AAAAAAEAAQADAAAAAAAAAAAAAQAAAAAAAAABAAAAAQABAAAAAAACAAAAAQABAAAAAAADAAAAAQACAAAAAAABAAMAAQAAAAEAAAACAAMAAQAGAAAAAAABAAIAAQADAAEAAAAAAAIAAQAAAAEAAAADAAMAAQAHAAAAAAADAAIAAQAFAAAAAAADAAEAAQAFAAAAAAABAAEAAQAEAAAAAAACAAEAAQAEAAAAAAACAAIAAQAEAAAAAAA=")
 tile_set = ExtResource("2_ix4u0")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+position = Vector2(68, 54)
+radius = 45.87
+vertices = PackedVector2Array(46, -42, 48, 66, -24, 61, -26, 31, -56, 31, -56, -43)
+affect_navigation_mesh = true

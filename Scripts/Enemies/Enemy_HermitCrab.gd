@@ -11,6 +11,10 @@ extends CharacterBody2D
 @export var hide_lock: bool = false #Si lo golpeas mientras esta escondido, se mantendrá oculto otro poco
 @export var player_near: bool = false #Para detectar si el jugador esta cerca
 var player: Node2D #Posicion del jugador para ir a por el
+var knockback_velocity: Vector2 = Vector2.ZERO
+var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
+@onready var audio_hit: AudioStreamPlayer2D = $AudioStreamPlayer_hit
+const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
 
 		
 func _physics_process(delta: float) -> void:	
@@ -29,8 +33,13 @@ func _physics_process(delta: float) -> void:
 	if player_near and !hidding:
 		#Si el jugador esta cerca y el cangrejo esta fuera, el cangrejo ira a por el jugador
 		#Falta ponerle el movimiento con el navigationAgent
-		navigation_agent.target_position = player.global_position
-		navigate_safe()
+		if knockback_velocity.length() > 1:
+			velocity = knockback_velocity
+			knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+			move_and_slide()
+		else:
+			navigation_agent.target_position = player.global_position
+			navigate_safe()
 		
 	
 	
@@ -59,8 +68,15 @@ func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 
 func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float):
 	if !hidding:
+		if not audio_hit.playing:
+			audio_hit.play()
 		health-=damage
-		print("health:", health)
+		# Knockback
+		var direction = (global_position - attacker_pos).normalized()
+		knockback_velocity = direction * attacker_knockback
+		#flash_damage()
+		if health <= 0:
+			die()
 	else:
 		hide_lock = true
 		await get_tree().create_timer(3.0).timeout #espero 3seg para poder salir de nuevo
@@ -90,6 +106,12 @@ func navigate_safe() -> void:
 	)
 	navigation_agent.velocity = new_velocity
 	
+func die() -> void:
+	var death_effect = ENEMY_DEATH.instantiate()
+	get_parent().add_child(death_effect)
+	death_effect.global_position = global_position
+	queue_free()
+	pass	
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	position += safe_velocity * get_physics_process_delta_time()

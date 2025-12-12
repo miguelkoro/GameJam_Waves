@@ -14,6 +14,9 @@ func add_currency(amount: int):
 
 func enemyDefeated():
 	enemiesDefeated+=1
+	if checkCompleteRoom():
+		var room = get_tree().get_first_node_in_group("Room")
+		room._open_exit()
 	
 func nextRoom():
 	var run = get_tree().get_first_node_in_group("Run")

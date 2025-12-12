@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://clk3wuc22eevs"]
+[gd_scene load_steps=25 format=3 uid="uid://clk3wuc22eevs"]
 
 [ext_resource type="Script" uid="uid://bmb8emw4mbpq3" path="res://Scripts/Enemies/Enemy_HermitCrab.gd" id="1_5llmy"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_7ftjq"]
 [ext_resource type="Texture2D" uid="uid://c5p3sna0jmnrm" path="res://Sprites/Enemies/HermitCrab_Rock_SpriteSheet.png" id="3_5llmy"]
+[ext_resource type="AudioStream" uid="uid://bpw5hpam3lt6q" path="res://Audios/hit.ogg" id="4_py107"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m07os"]
 radius = 8.0
@@ -194,6 +195,7 @@ debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
+radius = 5.0
 debug_enabled = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
@@ -202,6 +204,9 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_5llmy")
+
+[node name="AudioStreamPlayer_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_py107")
 
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

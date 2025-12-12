@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Enemies/Jellyfish.png" id="1_cytm7"]
 [ext_resource type="Script" uid="uid://bs0o5bo8i3ovo" path="res://Scripts/Enemies/Enemy_Jellyfish.gd" id="1_ebxm7"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_m07os"]
-[ext_resource type="Shader" uid="uid://ccw4rackyrbfn" path="res://Shaders/enemy_hurt.gdshader" id="3_724dr"]
 [ext_resource type="AudioStream" uid="uid://bpw5hpam3lt6q" path="res://Audios/hit.ogg" id="5_n6vec"]
 
 [sub_resource type="Gradient" id="Gradient_m07os"]
@@ -20,8 +19,28 @@ fill_to = Vector2(1, 1)
 radius = 8.0
 height = 16.0
 
+[sub_resource type="Shader" id="Shader_724dr"]
+code = "shader_type canvas_item;
+
+uniform float hit_flash : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	// Mezcla del color original con un blanco fuerte según el valor del flash
+	tex.rgb = mix(tex.rgb, vec3(1.0), hit_flash);
+
+	COLOR = tex;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n6vec"]
-shader = ExtResource("3_724dr")
+shader = SubResource("Shader_724dr")
 shader_parameter/hit_flash = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebxm7"]

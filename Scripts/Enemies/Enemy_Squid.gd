@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-@export var damage: float = 1.0
-@export var speed: float = 50.0
+@export var damage: float = 0.5
+@export var speed: float = 40.0
 @export var knockback: float = 100.0
+@export var health: float = 3
 
 # Movimiento aleatorio cuando no ve al player
 @export var min_dir_time: float = 0.3
@@ -13,7 +14,7 @@ extends CharacterBody2D
 
 # Escena de la tinta
 @export var ink_scene: PackedScene
-@export var ink_cooldown: float = 1.2
+@export var ink_cooldown: float = 2.6
 
 var external_force: Vector2 = Vector2.ZERO
 var move_dir: Vector2 = Vector2.ZERO
@@ -29,6 +30,11 @@ var can_shoot: bool = true
 @onready var shadow: Node2D = $Shadow
 
 
+const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
+var knockback_velocity: Vector2 = Vector2.ZERO
+var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
+@onready var audio_hit: AudioStreamPlayer2D = $AudioStreamPlayer_hit
+
 func _ready() -> void:
 	randomize()
 
@@ -43,10 +49,13 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if knockback_velocity.length() > 1:
+		velocity = knockback_velocity
+		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
+	else:
 	# SIEMPRE se mueve con movimiento aleatorio, independientemente del player
-	var base_velocity: Vector2 = move_dir * speed
-
-	velocity = base_velocity + external_force
+		var base_velocity: Vector2 = move_dir * speed
+		velocity = base_velocity + external_force
 
 	move_and_slide()
 
@@ -122,3 +131,27 @@ func _shoot_ink_at_player() -> void:
 
 func _on_shoot_timer_timeout() -> void:
 	can_shoot = true
+
+func die() -> void:
+	var death_effect = ENEMY_DEATH.instantiate()
+	get_parent().add_child(death_effect)
+	death_effect.global_position = global_position
+	queue_free()
+	pass
+	
+func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float):
+	if not audio_hit.playing:
+		audio_hit.play()
+	health-=damage
+	# Knockback
+	var direction = (global_position - attacker_pos).normalized()
+	knockback_velocity = direction * attacker_knockback
+	#flash_damage()
+	if health <= 0:
+		die()
+	print("health:", health)
+
+
+func _on_attack_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Player"):
+		area.get_parent().take_damage(damage, global_position, knockback)

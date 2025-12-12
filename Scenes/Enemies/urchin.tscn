@@ -1,8 +1,33 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwo113wvy1q4h"]
+[gd_scene load_steps=17 format=3 uid="uid://dwo113wvy1q4h"]
 
 [ext_resource type="Script" uid="uid://b6ec37lwwwyke" path="res://Scripts/Enemies/Enemy_urchin.gd" id="1_ip3uh"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_rdmt3"]
 [ext_resource type="Texture2D" uid="uid://clqjl8ra6navw" path="res://Sprites/Enemies/PupperFish.png" id="3_xramv"]
+[ext_resource type="AudioStream" uid="uid://bpw5hpam3lt6q" path="res://Audios/hit.ogg" id="4_xramv"]
+
+[sub_resource type="Shader" id="Shader_rdmt3"]
+code = "shader_type canvas_item;
+
+uniform float hit_flash : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	// Mezcla del color original con un blanco fuerte según el valor del flash
+	tex.rgb = mix(tex.rgb, vec3(1.0), hit_flash);
+
+	COLOR = tex;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75682"]
+shader = SubResource("Shader_rdmt3")
+shader_parameter/hit_flash = 0.0
 
 [sub_resource type="Gradient" id="Gradient_m07os"]
 offsets = PackedFloat32Array(0, 0.7133333)
@@ -19,13 +44,12 @@ radius = 2.919282
 height = 15.044622
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_75682"]
-radius = 11.0
-height = 52.0
+radius = 7.0
+height = 44.0
 
-[sub_resource type="Animation" id="Animation_qaqq8"]
-resource_name = "idle_Right"
-length = 0.6
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_jk48a"]
+resource_name = "Attack"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -33,22 +57,10 @@ tracks/0/path = NodePath("Icon:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.26666668),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_f7y7g"]
@@ -76,22 +88,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_jk48a"]
-resource_name = "Attack"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_rqcdr"]
@@ -123,6 +119,35 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_qaqq8"]
+resource_name = "idle_Right"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Icon:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_87e62"]
 _data = {
 &"Attack": SubResource("Animation_jk48a"),
@@ -130,6 +155,10 @@ _data = {
 &"idle_Left": SubResource("Animation_rqcdr"),
 &"idle_Right": SubResource("Animation_qaqq8")
 }
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xramv"]
+radius = 12.0
+height = 52.0
 
 [node name="Urchin" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_ip3uh")
@@ -139,6 +168,7 @@ position = Vector2(0, 4)
 texture = ExtResource("2_rdmt3")
 
 [node name="Icon" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_75682")
 position = Vector2(0, -21)
 texture = ExtResource("3_xramv")
 flip_h = true
@@ -156,13 +186,13 @@ rotation = 1.5707964
 scale = Vector2(-1.7127497, 2.791695)
 shape = SubResource("CapsuleShape2D_uxghh")
 
-[node name="hurtbox" type="Area2D" parent="." groups=["Enemy"]]
-position = Vector2(10, -65)
+[node name="AttackHitBox" type="Area2D" parent="." groups=["Enemy"]]
+position = Vector2(11, -65)
 rotation = 1.5707964
 collision_layer = 16
 collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
 modulate = Color(0.8618463, 2.8878452e-07, 0.49752194, 1)
 position = Vector2(68, 10.999997)
 shape = SubResource("CapsuleShape2D_75682")
@@ -174,5 +204,19 @@ libraries = {
 }
 autoplay = "idle_Right"
 
-[connection signal="area_entered" from="hurtbox" to="." method="_on_attack_hitbox_area_entered"]
+[node name="HurtBox" type="Area2D" parent="." groups=["Enemy"]]
+position = Vector2(0, -18)
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 20)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xramv")
+debug_color = Color(0.7490196, 0.4627451, 0, 0.3137255)
+
+[node name="AudioStreamPlayer_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xramv")
+
+[connection signal="area_entered" from="AttackHitBox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -12,7 +12,9 @@ const TILE_SIZE: int = 32 #Pixeles de cada tile 32x32
 @onready var initial_position: Marker2D = $initialPosition #Posicion desde donde empezar a poner los obstaculos
 @onready var obstacles: Node2D = $Obstacles #Donde colocar los obstaculos
 
+@onready var tile_map_barrier: TileMapLayer = $TileMapLayer_Barrier
 
+var exit_open: bool = false
 
 #@onready var exit_rocks: Node2D = $YSort/ExitRocks #Para tapar la salida, cuando se matan a todos los enemeigos, que se abra (eliminamos las rocas)
 
@@ -143,3 +145,9 @@ func _init_occupancy() -> void:
 		for i in range(width):
 			row.append(false)
 		occupancy.append(row)
+
+func _open_exit() -> void: 
+	if not exit_open:
+		tile_map_barrier.queue_free()
+		exit_open = true
+	

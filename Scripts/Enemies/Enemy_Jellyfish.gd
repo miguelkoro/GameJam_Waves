@@ -22,6 +22,10 @@ func _ready() -> void:
 		patrol_mode = PatrolMode.VERTICAL
 	else:
 		patrol_mode = PatrolMode.HORIZONTAL
+	#if animated_sprite.material:
+	#	animated_sprite.material_override = animated_sprite.material.duplicate()
+	var mat := animated_sprite.material
+	animated_sprite.material = mat.duplicate()
 		
 func _physics_process(delta: float) -> void:
 	#Movemos horizontalmente el enemigo
