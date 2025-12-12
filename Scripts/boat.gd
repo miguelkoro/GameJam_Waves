@@ -4,7 +4,7 @@ extends Node2D
 var player_is_near: bool = false
 @onready var animation_player_fade_in_out: AnimationPlayer = $AnimationPlayer_FadeIn_Out
 
-
+@export var toNewRun:bool = true #Si es true va hacia una nueva room, si es false va hacia el pueblo
 
 func _process(delta: float) -> void:
 	if not player_is_near:
@@ -37,4 +37,7 @@ func _travel_new_run()->void:
 
 func _on_animation_player_fade_in_out_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Fade_Out":
-		_travel_new_run()
+		if toNewRun:
+			_travel_new_run()
+		else:
+			get_tree().change_scene_to_file("res://Scenes/Town/Town.tscn")

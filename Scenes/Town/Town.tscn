@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://belg01ae6w6up"]
+[gd_scene load_steps=33 format=4 uid="uid://belg01ae6w6up"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
@@ -15,6 +15,70 @@
 [ext_resource type="AudioStream" uid="uid://rjqbixqx7syy" path="res://Audios/Music_Town.ogg" id="13_nnguh"]
 [ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="13_ytd6y"]
 [ext_resource type="AudioStream" uid="uid://djniuwwtik8nj" path="res://Audios/Beach.ogg" id="14_ytd6y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crp13"]
+atlas = ExtResource("9_ylki5")
+region = Rect2(0, 0, 248, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxixf"]
+atlas = ExtResource("9_ylki5")
+region = Rect2(248, 0, 248, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfpq5"]
+atlas = ExtResource("9_ylki5")
+region = Rect2(496, 0, 248, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kckb"]
+atlas = ExtResource("9_ylki5")
+region = Rect2(744, 0, 248, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_823md"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crp13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxixf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfpq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kckb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_crp13"]
+resource_name = "Fade_Out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.100000024),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_xxixf"]
 resource_name = "Fade_in"
@@ -66,34 +130,6 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_crp13"]
-resource_name = "Fade_Out"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:theme_override_styles/panel:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 1.9333333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.100000024),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -199,9 +235,11 @@ position = Vector2(-185, 390)
 [node name="Node2D" type="Node2D" parent="YSort"]
 position = Vector2(-352, 175)
 
-[node name="Dock" type="Sprite2D" parent="YSort/Node2D"]
-position = Vector2(0, 31)
-texture = ExtResource("9_ylki5")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/Node2D"]
+position = Vector2(0, 32)
+sprite_frames = SubResource("SpriteFrames_823md")
+autoplay = "default"
+frame_progress = 0.9874616
 
 [node name="Boat" parent="YSort" instance=ExtResource("4_ytd6y")]
 position = Vector2(-361, 163)

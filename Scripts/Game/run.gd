@@ -2,10 +2,12 @@ extends Node2D
 
 @export var bonusRoom: PackedScene
 @export var rooms: Array[PackedScene]
+@export var exitRoom: PackedScene
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var roomsLogic: Array = ["Room", "bonusRoom", "Room", "Exit"] #Indicamos que tipo de sala tocaria
 var roomPointer: int = 0 #Para indicar en el array en que room estamos
+
 
 var actualRoom: Node2D
 
@@ -30,13 +32,14 @@ func _load_room(scene: PackedScene) -> void:
 		
 func _create_enemy_room() -> void:
 	_load_room(rooms.pick_random())	
-	actualRoom._add_enemies(randi_range(5,10)*GameManager.enemiesMulti)
+	actualRoom._add_enemies(randi_range(1,2)*GameManager.enemiesMulti)
 	animation_player.play("FadeIn")
 	#actualRoom._add_enemies(1)
 
 func _create_bonus_room() -> void:
 	_load_room(bonusRoom)
-
+func _create_exit_room() -> void:
+	_load_room(exitRoom)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "FadeOut":
@@ -46,4 +49,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			"bonusRoom":
 				_create_bonus_room()
 			"Exit":
-				pass
+				_create_exit_room()
