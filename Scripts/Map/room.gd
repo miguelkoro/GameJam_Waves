@@ -33,6 +33,7 @@ func _ready() -> void:
 func _add_enemies(enemiesAmount: int) -> void:
 	for spawn in enemy_spawns.get_children():
 		spawn.enemies_amount = enemiesAmount
+		GameManager.enemiesToDefeat += enemiesAmount
 
 func _create_map() -> void:
 	noise.seed = randi() #Crea una semilla aleatoria

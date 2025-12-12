@@ -38,11 +38,11 @@ Enemy=""
 Player=""
 HeartsUI=""
 PearlsUI=""
-InkEffectUI=""
 GUI=""
 WorldCollider=""
 Run=""
 Pause=""
+ScreenEffectUI=""
 
 [input]
 
