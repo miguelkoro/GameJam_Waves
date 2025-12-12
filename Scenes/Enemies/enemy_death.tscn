@@ -1,8 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://bcnpf5g14p543"]
+[gd_scene load_steps=23 format=3 uid="uid://bcnpf5g14p543"]
 
 [ext_resource type="Script" uid="uid://b2w7cnbp2gqk2" path="res://Scripts/enemy_death.gd" id="1_5nlry"]
 [ext_resource type="Texture2D" uid="uid://dy8mvxvwvee4b" path="res://Sprites/Enemies/Muerte_Splash.png" id="1_n8b0k"]
 [ext_resource type="AudioStream" uid="uid://dfaivmchpkfax" path="res://Audios/water_splash.ogg" id="2_5nlry"]
+[ext_resource type="PackedScene" uid="uid://c5kbgxhjewjf8" path="res://Scenes/Items/item_healing_fish.tscn" id="2_h2jnu"]
+[ext_resource type="PackedScene" uid="uid://b1jvgfhyjbaam" path="res://Scenes/Items/small_pearl.tscn" id="3_e6l5a"]
+[ext_resource type="PackedScene" uid="uid://cc53wsts7tfmc" path="res://Scenes/Items/big_pearl.tscn" id="4_3m3ri"]
+[ext_resource type="PackedScene" uid="uid://dpgf5vv5kia8g" path="res://Scenes/Items/item_healing_Food.tscn" id="4_e6l5a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6vec"]
 atlas = ExtResource("1_n8b0k")
@@ -112,6 +116,10 @@ animations = [{
 
 [node name="EnemyDeath" type="Node2D"]
 script = ExtResource("1_5nlry")
+healItems = Array[PackedScene]([ExtResource("2_h2jnu")])
+coinItems = Array[PackedScene]([ExtResource("3_e6l5a")])
+healItemsRare = Array[PackedScene]([ExtResource("4_e6l5a")])
+coinItemsRare = Array[PackedScene]([ExtResource("4_3m3ri")])
 
 [node name="AnimatedSprite_EnemyDeath" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -16)

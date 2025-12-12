@@ -79,7 +79,6 @@ position = Vector2(536, 680)
 [node name="GUI" parent="." instance=ExtResource("7_bc83e")]
 
 [node name="ScreenEffects" parent="." instance=ExtResource("6_8io4b")]
-visible = true
 
 [node name="PauseLayer" type="CanvasLayer" parent="." groups=["Pause"]]
 process_mode = 3

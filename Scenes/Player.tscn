@@ -12,7 +12,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ys1qc"]
 radius = 6.0
-height = 24.0
+height = 20.0
 
 [sub_resource type="Animation" id="Animation_i2e8t"]
 resource_name = "Attack_Left"

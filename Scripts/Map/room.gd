@@ -13,12 +13,15 @@ const TILE_SIZE: int = 32 #Pixeles de cada tile 32x32
 @onready var obstacles: Node2D = $Obstacles #Donde colocar los obstaculos
 
 
+
 #@onready var exit_rocks: Node2D = $YSort/ExitRocks #Para tapar la salida, cuando se matan a todos los enemeigos, que se abra (eliminamos las rocas)
 
 #umbrales de ruido
-@export var enemy_threshols: float = 0.4 #Enemigos
-@export var rock_threshold: float = 0.1 #Rocas (Normales y pinchudas)
-@export var obstacle_threshold: float = 0.3 #Obstaculos grandes
+
+
+@export var obstacle_threshold: float = 0.53 #Obstaculos grandes
+@export var rock_threshold: float = 0.48 #Rocas (Normales y pinchudas)
+@export var enemy_threshols: float = 0.47 #Enemigos
 
 @onready var enemy_spawns: Node2D = $EnemySpawns
 @onready var whirlpool_exit: Node2D = $Whirlpool_exit
@@ -45,7 +48,8 @@ func _create_map() -> void:
 			#var y: float = j
 			
 			var n = noise.get_noise_2d(x/sc, y/sc)
-			#print(n)
+			n = (n+1) * 0.5
+			print(n)
 			#Vemos la probabilidad de un obstaculo grande
 			if n > obstacle_threshold:
 				_try_place_large_obstacle(x,y) #Probamos a ver si cabe el obstaculo
@@ -55,7 +59,7 @@ func _create_map() -> void:
 				_try_place_rock(x,y)
 			elif n > enemy_threshols: #Probamos a colocar un enemigo
 				_try_place_enemy(x,y)
-				
+		
 				
 func _try_place_rock(x:int, y:int) -> void:
 	if occupancy[y][x] or arrayRocks.is_empty():

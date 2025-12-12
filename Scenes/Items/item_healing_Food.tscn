@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpgf5vv5kia8g"]
+
+[ext_resource type="Script" uid="uid://cml83mw5tf05x" path="res://Scripts/Items/healing_item.gd" id="1_857m2"]
+[ext_resource type="Texture2D" uid="uid://bsm70nrotxlib" path="res://Sprites/Items/Cat_food.png" id="2_857m2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mie3u"]
+radius = 9.0
+height = 32.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8a78"]
+atlas = ExtResource("2_857m2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k4i46"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8a78")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Item_HealingFood" type="Area2D"]
+collision_layer = 65
+collision_mask = 2
+script = ExtResource("1_857m2")
+heal_amount = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mie3u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k4i46")
+autoplay = "default"
+frame_progress = 0.13933073
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
