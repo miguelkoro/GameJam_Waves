@@ -5,8 +5,11 @@ extends HBoxContainer
 
 
 func _ready() -> void:
+	call_deferred("_init_hearts")
+
+func _init_hearts():
 	refresh_heart_nodes()
-	update_hearts(PlayerStats.last_health, PlayerStats.health)	
+	update_hearts(PlayerStats.health, PlayerStats.health)
 
 func update_hearts(last_health: float, health: float):
 	var lost = health < last_health

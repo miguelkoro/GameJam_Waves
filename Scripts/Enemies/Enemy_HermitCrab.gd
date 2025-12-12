@@ -75,6 +75,7 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 		var direction = (global_position - attacker_pos).normalized()
 		knockback_velocity = direction * attacker_knockback
 		#flash_damage()
+		
 		if health <= 0:
 			die()
 	else:
@@ -110,6 +111,7 @@ func die() -> void:
 	var death_effect = ENEMY_DEATH.instantiate()
 	get_parent().add_child(death_effect)
 	death_effect.global_position = global_position
+	death_effect.countEnemy = false
 	queue_free()
 	pass	
 

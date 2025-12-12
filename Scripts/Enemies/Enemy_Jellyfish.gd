@@ -73,6 +73,7 @@ func die() -> void:
 	var death_effect = ENEMY_DEATH.instantiate()
 	get_parent().add_child(death_effect)
 	death_effect.global_position = global_position
+	death_effect.countEnemy = false
 	queue_free()
 	pass
 

@@ -43,6 +43,8 @@ func _create_exit_room() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "FadeOut":
+		if roomPointer >= roomsLogic.size(): #Si elegimos continuar con la run, esta se reinicia
+			roomPointer = 0		
 		match  roomsLogic[roomPointer]:
 			"Room":
 				_create_enemy_room()
