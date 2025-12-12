@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://belg01ae6w6up"]
+[gd_scene load_steps=28 format=4 uid="uid://belg01ae6w6up"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_wruq3"]
@@ -15,6 +15,96 @@
 [ext_resource type="AudioStream" uid="uid://rjqbixqx7syy" path="res://Audios/Music_Town.ogg" id="13_nnguh"]
 [ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="13_ytd6y"]
 [ext_resource type="AudioStream" uid="uid://djniuwwtik8nj" path="res://Audios/Beach.ogg" id="14_ytd6y"]
+
+[sub_resource type="Animation" id="Animation_xxixf"]
+resource_name = "Fade_in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_j7a8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_crp13"]
+resource_name = "Fade_Out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1.9333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.100000024),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ll38"]
+_data = {
+&"Fade_Out": SubResource("Animation_crp13"),
+&"Fade_in": SubResource("Animation_xxixf"),
+&"RESET": SubResource("Animation_j7a8k")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j7a8k"]
 atlas = ExtResource("11_xxixf")
@@ -80,6 +170,9 @@ _data = {
 &"idle": SubResource("Animation_xy4dy")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crp13"]
+bg_color = Color(0, 0, 0, 1)
+
 [node name="Town" type="Node2D"]
 
 [node name="TileMapLayer_water" type="TileMapLayer" parent="."]
@@ -112,6 +205,13 @@ texture = ExtResource("9_ylki5")
 
 [node name="Boat" parent="YSort" instance=ExtResource("4_ytd6y")]
 position = Vector2(-361, 163)
+
+[node name="AnimationPlayer_FadeIn_Out" type="AnimationPlayer" parent="YSort/Boat"]
+root_node = NodePath("../../../ScreenFadeIn/Panel")
+libraries = {
+&"": SubResource("AnimationLibrary_2ll38")
+}
+autoplay = "Fade_in"
 
 [node name="PalmTree" parent="YSort" instance=ExtResource("5_egv3d")]
 position = Vector2(116, 65)
@@ -170,12 +270,12 @@ autoplay = "idle"
 [node name="Beach_Limit" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Beach_Limit"]
-polygon = PackedVector2Array(-272, 225, -270, 267, -259, 272, -243, 276, -239, 288, -238, 328, -232, 333, -215, 337, -209, 348, -208, 426, -213, 432, -235, 435, -239, 442, -239, 490, -225, 495, -210, 495, -211, 523, -264, 523, -285, 235)
+polygon = PackedVector2Array(-271, 237, -270, 267, -259, 272, -243, 276, -239, 288, -238, 328, -232, 333, -215, 337, -209, 348, -208, 426, -213, 432, -235, 435, -239, 442, -239, 490, -225, 495, -210, 495, -211, 523, -264, 523, -285, 235)
 
 [node name="Beach_Limit2" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Beach_Limit2"]
-polygon = PackedVector2Array(-103, -17, -170, -15, -175, -6, -177, 74, -179, 79, -201, 81, -204, 85, -208, 91, -211, 111, -268, 114, -271, 171, -295, 119, -179, -40)
+polygon = PackedVector2Array(-103, -17, -170, -15, -175, -6, -177, 74, -179, 79, -201, 81, -204, 85, -208, 91, -211, 111, -268, 114, -270, 167, -295, 119, -179, -40)
 
 [node name="Beach_Limit3" type="StaticBody2D" parent="."]
 
@@ -185,7 +285,7 @@ polygon = PackedVector2Array(-461, 182, -452, 184, -444, 181, -443, 172, -391, 1
 [node name="Beach_Limit4" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Beach_Limit4"]
-polygon = PackedVector2Array(-447, 182, -448, 202, -442, 205, -441, 214, -392, 215, -389, 206, -384, 204, -379, 206, -377, 214, -337, 215, -336, 207, -334, 205, -327, 205, -324, 210, -324, 216, -266, 216, -263, 206, -259, 205, -254, 207, -254, 215, -250, 222, -253, 225, -251, 247, -259, 251, -268, 245, -272, 229, -466, 226, -464, 184)
+polygon = PackedVector2Array(-449, 185, -448, 202, -442, 205, -441, 214, -392, 215, -389, 206, -384, 204, -379, 206, -377, 214, -337, 215, -336, 207, -334, 205, -327, 205, -324, 210, -324, 216, -266, 216, -263, 206, -259, 205, -254, 207, -254, 215, -250, 222, -253, 225, -251, 247, -259, 251, -268, 245, -272, 229, -466, 226, -464, 184)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_nnguh")
@@ -205,3 +305,15 @@ autoplay = true
 bus = &"Effects"
 
 [node name="GUI" parent="." instance=ExtResource("13_ytd6y")]
+
+[node name="ScreenFadeIn" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="ScreenFadeIn"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_crp13")
+
+[connection signal="animation_finished" from="YSort/Boat/AnimationPlayer_FadeIn_Out" to="YSort/Boat" method="_on_animation_player_fade_in_out_animation_finished"]

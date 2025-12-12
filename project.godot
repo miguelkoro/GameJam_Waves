@@ -42,6 +42,7 @@ InkEffectUI=""
 GUI=""
 WorldCollider=""
 Run=""
+Pause=""
 
 [input]
 

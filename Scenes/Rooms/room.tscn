@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://d1rl3mwuj6hux"]
+[gd_scene load_steps=21 format=4 uid="uid://d1rl3mwuj6hux"]
 
 [ext_resource type="Script" uid="uid://b43s7kqhhfeyt" path="res://Scripts/Map/room.gd" id="1_y264i"]
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="2_5wmef"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://clk3wuc22eevs" path="res://Scenes/Enemies/HermitCrab.tscn" id="9_7yyds"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Enemies/Jellyfish.tscn" id="10_bai86"]
 [ext_resource type="PackedScene" uid="uid://bn8d7rp5dle0e" path="res://Scenes/Map/whirlpool_exit.tscn" id="12_bai86"]
+[ext_resource type="AudioStream" uid="uid://c6q6g55ptu7ue" path="res://Audios/Musica_Batalla.ogg" id="19_7b2ry"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7rqus"]
 
@@ -79,7 +80,7 @@ position = Vector2(536, 680)
 
 [node name="ScreenEffects" parent="." instance=ExtResource("6_8io4b")]
 
-[node name="PauseLayer" type="CanvasLayer" parent="."]
+[node name="PauseLayer" type="CanvasLayer" parent="." groups=["Pause"]]
 process_mode = 3
 layer = 10
 visible = false
@@ -88,3 +89,8 @@ visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.68403757, 0.78250575, 0.99999875, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_7b2ry")
+autoplay = true
+bus = &"Music"

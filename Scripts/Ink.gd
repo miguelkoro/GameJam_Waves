@@ -40,7 +40,16 @@ func _on_body_entered(body: Node2D) -> void:
 		# Choca con el escenario
 		ink_splash()
 		queue_free()
+		
+		
+		
 func ink_splash() -> void:
 	var inkSplash = INK_SPLASH.instantiate()
 	inkSplash.global_position = global_position
 	get_parent().add_child(inkSplash)
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.is_in_group("WorldCollider"):
+		ink_splash()
+		queue_free()
