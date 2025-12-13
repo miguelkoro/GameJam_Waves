@@ -9,18 +9,24 @@ var last_health:float = health #Para poder comparar en la gui si se ha perdido o
 @export var endurance: float = 50 #Resistencia a los ataques
 @export var knockback: float = 50 #Retroceso que aplica a los enemigos
 
+signal health_changed(last_health: float, health: float)
 
 #Funcion para contabilizar el daño recibido
 func take_damage(amount: float) -> void:
 	if health - amount <= 0:
-		#PONER AQUI LAS COSAS DE MORRISE, ANIMACION, ESCENAS...	
-		print("Muerto")
+		player_death()
+		
 	last_health = health
 	health -= amount
 	#print("Health ", health)
 	update_hearts_ui()
 
-	
+func player_death():
+	print("Muerto")
+	#get_tree().paused = true
+	var run = get_tree().get_first_node_in_group("Run")	
+	run.player_death()
+
 
 func healing(amount: float) -> void:
 	last_health = health
@@ -28,7 +34,8 @@ func healing(amount: float) -> void:
 		health = max_health
 	else:
 		health += amount	
-	update_hearts_ui()
+	emit_signal("health_changed", last_health, health)
+	#update_hearts_ui()
 
 func update_hearts_ui() -> void:
 	var gui = get_tree().get_first_node_in_group("HeartsUI")

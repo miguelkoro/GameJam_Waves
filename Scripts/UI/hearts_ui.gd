@@ -5,10 +5,12 @@ extends HBoxContainer
 
 
 func _ready() -> void:
-	call_deferred("_init_hearts")
+	#call_deferred("_init_hearts")
+	_init_hearts()
 
 func _init_hearts():
 	refresh_heart_nodes()
+	PlayerStats.health_changed.connect(update_hearts)
 	update_hearts(PlayerStats.health, PlayerStats.health)
 
 func update_hearts(last_health: float, health: float):

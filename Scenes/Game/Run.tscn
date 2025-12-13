@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djrqbuanqttx2"]
+[gd_scene load_steps=11 format=3 uid="uid://djrqbuanqttx2"]
 
 [ext_resource type="Script" uid="uid://qk0hshmx6vr5" path="res://Scripts/Game/run.gd" id="1_prdqi"]
 [ext_resource type="PackedScene" uid="uid://d1rl3mwuj6hux" path="res://Scenes/Rooms/room.tscn" id="2_34hvs"]
@@ -91,10 +91,39 @@ tracks/1/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_qosut"]
+resource_name = "PlayerDeath"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeIn_Out/Panel:theme_override_styles/panel:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FadeIn_Out:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qosut"]
 _data = {
 &"FadeIn": SubResource("Animation_j224l"),
 &"FadeOut": SubResource("Animation_df0bc"),
+&"PlayerDeath": SubResource("Animation_qosut"),
 &"RESET": SubResource("Animation_v041d")
 }
 

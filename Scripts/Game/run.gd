@@ -41,6 +41,9 @@ func _create_bonus_room() -> void:
 func _create_exit_room() -> void:
 	_load_room(exitRoom)
 
+func player_death():
+	animation_player.play("PlayerDeath")
+
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "FadeOut":
 		if roomPointer >= roomsLogic.size(): #Si elegimos continuar con la run, esta se reinicia
@@ -52,3 +55,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 				_create_bonus_room()
 			"Exit":
 				_create_exit_room()
+	if anim_name == "PlayerDeath":
+		get_tree().change_scene_to_file("res://Scenes/Game/death_scene.tscn")

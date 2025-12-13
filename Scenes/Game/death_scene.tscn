@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d4eu5gub0cq2u"]
+[gd_scene load_steps=10 format=3 uid="uid://d4eu5gub0cq2u"]
 
 [ext_resource type="Texture2D" uid="uid://dmxd7blpttnb3" path="res://Sprites/Player/Cat.png" id="1_3p5er"]
+[ext_resource type="Script" uid="uid://lq07cqja0hsm" path="res://Scripts/Game/death_scene.gd" id="1_l6ruv"]
 [ext_resource type="Texture2D" uid="uid://d3efkg8og0r64" path="res://Sprites/Player/Animacion_Muerte_Ola.png" id="2_nx0d2"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="3_l6ruv"]
 [ext_resource type="AudioStream" uid="uid://djniuwwtik8nj" path="res://Audios/Beach.ogg" id="4_nx0d2"]
@@ -214,6 +215,7 @@ _data = {
 }
 
 [node name="DeathScene" type="Node2D"]
+script = ExtResource("1_l6ruv")
 
 [node name="ScreenFadeIn" type="CanvasLayer" parent="."]
 layer = -1
@@ -276,3 +278,5 @@ frame = 99
 stream = ExtResource("4_nx0d2")
 autoplay = true
 bus = &"Effects"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
