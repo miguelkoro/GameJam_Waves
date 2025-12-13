@@ -1,0 +1,123 @@
+[gd_scene load_steps=22 format=3 uid="uid://csqr4g8qay5p2"]
+
+[ext_resource type="Script" uid="uid://b2w7cnbp2gqk2" path="res://Scripts/enemy_death.gd" id="1_d6krc"]
+[ext_resource type="PackedScene" uid="uid://c5kbgxhjewjf8" path="res://Scenes/Items/item_healing_fish.tscn" id="2_cpno0"]
+[ext_resource type="PackedScene" uid="uid://b1jvgfhyjbaam" path="res://Scenes/Items/small_pearl.tscn" id="3_twtfw"]
+[ext_resource type="PackedScene" uid="uid://dpgf5vv5kia8g" path="res://Scenes/Items/item_healing_Food.tscn" id="4_nxjh0"]
+[ext_resource type="PackedScene" uid="uid://cc53wsts7tfmc" path="res://Scenes/Items/big_pearl.tscn" id="5_parhp"]
+[ext_resource type="Texture2D" uid="uid://bd3nkdrgb4l7c" path="res://Sprites/Enemies/water_explosion.png" id="6_cpno0"]
+[ext_resource type="Texture2D" uid="uid://dy8mvxvwvee4b" path="res://Sprites/Enemies/Muerte_Splash.png" id="6_nfv6e"]
+[ext_resource type="AudioStream" uid="uid://dfaivmchpkfax" path="res://Audios/water_splash.ogg" id="7_yuuwv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twtfw"]
+atlas = ExtResource("6_cpno0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxjh0"]
+atlas = ExtResource("6_cpno0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_parhp"]
+atlas = ExtResource("6_cpno0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfv6e"]
+atlas = ExtResource("6_cpno0")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yuuwv"]
+atlas = ExtResource("6_cpno0")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sylt3"]
+atlas = ExtResource("6_cpno0")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tri4e"]
+atlas = ExtResource("6_cpno0")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y80ll"]
+atlas = ExtResource("6_cpno0")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab4g1"]
+atlas = ExtResource("6_nfv6e")
+region = Rect2(640, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlxfv"]
+atlas = ExtResource("6_nfv6e")
+region = Rect2(704, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evadw"]
+atlas = ExtResource("6_nfv6e")
+region = Rect2(768, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f38nc"]
+atlas = ExtResource("6_nfv6e")
+region = Rect2(832, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o2ocp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twtfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxjh0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_parhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfv6e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yuuwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sylt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tri4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y80ll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab4g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlxfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evadw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f38nc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="EnemyDeath" type="Node2D"]
+script = ExtResource("1_d6krc")
+healItems = Array[PackedScene]([ExtResource("2_cpno0")])
+coinItems = Array[PackedScene]([ExtResource("3_twtfw")])
+healItemsRare = Array[PackedScene]([ExtResource("4_nxjh0")])
+coinItemsRare = Array[PackedScene]([ExtResource("5_parhp")])
+
+[node name="AnimatedSprite_EnemyDeath" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -16)
+sprite_frames = SubResource("SpriteFrames_o2ocp")
+autoplay = "default"
+frame = 11
+frame_progress = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_yuuwv")
+autoplay = true
+bus = &"Effects"
+
+[connection signal="animation_finished" from="AnimatedSprite_EnemyDeath" to="." method="_on_animated_sprite_enemy_death_animation_finished"]

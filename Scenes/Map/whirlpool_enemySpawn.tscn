@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=4 uid="uid://cri1jyoa5y8ye"]
+[gd_scene load_steps=29 format=4 uid="uid://cri1jyoa5y8ye"]
 
 [ext_resource type="Script" uid="uid://bbadpuilmdllv" path="res://Scripts/Map/EnemySpawn.gd" id="1_2gntp"]
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_i22lm"]
 [ext_resource type="PackedScene" uid="uid://bhu40cjsplpqc" path="res://Scenes/Enemies/Squid.tscn" id="2_n2vp1"]
 [ext_resource type="PackedScene" uid="uid://dwo113wvy1q4h" path="res://Scenes/Enemies/urchin.tscn" id="3_sfvgo"]
+[ext_resource type="PackedScene" uid="uid://das1b50eygmx8" path="res://Scenes/Enemies/Jellyfish_esp.tscn" id="4_fjkxe"]
 [ext_resource type="AudioStream" uid="uid://dfaivmchpkfax" path="res://Audios/water_splash.ogg" id="5_6enwd"]
 [ext_resource type="Texture2D" uid="uid://dy8mvxvwvee4b" path="res://Sprites/Enemies/Muerte_Splash.png" id="5_bhm8w"]
 
@@ -298,7 +299,7 @@ animations = [{
 
 [node name="Whirlpool" type="Node2D"]
 script = ExtResource("1_2gntp")
-enemies = Array[PackedScene]([ExtResource("2_n2vp1"), ExtResource("3_sfvgo")])
+enemies = Array[PackedScene]([ExtResource("2_n2vp1"), ExtResource("3_sfvgo"), ExtResource("4_fjkxe")])
 
 [node name="TileMapLayerWater" type="TileMapLayer" parent="."]
 visible = false

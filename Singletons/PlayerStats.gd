@@ -25,8 +25,7 @@ func player_death():
 	print("Muerto")
 	#get_tree().paused = true
 	var run = get_tree().get_first_node_in_group("Run")	
-	#LE quitamos dinero 20% o asi
-	GameManager.death_currency()
+
 	run.player_death()
 
 

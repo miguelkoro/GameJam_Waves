@@ -1,0 +1,169 @@
+[gd_scene load_steps=20 format=3 uid="uid://das1b50eygmx8"]
+
+[ext_resource type="Script" uid="uid://da76lsbq70rgu" path="res://Scripts/Enemies/Enemy_Jellyfish_Esp.gd" id="1_4t5cf"]
+[ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_gyx5k"]
+[ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Enemies/Jellyfish.png" id="3_pqj6i"]
+[ext_resource type="AudioStream" uid="uid://bpw5hpam3lt6q" path="res://Audios/hit.ogg" id="4_3whcr"]
+
+[sub_resource type="Gradient" id="Gradient_m07os"]
+offsets = PackedFloat32Array(0, 0.7133333)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ebxm7"]
+gradient = SubResource("Gradient_m07os")
+fill = 1
+fill_from = Vector2(0.5046729, 0.4906542)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m07os"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="Shader" id="Shader_724dr"]
+code = "shader_type canvas_item;
+
+uniform float hit_flash : hint_range(0.0, 1.0) = 0.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	// Mezcla del color original con un blanco fuerte según el valor del flash
+	tex.rgb = mix(tex.rgb, vec3(1.0), hit_flash);
+
+	COLOR = tex;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the CanvasItem.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6vec"]
+shader = SubResource("Shader_724dr")
+shader_parameter/hit_flash = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebxm7"]
+atlas = ExtResource("3_pqj6i")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6goe8"]
+atlas = ExtResource("3_pqj6i")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2clb"]
+atlas = ExtResource("3_pqj6i")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv3f0"]
+atlas = ExtResource("3_pqj6i")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpsdb"]
+atlas = ExtResource("3_pqj6i")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xtpv"]
+atlas = ExtResource("3_pqj6i")
+region = Rect2(160, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e6vho"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebxm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6goe8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2clb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mv3f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpsdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xtpv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ebxm7"]
+radius = 12.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w24je"]
+radius = 9.0
+height = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4t5cf"]
+radius = 142.00352
+
+[node name="Jellyfish_esp" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+script = ExtResource("1_4t5cf")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -26)
+color = Color(0.6431373, 0.50980395, 1, 0.4392157)
+texture = SubResource("GradientTexture2D_ebxm7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_m07os")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("2_gyx5k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_n6vec")
+position = Vector2(0, -18)
+sprite_frames = SubResource("SpriteFrames_e6vho")
+autoplay = "default"
+frame_progress = 0.44162503
+
+[node name="HurtBox" type="Area2D" parent="." groups=["Enemy"]]
+position = Vector2(0, -18)
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-1, 18)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ebxm7")
+debug_color = Color(0.7490196, 0.4627451, 0, 0.3137255)
+
+[node name="AttackHitbox" type="Area2D" parent="." groups=["Enemy"]]
+rotation = 1.5707964
+collision_layer = 16
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+modulate = Color(0.8618463, 2.8878452e-07, 0.49752194, 1)
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_w24je")
+debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
+
+[node name="AudioStreamPlayer_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3whcr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.515
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_4t5cf")
+
+[node name="WanderTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
+[connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
