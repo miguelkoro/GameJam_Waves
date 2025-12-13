@@ -28,6 +28,7 @@ var can_shoot: bool = true
 @onready var ink_spawn_point: Marker2D = $InkSpawnPoint
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var shadow: Node2D = $Shadow
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 
 const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
@@ -117,7 +118,7 @@ func _shoot_ink_at_player() -> void:
 		return
 
 	can_shoot = false
-
+	animated_sprite_2d.play("attack")
 	var ink: Area2D = ink_scene.instantiate()
 	get_parent().add_child(ink)
 
@@ -155,3 +156,8 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
 		area.get_parent().take_damage(damage, global_position, knockback)
+
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	animated_sprite_2d.play("idle")

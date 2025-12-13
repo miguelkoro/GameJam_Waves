@@ -1,45 +1,78 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhu40cjsplpqc"]
+[gd_scene load_steps=19 format=3 uid="uid://bhu40cjsplpqc"]
 
 [ext_resource type="Script" uid="uid://3oea1stjchxl" path="res://Scripts/Enemies/Enemy_Squid.gd" id="1_fwcaj"]
-[ext_resource type="Texture2D" uid="uid://d1tkhnl33xj5k" path="res://Sprites/Enemies/squid-sprite.png" id="1_rpcwj"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="1_xs40p"]
 [ext_resource type="PackedScene" uid="uid://bk8lm4skrcx1f" path="res://Scenes/Ink.tscn" id="2_oh473"]
+[ext_resource type="Texture2D" uid="uid://bkbfmorpxp6w6" path="res://Sprites/Enemies/Calamar.png" id="4_a6kb6"]
 [ext_resource type="AudioStream" uid="uid://bpw5hpam3lt6q" path="res://Audios/hit.ogg" id="5_a6kb6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oh473"]
-radius = 18.0
-height = 50.0
+radius = 4.0
+height = 28.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xs40p"]
-atlas = ExtResource("1_rpcwj")
-region = Rect2(50, 0, 233, 1012)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6kb6"]
+atlas = ExtResource("4_a6kb6")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fwcaj"]
-atlas = ExtResource("1_rpcwj")
-region = Rect2(283, 0, 233, 1012)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0q0b"]
+atlas = ExtResource("4_a6kb6")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oh473"]
-atlas = ExtResource("1_rpcwj")
-region = Rect2(516, 0, 233, 1012)
+[sub_resource type="AtlasTexture" id="AtlasTexture_psr6c"]
+atlas = ExtResource("4_a6kb6")
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_76etv"]
-atlas = ExtResource("1_rpcwj")
-region = Rect2(749, 0, 233, 1012)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsr1c"]
+atlas = ExtResource("4_a6kb6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jrc5"]
+atlas = ExtResource("4_a6kb6")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ttbg"]
+atlas = ExtResource("4_a6kb6")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qj0xh"]
+atlas = ExtResource("4_a6kb6")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t74c3"]
+atlas = ExtResource("4_a6kb6")
+region = Rect2(384, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fi2k0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xs40p")
+"texture": SubResource("AtlasTexture_a6kb6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fwcaj")
+"texture": SubResource("AtlasTexture_x0q0b")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psr6c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_oh473")
+"texture": SubResource("AtlasTexture_hsr1c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_76etv")
+"texture": SubResource("AtlasTexture_3jrc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ttbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qj0xh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t74c3")
 }],
 "loop": true,
 "name": &"idle",
@@ -61,24 +94,24 @@ script = ExtResource("1_fwcaj")
 ink_scene = ExtResource("2_oh473")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -11)
+position = Vector2(0, 6)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_oh473")
 
 [node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(-6.82121e-13, 13.000001)
-scale = Vector2(1.9027781, 2.8194447)
+position = Vector2(0, 6)
 texture = ExtResource("1_xs40p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -37)
-scale = Vector2(0.1722103, 0.14006917)
+position = Vector2(-1, -25)
 sprite_frames = SubResource("SpriteFrames_fi2k0")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame = 2
-frame_progress = 0.4170923
+frame = 1
+frame_progress = 1.0
 
 [node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2(0, 9)
 collision_layer = 0
 collision_mask = 2
 
@@ -95,12 +128,12 @@ wait_time = 4.0
 [node name="InkSpawnPoint" type="Marker2D" parent="." groups=["Enemy"]]
 
 [node name="HurtBox" type="Area2D" parent="." groups=["Enemy"]]
-position = Vector2(0, -18)
+position = Vector2(0, 6)
+scale = Vector2(1.1599984, -0.5350492)
 collision_layer = 32
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(-1, 18)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_psr6c")
 debug_color = Color(0.7490196, 0.4627451, 0, 0.3137255)
@@ -109,7 +142,9 @@ debug_color = Color(0.7490196, 0.4627451, 0, 0.3137255)
 stream = ExtResource("5_a6kb6")
 
 [node name="AttackHitbox" type="Area2D" parent="." groups=["Enemy"]]
+position = Vector2(-0.99999994, 5.9999995)
 rotation = 1.5707964
+scale = Vector2(0.64039326, -1.4606062)
 collision_layer = 16
 collision_mask = 32
 
@@ -119,6 +154,7 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_a6kb6")
 debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="ChangeDirTimer" to="." method="_on_change_dir_timer_timeout"]

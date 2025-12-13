@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bigo5li7o4r5p"]
+
+[ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_xy2q4"]
+[ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="2_le388"]
+[ext_resource type="PackedScene" uid="uid://bjhwe57k4ubw0" path="res://Scenes/screen_effects.tscn" id="3_tjhh5"]
+[ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="4_btfpe"]
+[ext_resource type="PackedScene" uid="uid://dx2nlpb8t6m0c" path="res://Scenes/Menus/pause_menu.tscn" id="5_iko4m"]
+[ext_resource type="PackedScene" uid="uid://vg6woi7a14ui" path="res://Scenes/camera.tscn" id="6_tjhh5"]
+
+[node name="BossRoom" type="Node2D"]
+
+[node name="TileMapLayer_water" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_xy2q4")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_xy2q4")
+
+[node name="TileMapLayer_Borders" type="TileMapLayer" parent="." groups=["WorldCollider"]]
+tile_set = ExtResource("1_xy2q4")
+
+[node name="TileMapLayer_SandObjects" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_xy2q4")
+
+[node name="YSort" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="YSort" instance=ExtResource("2_le388")]
+position = Vector2(536, 680)
+
+[node name="ScreenEffects" parent="." instance=ExtResource("3_tjhh5")]
+
+[node name="GUI" parent="." instance=ExtResource("4_btfpe")]
+
+[node name="PauseLayer" type="CanvasLayer" parent="." groups=["Pause"]]
+process_mode = 3
+layer = 10
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("5_iko4m")]
+visible = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.68403757, 0.78250575, 0.99999875, 1)
+
+[node name="Camera2D" parent="." instance=ExtResource("6_tjhh5")]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.039215688, 0, 0.57254905, 0.9764706)
+energy = 0.41

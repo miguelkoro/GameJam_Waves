@@ -27,3 +27,6 @@ func checkCompleteRoom() -> bool:
 		return true
 	else: 
 		return false
+func death_currency():
+	var lost =  currency - int(currency*0.2)
+	currency = max(0, currency - lost) #Para evitar que baje de 0
