@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmfmaehico4c6"]
+[gd_scene load_steps=15 format=3 uid="uid://cmfmaehico4c6"]
 
 [ext_resource type="Script" uid="uid://cq2lnrs1qp6xc" path="res://Scripts/boat.gd" id="1_7sl6l"]
 [ext_resource type="Texture2D" uid="uid://ceacljw5yqrrv" path="res://Sprites/Town/Barcos.png" id="2_w3x8h"]
@@ -55,10 +55,47 @@ _data = {
 &"idle": SubResource("Animation_5fawm")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3x8h"]
+atlas = ExtResource("2_w3x8h")
+region = Rect2(0, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_popgu"]
+atlas = ExtResource("2_w3x8h")
+region = Rect2(148, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fawm"]
+atlas = ExtResource("2_w3x8h")
+region = Rect2(296, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k855i"]
+atlas = ExtResource("2_w3x8h")
+region = Rect2(444, 0, 148, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_om6qc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3x8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_popgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fawm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k855i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
 [node name="Boat" type="Node2D"]
 script = ExtResource("1_7sl6l")
 
 [node name="Sprite_Boat" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-8, -30)
 rotation = 0.017453292
 texture = ExtResource("2_w3x8h")
@@ -117,6 +154,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_om6qc")
 }
 autoplay = "idle"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -33)
+sprite_frames = SubResource("SpriteFrames_om6qc")
+autoplay = "default"
+frame_progress = 0.53701293
 
 [connection signal="body_entered" from="ShowLabel" to="." method="_on_show_label_body_entered"]
 [connection signal="body_exited" from="ShowLabel" to="." method="_on_show_label_body_exited"]

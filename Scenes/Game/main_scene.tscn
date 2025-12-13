@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dokgw3lrthp7u"]
+[gd_scene load_steps=27 format=4 uid="uid://dokgw3lrthp7u"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_yb5h5"]
 [ext_resource type="Texture2D" uid="uid://c1wm3cfgohcsq" path="res://Sprites/Town/Muelle.png" id="3_c4idq"]
@@ -7,6 +7,42 @@
 [ext_resource type="Texture2D" uid="uid://dmxd7blpttnb3" path="res://Sprites/Player/Cat.png" id="6_4xs04"]
 [ext_resource type="AudioStream" uid="uid://djniuwwtik8nj" path="res://Audios/Beach.ogg" id="7_nqwsx"]
 [ext_resource type="PackedScene" uid="uid://bypixsr42whsa" path="res://Scenes/Menus/main_menu.tscn" id="7_yb5h5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqwsx"]
+atlas = ExtResource("3_c4idq")
+region = Rect2(0, 0, 248, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xs04"]
+atlas = ExtResource("3_c4idq")
+region = Rect2(248, 0, 248, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yb5h5"]
+atlas = ExtResource("3_c4idq")
+region = Rect2(496, 0, 248, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34k83"]
+atlas = ExtResource("3_c4idq")
+region = Rect2(744, 0, 248, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nb3q6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqwsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xs04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yb5h5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34k83")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_124ee"]
 atlas = ExtResource("6_4xs04")
@@ -51,19 +87,55 @@ animations = [{
 "speed": 2.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_glieh"]
+atlas = ExtResource("4_nqwsx")
+region = Rect2(0, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q46r"]
+atlas = ExtResource("4_nqwsx")
+region = Rect2(148, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e377t"]
+atlas = ExtResource("4_nqwsx")
+region = Rect2(296, 0, 148, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgjly"]
+atlas = ExtResource("4_nqwsx")
+region = Rect2(444, 0, 148, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qlcno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glieh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q46r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e377t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgjly")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
 [sub_resource type="Animation" id="Animation_4xs04"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("YSort/Sprite2D:position")
+tracks/0/path = NodePath("YSort/AnimatedSprite2D2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-412, 130)]
+"values": [Vector2(-356, 130)]
 }
 
 [sub_resource type="Animation" id="Animation_nqwsx"]
@@ -73,14 +145,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("YSort/Sprite2D:position")
+tracks/0/path = NodePath("YSort/AnimatedSprite2D2:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 3.6, 7.1),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 4.2, 6.866667, 9.966666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-410, 131), Vector2(-390, 130), Vector2(-377, 136)]
+"values": [Vector2(-356, 130), Vector2(-341, 131), Vector2(-352, 127), Vector2(-356, 130)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yb5h5"]
@@ -105,27 +177,31 @@ y_sort_enabled = true
 [node name="Node2D" type="Node2D" parent="YSort"]
 position = Vector2(-352, 175)
 
-[node name="Dock" type="Sprite2D" parent="YSort/Node2D"]
-position = Vector2(0, 31)
-texture = ExtResource("3_c4idq")
-
-[node name="Sprite2D" type="Sprite2D" parent="YSort"]
-position = Vector2(-412, 130)
-texture = ExtResource("4_nqwsx")
-flip_h = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort/Node2D"]
+position = Vector2(2, 27)
+sprite_frames = SubResource("SpriteFrames_nb3q6")
+autoplay = "default"
+frame_progress = 0.7572119
 
 [node name="PalmTree" parent="YSort" instance=ExtResource("5_b1nnh")]
-position = Vector2(-222, 183)
+position = Vector2(-219, 195)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="YSort"]
-position = Vector2(-436, 180)
+position = Vector2(-428, 182)
 sprite_frames = SubResource("SpriteFrames_34k83")
 autoplay = "default"
 frame_progress = 0.74105227
 offset = Vector2(0, -15)
 
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="YSort"]
+position = Vector2(-356, 130)
+sprite_frames = SubResource("SpriteFrames_qlcno")
+autoplay = "default"
+frame_progress = 0.9551083
+flip_h = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-348, 147)
+position = Vector2(-341, 163)
 zoom = Vector2(4, 4)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
