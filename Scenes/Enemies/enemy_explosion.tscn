@@ -107,6 +107,7 @@ healItems = Array[PackedScene]([ExtResource("2_cpno0")])
 coinItems = Array[PackedScene]([ExtResource("3_twtfw")])
 healItemsRare = Array[PackedScene]([ExtResource("4_nxjh0")])
 coinItemsRare = Array[PackedScene]([ExtResource("5_parhp")])
+explosion = true
 
 [node name="AnimatedSprite_EnemyDeath" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, -16)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bv52myghsnyxc"]
+[gd_scene load_steps=18 format=3 uid="uid://bv52myghsnyxc"]
 
 [ext_resource type="Script" uid="uid://bm5ucbxvttkrd" path="res://Scripts/Enemies/Enemy_seahorse.gd" id="1_a3wtd"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_l6ryb"]
@@ -29,9 +29,6 @@ height = 22.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_a3wtd"]
 b = Vector2(0, 306.13202)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_4t5cf"]
-radius = 40.1995
 
 [sub_resource type="Animation" id="Animation_l6ryb"]
 length = 0.001
@@ -213,20 +210,14 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(0, -144.8113)
+scale = Vector2(0.026315093, 1)
 shape = SubResource("SegmentShape2D_a3wtd")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(147.36853, -5.9604645e-08)
 rotation = 1.5707964
+scale = Vector2(0.05263084, 1)
 shape = SubResource("SegmentShape2D_a3wtd")
-
-[node name="ExplosionArea" type="Area2D" parent="."]
-scale = Vector2(1, 0.9600005)
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
-shape = SubResource("CircleShape2D_4t5cf")
 
 [node name="AudioStreamPlayer_Charge" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_a3wtd")
@@ -248,4 +239,3 @@ autoplay = "idle_left"
 [connection signal="timeout" from="StunTimer" to="." method="_on_stun_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="ExplosionArea" to="." method="_on_detection_area_body_entered"]

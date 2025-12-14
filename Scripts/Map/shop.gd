@@ -26,7 +26,7 @@ func open_shop() -> void:
 	canvas_layer.visible = true
 	if player != null:
 		player.inactive = true
-
+		gui = get_tree().get_first_node_in_group("GUI")
 		gui.visible = false
 	label.text = "X " + str(GameManager.currency)
 

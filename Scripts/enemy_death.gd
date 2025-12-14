@@ -10,11 +10,13 @@ var drop_item: PackedScene
 @export var drop_chance: float = 0.5
 @export var rare_chance: float = 0.1
 @export var health_item_chance: float = 0.4 #40% drop salud, 60% dineros
+@export var explosion: bool = false
 
 func _on_animated_sprite_enemy_death_animation_finished() -> void:
 	if countEnemy:
 		GameManager.enemyDefeated()
-	#_drop_item()
+	if not explosion:
+		_drop_item()
 	queue_free()
 
 func _drop_item() -> void:

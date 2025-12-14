@@ -202,7 +202,6 @@ debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
 stream = ExtResource("4_3whcr")
 
 [node name="ExplosionTimer" type="Timer" parent="."]
-wait_time = 2.0
 
 [node name="DetectionArea" type="Area2D" parent="."]
 scale = Vector2(3.0399978, 2.1200004)

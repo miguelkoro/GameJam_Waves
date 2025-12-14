@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://d1rl3mwuj6hux"]
+[gd_scene load_steps=34 format=4 uid="uid://d1rl3mwuj6hux"]
 
 [ext_resource type="Script" uid="uid://b43s7kqhhfeyt" path="res://Scripts/Map/room.gd" id="1_y264i"]
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="2_5wmef"]
@@ -11,14 +11,23 @@
 [ext_resource type="PackedScene" uid="uid://vg6woi7a14ui" path="res://Scenes/camera.tscn" id="4_vhpso"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="5_7rqus"]
 [ext_resource type="PackedScene" uid="uid://b8i2u8d51htb5" path="res://Scenes/Town/rock_Spikes_1.tscn" id="5_8io4b"]
+[ext_resource type="PackedScene" uid="uid://be83xw7avtw8w" path="res://Scenes/Map/water_current_3.tscn" id="5_v61t1"]
+[ext_resource type="PackedScene" uid="uid://de6mdvv8mxs3e" path="res://Scenes/Map/Hill_2.tscn" id="6_0y5mj"]
 [ext_resource type="PackedScene" uid="uid://bjhwe57k4ubw0" path="res://Scenes/screen_effects.tscn" id="6_8io4b"]
+[ext_resource type="PackedScene" uid="uid://d0e1arb16c3c7" path="res://Scenes/Map/Hill_3.tscn" id="7_0y5mj"]
 [ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="7_bc83e"]
 [ext_resource type="PackedScene" uid="uid://bey276fdad1pf" path="res://Scenes/Town/rock_Spikes_2.tscn" id="7_s53jc"]
+[ext_resource type="PackedScene" uid="uid://dmkauxnwg7ayb" path="res://Scenes/Map/Hill_4.tscn" id="8_2816a"]
 [ext_resource type="PackedScene" uid="uid://dx2nlpb8t6m0c" path="res://Scenes/Menus/pause_menu.tscn" id="8_s53jc"]
 [ext_resource type="PackedScene" uid="uid://clk3wuc22eevs" path="res://Scenes/Enemies/HermitCrab.tscn" id="9_7yyds"]
+[ext_resource type="PackedScene" uid="uid://cadtj75qne57l" path="res://Scenes/Map/water_current_4.tscn" id="9_wyciu"]
 [ext_resource type="PackedScene" uid="uid://qxnsc00hb5ae" path="res://Scenes/Enemies/Jellyfish.tscn" id="10_bai86"]
+[ext_resource type="PackedScene" uid="uid://bpig10t60ti61" path="res://Scenes/Map/Hill_5.tscn" id="10_g6fbs"]
+[ext_resource type="PackedScene" uid="uid://bf6mmcykyrkcj" path="res://Scenes/Map/water_current_5.tscn" id="11_nlpqy"]
+[ext_resource type="PackedScene" uid="uid://d27vdgqrmgifa" path="res://Scenes/Map/water_current_6.tscn" id="12_2m8o4"]
 [ext_resource type="PackedScene" uid="uid://bn8d7rp5dle0e" path="res://Scenes/Map/whirlpool_exit.tscn" id="12_bai86"]
 [ext_resource type="TileSet" uid="uid://cy073r82cxnox" path="res://TileMaps/TileMap_NoNavigation.tres" id="12_u18k6"]
+[ext_resource type="PackedScene" uid="uid://bjsks1fvf1aju" path="res://Scenes/Map/water_current_7.tscn" id="13_mrrax"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="18_1g4dh"]
 [ext_resource type="Script" uid="uid://br0bupv7d0dwy" path="res://Scripts/UI/room_enemies.gd" id="18_i540k"]
 [ext_resource type="AudioStream" uid="uid://c6q6g55ptu7ue" path="res://Audios/Musica_Batalla.ogg" id="19_7b2ry"]
@@ -28,7 +37,7 @@
 
 [node name="RoomMedium" type="Node2D" groups=["Room"]]
 script = ExtResource("1_y264i")
-arrayObstacles = Array[PackedScene]([ExtResource("2_vhpso"), ExtResource("3_bc83e"), ExtResource("4_s53jc")])
+arrayObstacles = Array[PackedScene]([ExtResource("2_vhpso"), ExtResource("3_bc83e"), ExtResource("4_s53jc"), ExtResource("5_v61t1"), ExtResource("6_0y5mj"), ExtResource("7_0y5mj"), ExtResource("8_2816a"), ExtResource("9_wyciu"), ExtResource("10_g6fbs"), ExtResource("11_nlpqy"), ExtResource("12_2m8o4"), ExtResource("13_mrrax")])
 arrayRocks = Array[PackedScene]([ExtResource("2_vjn8x"), ExtResource("3_vhpso"), ExtResource("5_8io4b"), ExtResource("7_s53jc")])
 arrayEnemies = Array[PackedScene]([ExtResource("9_7yyds"), ExtResource("10_bai86")])
 noise = SubResource("FastNoiseLite_7rqus")
