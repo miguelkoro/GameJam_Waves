@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://das1b50eygmx8"]
+[gd_scene load_steps=27 format=3 uid="uid://das1b50eygmx8"]
 
 [ext_resource type="Script" uid="uid://da76lsbq70rgu" path="res://Scripts/Enemies/Enemy_Jellyfish_Esp.gd" id="1_4t5cf"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_gyx5k"]
 [ext_resource type="Texture2D" uid="uid://mav7h4oqh8k0" path="res://Sprites/Enemies/Jellyfish_esp.png" id="3_4t5cf"]
 [ext_resource type="AudioStream" uid="uid://bpw5hpam3lt6q" path="res://Audios/hit.ogg" id="4_3whcr"]
+[ext_resource type="AudioStream" uid="uid://che8wgtfog0ow" path="res://Audios/bip_bomb.ogg" id="5_gyx5k"]
 
 [sub_resource type="Gradient" id="Gradient_m07os"]
 offsets = PackedFloat32Array(0, 0.7133333)
@@ -220,6 +221,10 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_4t5cf")
 
 [node name="WanderTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer_Bip" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_gyx5k")
+bus = &"Effects"
 
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]

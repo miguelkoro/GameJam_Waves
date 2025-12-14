@@ -14,7 +14,7 @@ var drop_item: PackedScene
 func _on_animated_sprite_enemy_death_animation_finished() -> void:
 	if countEnemy:
 		GameManager.enemyDefeated()
-	_drop_item()
+	#_drop_item()
 	queue_free()
 
 func _drop_item() -> void:

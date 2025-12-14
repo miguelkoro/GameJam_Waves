@@ -25,6 +25,7 @@ var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
 @export var max_wander_time := 3.0
 @onready var wander_timer: Timer = $WanderTimer
 @onready var explosion_area: Area2D = $ExplosionArea
+@onready var audio_bip: AudioStreamPlayer2D = $AudioStreamPlayer_Bip
 
 func _ready() -> void:
 	randomize()
@@ -110,6 +111,7 @@ func _process(delta: float) -> void:
 func _start_arming():
 	state = State.ARMING
 	animated_sprite.play("arming")
+	audio_bip.play()
 	explosion_timer.start()
 
 func die() -> void:

@@ -16,6 +16,7 @@ var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
 @onready var audio_hit: AudioStreamPlayer2D = $AudioStreamPlayer_hit
 const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
 
+
 		
 func _physics_process(delta: float) -> void:	
 	#move_and_slide()
