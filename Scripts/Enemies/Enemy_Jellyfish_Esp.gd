@@ -14,7 +14,9 @@ var player: Node2D = null
 
 enum PatrolMode {HORIZONTAL, VERTICAL}
 @export var patrol_mode: PatrolMode = PatrolMode.VERTICAL
-const ENEMY_DEATH = preload("uid://csqr4g8qay5p2")
+const ENEMY_EXPLOSION = preload("uid://csqr4g8qay5p2")
+const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
@@ -120,7 +122,6 @@ func die() -> void:
 	death_effect.global_position = global_position
 	death_effect.countEnemy = true
 	queue_free()
-	pass
 
 func _on_explosion_timer_timeout():
 	if state == State.DEAD:
@@ -132,7 +133,11 @@ func _explode():
 	for body in explosion_area.get_overlapping_bodies():
 		if body.is_in_group("Player"):
 			body.take_damage(2, global_position, 150)
-	die()
+	var death_effect = ENEMY_EXPLOSION.instantiate()
+	get_parent().add_child(death_effect)
+	death_effect.global_position = global_position
+	death_effect.countEnemy = true
+	queue_free()
 
 func flash_damage():
 	var mat := animated_sprite.material
