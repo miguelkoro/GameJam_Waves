@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=4 uid="uid://bn8d7rp5dle0e"]
 
 [ext_resource type="Script" uid="uid://bm586othcc3m7" path="res://Scripts/Map/whirlpool_exit.gd" id="1_s1b8c"]
+[ext_resource type="TileSet" uid="uid://cy073r82cxnox" path="res://TileMaps/TileMap_NoNavigation.tres" id="2_s1b8c"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="3_h70fm"]
-[ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="4_xn3ga"]
 
 [sub_resource type="Gradient" id="Gradient_i22lm"]
 offsets = PackedFloat32Array(0, 0.5, 0.5933333, 0.6933333)
@@ -156,11 +156,11 @@ script = ExtResource("1_s1b8c")
 
 [node name="TileMapLayerWhirl" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAABAAEAAQAAAAUAAAAAAAEAAAAAAAcAAAAAAAAAAAAAAAcAAAABAAAAAAAAAAcAAAACAAAAAAAAAAcAAAACAAEAAAAAAAcAAAACAAIAAAAAAAcAAAABAAIAAAAAAAcAAAAAAAIAAAAAAAcAAAA=")
-tile_set = ExtResource("4_xn3ga")
+tile_set = ExtResource("2_s1b8c")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAIAAAAAAAIAAAACAAIAAAAEAAIAAAABAAIAAAAAAAUAAAACAAEAAAAEAAQAAAAAAAEAAAAAAAQAAAAAAAAAAAAAAAMAAAABAAAAAAAEAAUAAAACAAAAAAAEAAMAAAA=")
-tile_set = ExtResource("4_xn3ga")
+tile_set = ExtResource("2_s1b8c")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(47.000004, 47.000004)

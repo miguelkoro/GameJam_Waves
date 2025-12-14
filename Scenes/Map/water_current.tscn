@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://c015fge073arr"]
 
 [ext_resource type="Script" uid="uid://x4iwo0mqmfe5" path="res://Scripts/Map/water_current.gd" id="1_3us3p"]
-[ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="2_8qaiq"]
+[ext_resource type="TileSet" uid="uid://cy073r82cxnox" path="res://TileMaps/TileMap_NoNavigation.tres" id="2_3mpqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpfo2"]
 size = Vector2(62, 63)
@@ -11,11 +11,11 @@ script = ExtResource("1_3us3p")
 
 [node name="TileMapLayer_Water" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAYAAAAAAAEAAQAAAAYAAAAAAAIAAQAAAAYAAAABAAIAAQAEAAYAAAACAAIAAQAAAAcAAAACAAEAAQAAAAcAAAACAAAAAQAAAAcAAAABAAAAAQAEAAYAAAABAAEAAQAEAAYAAAA=")
-tile_set = ExtResource("2_8qaiq")
+tile_set = ExtResource("2_3mpqx")
 
 [node name="TileMapLayer_Borders" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAMAAAACAAAAAAAEAAMAAAAAAAEAAAAAAAQAAAAAAAIAAAAAAAIAAAACAAIAAAAEAAIAAAABAAIAAAAAAAUAAAABAAAAAAAEAAUAAAACAAEAAAAEAAQAAAA=")
-tile_set = ExtResource("2_8qaiq")
+tile_set = ExtResource("2_3mpqx")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(48, 48)

@@ -22,4 +22,6 @@ shape = SubResource("CapsuleShape2D_7edlf")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 position = Vector2(0, -5)
+scale = Vector2(1.2000008, 1)
 radius = 15.0
+affect_navigation_mesh = true

@@ -11,6 +11,7 @@ const TILE_SIZE: int = 32 #Pixeles de cada tile 32x32
 @onready var y_sort: Node2D = $YSort #Donde poner las rocas
 @onready var initial_position: Marker2D = $initialPosition #Posicion desde donde empezar a poner los obstaculos
 @onready var obstacles: Node2D = $Obstacles #Donde colocar los obstaculos
+@onready var audio_open_exit: AudioStreamPlayer = $AudioStreamPlayer_OpenExit
 
 @onready var tile_map_barrier: TileMapLayer = $TileMapLayer_Barrier
 
@@ -38,7 +39,7 @@ func _ready() -> void:
 func _add_enemies(enemiesAmount: int) -> void:
 	for spawn in enemy_spawns.get_children():
 		spawn.enemies_amount = enemiesAmount
-		GameManager.enemiesToDefeat += enemiesAmount
+		GameManager.add_enemies_to_defeat(enemiesAmount)
 
 func _create_map() -> void:
 	noise.seed = randi() #Crea una semilla aleatoria
@@ -149,5 +150,6 @@ func _init_occupancy() -> void:
 func _open_exit() -> void: 
 	if not exit_open:
 		tile_map_barrier.queue_free()
+		audio_open_exit.play()
 		exit_open = true
 	

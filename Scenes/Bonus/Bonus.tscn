@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=4 uid="uid://bv786a45llsmj"]
+[gd_scene load_steps=19 format=4 uid="uid://bv786a45llsmj"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_2xhx1"]
 [ext_resource type="PackedScene" uid="uid://cl2r7k5r6qay1" path="res://Scenes/Town/Shop.tscn" id="2_f5da6"]
+[ext_resource type="TileSet" uid="uid://cy073r82cxnox" path="res://TileMaps/TileMap_NoNavigation.tres" id="2_fbp66"]
 [ext_resource type="PackedScene" uid="uid://xoklaqaa0ilf" path="res://Scenes/Town/rock_3.tscn" id="3_j0p5g"]
 [ext_resource type="PackedScene" uid="uid://bk6uqs1huk1sl" path="res://Scenes/Items/heal_box.tscn" id="4_5dioy"]
 [ext_resource type="PackedScene" uid="uid://cbrtfy4j081xb" path="res://Scenes/Player.tscn" id="5_yp7eq"]
@@ -112,7 +113,7 @@ tile_set = ExtResource("1_2xhx1")
 
 [node name="TileMapLayer_Objects" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD+/wAAAgABAAAAAAAEAP//AgABAAAAAGD6//3/AgADAAAAAAACAAAAAgACAAAAAAD8//z/AgACAAAAAAAGAPz/AgAAAAAAAAAAAAEAAgAAAAAAAFABAP3/AgAAAAAAAAA=")
-tile_set = ExtResource("1_2xhx1")
+tile_set = ExtResource("2_fbp66")
 
 [node name="Whirlpool_exit" parent="." instance=ExtResource("13_c6phv")]
 position = Vector2(-59, -197)

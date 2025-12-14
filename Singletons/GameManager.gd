@@ -7,19 +7,26 @@ var enemiesMulti: float = 1
 
 var enemiesToDefeat: int = 0 # numero de enemgios que hay que derrotar en la habitacion para poder avanzar
 var enemiesDefeated: int = 0 #Numero de enemigos derrotados en la habitacion
-
+signal enemies_progress_changed(defeated: int, total: int)
 
 func add_currency(amount: int):
 	currency += amount
 
+func add_enemies_to_defeat(amount: int):
+	enemiesToDefeat += amount
+	emit_signal("enemies_progress_changed", enemiesDefeated, enemiesToDefeat)
+
 func enemyDefeated():
 	enemiesDefeated+=1
+	emit_signal("enemies_progress_changed", enemiesDefeated, enemiesToDefeat)
 	if checkCompleteRoom():
 		var room = get_tree().get_first_node_in_group("Room")
 		room._open_exit()
 	
 func nextRoom():
 	var run = get_tree().get_first_node_in_group("Run")
+	enemiesDefeated = 0
+	enemiesToDefeat = 0
 	run.changeRoom()
 
 func checkCompleteRoom() -> bool:

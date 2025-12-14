@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://8lnqdm6hpusp"]
 
 [ext_resource type="Script" uid="uid://ccdagtbdath4h" path="res://Scripts/Map/hill.gd" id="1_ghtca"]
-[ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="2_ix4u0"]
+[ext_resource type="TileSet" uid="uid://cy073r82cxnox" path="res://TileMaps/TileMap_NoNavigation.tres" id="2_ghtca"]
 
 [node name="Hill" type="Node2D"]
 script = ExtResource("1_ghtca")
@@ -10,7 +10,7 @@ height = 4
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["WorldCollider"]]
 tile_map_data = PackedByteArray("AAAAAAEAAQADAAAAAAAAAAAAAQAAAAAAAAABAAAAAQABAAAAAAACAAAAAQABAAAAAAADAAAAAQACAAAAAAABAAMAAQAAAAEAAAACAAMAAQAGAAAAAAABAAIAAQADAAEAAAAAAAIAAQAAAAEAAAADAAMAAQAHAAAAAAADAAIAAQAFAAAAAAADAAEAAQAFAAAAAAABAAEAAQAEAAAAAAACAAEAAQAEAAAAAAACAAIAAQAEAAAAAAA=")
-tile_set = ExtResource("2_ix4u0")
+tile_set = ExtResource("2_ghtca")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 position = Vector2(68, 54)
