@@ -8,96 +8,140 @@ extends CharacterBody2D
 @export var knockback: float = 100 #Efecto de echar para atras al jugador al golpearle
 @export var health: float = 3
 @export var hidding: bool = true #Para ver cuando esta oculto y por tanto es inmortal
-@export var hide_lock: bool = false #Si lo golpeas mientras esta escondido, se mantendrá oculto otro poco
+#@export var hide_lock: bool = false #Si lo golpeas mientras esta escondido, se mantendrá oculto otro poco
+var hide_locked := false
 @export var player_near: bool = false #Para detectar si el jugador esta cerca
-var player: Node2D #Posicion del jugador para ir a por el
+var player: Node2D = null #Posicion del jugador para ir a por el
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
 @onready var audio_hit: AudioStreamPlayer2D = $AudioStreamPlayer_hit
 const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
+enum State {
+	HIDDEN,        # Dentro de la concha (invulnerable)
+	PEEKING,       # Sale y se vuelve a esconder
+	EMERGING,     # Sale tras detectar jugador
+	CHASING,      # Persigue al jugador
+	RETREATING,   # Se vuelve a esconder
+	DEAD
+}
+var state: State = State.HIDDEN
+@onready var idle_timer: Timer = $IdleTimer
+@onready var reveal_timer: Timer = $RevealTimer
+@onready var chase_timer: Timer = $ChaseTimer
+@onready var hide_lock_timer: Timer = $HideLockTimer
 
+
+
+func _ready():
+	state = State.HIDDEN
+	idle_timer.start(randf_range(3.0, 5.0))
+
+func _on_idle_timer_timeout():
+	if state != State.HIDDEN or hide_locked:
+		return
+	if randf() < 0.1:
+		state = State.PEEKING
+		animated_sprite.play("appear_hide")
+		await animated_sprite.animation_finished
+		state = State.HIDDEN
+	idle_timer.start(randf_range(3.0, 5.0))
+	
+func _on_reveal_timer_timeout():
+	if state != State.EMERGING:
+		return
+	animated_sprite.play("appear")
+	state = State.CHASING
+	chase_timer.start(randf_range(2.0, 4.0))
+	
+func _on_chase_timer_timeout():
+	if state == State.CHASING:
+		_start_retreat()
+
+func _start_retreat():
+	state = State.RETREATING
+	animated_sprite.play("hide")
+
+func _on_animation_finished():
+	if state == State.RETREATING:
+		state = State.HIDDEN
 
 		
 func _physics_process(delta: float) -> void:	
-	#move_and_slide()
-	if hide_lock:
-		return
-	#Si el jugador esta en el area de deteccion, procedemos a mirar si el cangrejo sale de su roca y se oculta (probabilidad del 10%)
-	if !player_near and randf() <= 0.001:
-		enemy_appear_and_hide()
-	if !player_near and hidding:
-		return
-	if player_near and hidding: #si el jugador esta cerca y el cangrejo esta escondido
-		await get_tree().create_timer(randf_range(2.0, 4.0)).timeout #Le ponemos tiempo random y hacemos que salga
-		enemy_appear()
+	if state == State.CHASING and player:
+		navigation_agent.target_position = player.global_position
 
-	if player_near and !hidding:
-		#Si el jugador esta cerca y el cangrejo esta fuera, el cangrejo ira a por el jugador
-		#Falta ponerle el movimiento con el navigationAgent
-		if knockback_velocity.length() > 1:
-			velocity = knockback_velocity
-			knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
-			move_and_slide()
+		if not navigation_agent.is_navigation_finished():
+			var next_pos := navigation_agent.get_next_path_position()
+			var dir := (next_pos - global_position).normalized()
+			velocity = dir * speed
 		else:
-			navigation_agent.target_position = player.global_position
-			navigate_safe()
+			velocity = Vector2.ZERO
+	else:
+		velocity = Vector2.ZERO
+
+	move_and_slide()
 		
 	
-	
+#func _on_navigation_agent_2d_velocity_computed(safe_velocity):
+#	if state != State.CHASING:
+#		return
+#	velocity = safe_velocity
 		
-
-func enemy_hide(): #Se sale de la roca
-	if hidding:
-		return
-	animated_sprite.play("hide")
-	hidding = true
-
-func enemy_appear(): #Se oculta en la roca
-	if !hidding or hide_lock:
-		return
-	animated_sprite.play("appear")
-	hidding = false
-
-func enemy_appear_and_hide():
-	animated_sprite.play("appear_hide")
 
 
 #Si detecta otras areas, hay que usar area_entered
 func _on_attack_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Player"):
 		area.get_parent().take_damage(damage, global_position, knockback)
+		if state == State.CHASING:
+			_start_retreat()
 
 func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float):
-	if !hidding:
-		if not audio_hit.playing:
-			audio_hit.play()
-		health-=damage
+	
 		# Knockback
-		var direction = (global_position - attacker_pos).normalized()
-		knockback_velocity = direction * attacker_knockback
+		#var direction = (global_position - attacker_pos).normalized()
+		#knockback_velocity = direction * attacker_knockback
 		#flash_damage()
-		
-		if health <= 0:
-			die()
+	# Si está oculto → invulnerable
+	if state == State.HIDDEN:
+		hide_locked = true
+		hide_lock_timer.start(3.0)
+		return
+
+	# Si ya está muriendo, no hacer nada
+	if state == State.DEAD:
+		return
+
+	health -= damage
+	audio_hit.play()
+
+	# Si sigue vivo → se esconde
+	if health > 0:
+		if state == State.CHASING or state == State.EMERGING:
+			_start_retreat()
 	else:
-		hide_lock = true
-		await get_tree().create_timer(3.0).timeout #espero 3seg para poder salir de nuevo
-		hide_lock = false
+		die()
+
 
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		player_near = true
-		player=body #Coge al jugador para poder perseguirle
+	if body.is_in_group("Player") and state == State.HIDDEN and not hide_locked:
+		player = body
+		state = State.EMERGING
+		reveal_timer.start(randf_range(1.0, 3.0))
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):	
-		player_near = false
-		enemy_hide()
-		navigation_agent.target_position = get_parent().global_position#Se para en la posicion actual
-		navigation_agent.velocity = Vector2.ZERO
+	#if body.is_in_group("Player"):	
+	#	player_near = false
+	#	enemy_hide()
+	#	navigation_agent.target_position = get_parent().global_position#Se para en la posicion actual
+	#	navigation_agent.velocity = Vector2.ZERO
+	if body == player:
+		player = null
+		if state == State.CHASING:
+			_start_retreat()
 
 func navigate_safe() -> void:
 	if navigation_agent.is_navigation_finished():
@@ -116,5 +160,9 @@ func die() -> void:
 	queue_free()
 	pass	
 
-func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
-	position += safe_velocity * get_physics_process_delta_time()
+#func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+#	position += safe_velocity * get_physics_process_delta_time()
+
+
+func _on_hide_lock_timer_timeout() -> void:
+	hide_locked = false

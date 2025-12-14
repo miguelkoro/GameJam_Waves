@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=4 uid="uid://8lnqdm6hpusp"]
+[gd_scene load_steps=4 format=4 uid="uid://8lnqdm6hpusp"]
 
 [ext_resource type="Script" uid="uid://ccdagtbdath4h" path="res://Scripts/Map/hill.gd" id="1_ghtca"]
 [ext_resource type="TileSet" uid="uid://cy073r82cxnox" path="res://TileMaps/TileMap_NoNavigation.tres" id="2_ghtca"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ghtca"]
+vertices = PackedVector2Array(13, 86, 13, 13, 116, 15, 45, 87, 115, 119, 44, 118)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(13, 13, 13, 86, 45, 87, 44, 118, 115, 119, 116, 15)])
+agent_radius = 0.0
 
 [node name="Hill" type="Node2D"]
 script = ExtResource("1_ghtca")
@@ -12,8 +18,6 @@ height = 4
 tile_map_data = PackedByteArray("AAAAAAEAAQADAAAAAAAAAAAAAQAAAAAAAAABAAAAAQABAAAAAAACAAAAAQABAAAAAAADAAAAAQACAAAAAAABAAMAAQAAAAEAAAACAAMAAQAGAAAAAAABAAIAAQADAAEAAAAAAAIAAQAAAAEAAAADAAMAAQAHAAAAAAADAAIAAQAFAAAAAAADAAEAAQAFAAAAAAABAAEAAQAEAAAAAAACAAEAAQAEAAAAAAACAAIAAQAEAAAAAAA=")
 tile_set = ExtResource("2_ghtca")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-position = Vector2(68, 54)
-radius = 45.87
-vertices = PackedVector2Array(46, -42, 48, 66, -24, 61, -26, 31, -56, 31, -56, -43)
-affect_navigation_mesh = true
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ghtca")
+use_edge_connections = false
