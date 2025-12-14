@@ -11,6 +11,12 @@ signal enemies_progress_changed(defeated: int, total: int)
 
 func add_currency(amount: int):
 	currency += amount
+func remove_currency(amount: int) -> bool:
+	if currency - amount >= 0:
+		currency -= amount
+		return true
+	else:
+		return false
 
 func add_enemies_to_defeat(amount: int):
 	enemiesToDefeat += amount
