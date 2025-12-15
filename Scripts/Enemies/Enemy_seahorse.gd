@@ -139,7 +139,36 @@ func _on_detection_area_body_entered(body):
 		return
 	if body.is_in_group("Player"):
 		player = body
-		_start_charge()
+				# 🔴 COMPROBAMOS VISIÓN
+		if _has_line_of_sight_to_player():
+			_start_charge()
+
+#Comprobar que no hay obstaculos de por medio entre jugador y caballito,porque entonces no embiste
+func _has_line_of_sight_to_player() -> bool:
+	if not player:
+		return false
+	var space_state = get_world_2d().direct_space_state
+	var query := PhysicsRayQueryParameters2D.create(
+		global_position,
+		player.global_position
+	)
+	# Ignorarse a sí mismo
+	query.exclude = [self]
+	var result = space_state.intersect_ray(query)
+
+	# Si no golpea nada → visión libre
+	if result.is_empty():
+		return true
+
+	# Si golpea algo, solo es válido si es el jugador
+	if result.collider.is_in_group("Player"):
+		return true
+
+	# Si golpea WorldCollider → bloqueado
+	if result.collider.is_in_group("WorldCollider"):
+		return false
+
+	return false
 
 func _on_detection_area_body_exited(body):
 	if body == player:

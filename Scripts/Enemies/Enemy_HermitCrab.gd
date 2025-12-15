@@ -51,7 +51,7 @@ func _on_reveal_timer_timeout():
 		return
 	animated_sprite.play("appear")
 	state = State.CHASING
-	chase_timer.start(randf_range(2.0, 4.0))
+	chase_timer.start(randf_range(2.0, 6.0))
 	
 func _on_chase_timer_timeout():
 	if state == State.CHASING:
@@ -69,7 +69,7 @@ func _on_animation_finished():
 func _physics_process(delta: float) -> void:	
 	if state == State.CHASING and player:
 		navigation_agent.target_position = player.global_position
-
+		navigate_safe()
 		if not navigation_agent.is_navigation_finished():
 			var next_pos := navigation_agent.get_next_path_position()
 			var dir := (next_pos - global_position).normalized()

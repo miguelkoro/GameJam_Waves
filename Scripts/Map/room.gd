@@ -12,6 +12,7 @@ const TILE_SIZE: int = 32 #Pixeles de cada tile 32x32
 @onready var initial_position: Marker2D = $initialPosition #Posicion desde donde empezar a poner los obstaculos
 @onready var obstacles: Node2D = $Obstacles #Donde colocar los obstaculos
 @onready var audio_open_exit: AudioStreamPlayer = $AudioStreamPlayer_OpenExit
+@onready var tile_map_layer: TileMapLayer = $TileMapLayer
 
 @onready var tile_map_barrier: TileMapLayer = $TileMapLayer_Barrier
 
@@ -76,6 +77,17 @@ func _try_place_rock(x:int, y:int) -> void:
 	var pos = initial_position.global_position+Vector2(x * TILE_SIZE + TILE_SIZE/2, y * TILE_SIZE + TILE_SIZE/2)
 	rock.global_position = pos
 	y_sort.add_child(rock)
+	
+	# --- 🔴 RECORTE DE NAVIGACIÓN ---
+	# Posición en mundo alineada a tile
+	var nav_world_pos := initial_position.global_position \
+		+ Vector2(x * TILE_SIZE, y * TILE_SIZE)
+
+	var cell := tile_map_layer.local_to_map(
+		tile_map_layer.to_local(nav_world_pos)
+	)
+
+	tile_map_layer.erase_cell(cell)
 
 func _try_place_enemy(x:int, y:int) -> void:
 	if occupancy[y][x] or arrayEnemies.is_empty():
@@ -114,6 +126,16 @@ func _try_place_large_obstacle(x: int, y: int) -> void:
 	#	x * tile_size,
 	#	y * tile_size
 	#)
+	#--------------
+	if ob.isHill:
+		var world_pos := initial_position.global_position \
+	+ Vector2(x * TILE_SIZE, y * TILE_SIZE)
+		var cell := tile_map_layer.local_to_map(tile_map_layer.to_local(world_pos))
+			# 🔴 BORRAR NAVIGACIÓN BAJO EL OBSTÁCULO
+		for dy in range(h):
+			for dx in range(w):
+				tile_map_layer.erase_cell(cell + Vector2i(dx, dy))
+	
 
 	ob.global_position = initial_position.global_position+Vector2(x * TILE_SIZE, y*TILE_SIZE)
 	obstacles.add_child(ob)

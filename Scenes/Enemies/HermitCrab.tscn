@@ -6,8 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://bpw5hpam3lt6q" path="res://Audios/hit.ogg" id="4_py107"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m07os"]
-radius = 8.0
-height = 16.0
+radius = 3.0
+height = 14.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ftjq"]
 atlas = ExtResource("3_5llmy")
@@ -150,14 +150,15 @@ radius = 9.0
 height = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5llmy"]
-radius = 142.00352
+radius = 134.13426
 
 [node name="HermitCrab" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_5llmy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
+position = Vector2(0, 1)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_m07os")
 
 [node name="Shadow" type="Sprite2D" parent="."]
@@ -195,7 +196,9 @@ debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 5.0
+radius = 14.0
+neighbor_distance = 32.0
+max_neighbors = 4
 debug_enabled = true
 
 [node name="DetectionArea" type="Area2D" parent="."]

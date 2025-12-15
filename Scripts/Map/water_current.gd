@@ -2,7 +2,7 @@ extends Node2D
 
 @export var current_direction: Vector2 = Vector2.RIGHT
 @export var current_strength: float = 250.0 #250 Corriente suave, 350 corriente media, 500 corriente fuerte
-
+var isHill: bool = false #Para indicar el tipo de obstaculo
 @export var width = 3
 @export var height = 3
 
