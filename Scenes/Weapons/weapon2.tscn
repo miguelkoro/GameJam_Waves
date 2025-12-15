@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bwxe1ttcg1iro" path="res://Scenes/Weapons/weapons.tscn" id="1_838xe"]
 [ext_resource type="Texture2D" uid="uid://dh21c4wien0c2" path="res://Sprites/Weapons/weapon2.png" id="2_7uvfr"]
 [ext_resource type="Script" uid="uid://d7oq863qqmy" path="res://Scripts/Weapons/weapon2.gd" id="2_uehs8"]
-[ext_resource type="Texture2D" uid="uid://dvmgknp24fyrs" path="res://Sprites/Lights/luz_direccionada.png" id="3_yirjy"]
+[ext_resource type="Texture2D" uid="uid://dxh020eyp3lc2" path="res://Sprites/Lights/light2.png" id="4_fo2sf"]
 [ext_resource type="AudioStream" uid="uid://5002i0qbi1gx" path="res://Audios/laser.mp3" id="5_fo2sf"]
 
 [node name="Weapons" instance=ExtResource("1_838xe")]
@@ -18,9 +18,9 @@ scale = Vector2(0.05598959, 0.03704834)
 texture = ExtResource("2_7uvfr")
 
 [node name="PointLight2D" type="PointLight2D" parent="." index="4"]
-position = Vector2(195.00002, -4)
-scale = Vector2(0.11525, 0.03283333)
-texture = ExtResource("3_yirjy")
+position = Vector2(172, -4)
+scale = Vector2(0.19564584, 0.0036158846)
+texture = ExtResource("4_fo2sf")
 
 [node name="AudioStreamPlayer2D" parent="." index="5"]
 stream = ExtResource("5_fo2sf")
