@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://belg01ae6w6up"]
+[gd_scene load_steps=36 format=4 uid="uid://belg01ae6w6up"]
 
 [ext_resource type="TileSet" uid="uid://de4ecwe5la85f" path="res://TileMaps/TileMap.tres" id="1_x6bik"]
 [ext_resource type="Script" uid="uid://dmatyvn1xmdqh" path="res://Scripts/Map/town.gd" id="1_xxixf"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://rjqbixqx7syy" path="res://Audios/Music_Town.ogg" id="13_nnguh"]
 [ext_resource type="PackedScene" uid="uid://c24mj370yrudd" path="res://Scenes/Game/gui.tscn" id="13_ytd6y"]
 [ext_resource type="AudioStream" uid="uid://djniuwwtik8nj" path="res://Audios/Beach.ogg" id="14_ytd6y"]
+[ext_resource type="PackedScene" uid="uid://dx2nlpb8t6m0c" path="res://Scenes/Menus/pause_menu.tscn" id="18_2ll38"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_crp13"]
 atlas = ExtResource("9_ylki5")
@@ -356,5 +357,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_crp13")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("18_2ll38")]
 
 [connection signal="animation_finished" from="YSort/Boat/AnimationPlayer_FadeIn_Out" to="YSort/Boat" method="_on_animation_player_fade_in_out_animation_finished"]
