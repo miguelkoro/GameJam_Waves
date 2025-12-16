@@ -20,6 +20,7 @@ const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
 
 @onready var stun_timer: Timer = $StunTimer
 @onready var audio_hit: AudioStreamPlayer2D = $AudioStreamPlayer_hit
@@ -119,6 +120,7 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	if not audio_hit.playing:
 		audio_hit.play()
 	health-=damage
+	animation_player_damage.play("damage")
 	# Knockback
 	#var direction = (global_position - attacker_pos).normalized()
 	#knockback_velocity = direction * attacker_knockback

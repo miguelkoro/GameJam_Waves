@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bv52myghsnyxc"]
+[gd_scene load_steps=21 format=3 uid="uid://bv52myghsnyxc"]
 
 [ext_resource type="Script" uid="uid://bm5ucbxvttkrd" path="res://Scripts/Enemies/Enemy_seahorse.gd" id="1_a3wtd"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_l6ryb"]
@@ -158,6 +158,43 @@ _data = {
 &"idle_right": SubResource("Animation_dhaoe")
 }
 
+[sub_resource type="Animation" id="Animation_e0cuf"]
+resource_name = "damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18134739, 0.27303988, 0.43808636, 0.5990576),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.68143207, 0, 0.13014588, 1), Color(1, 1, 1, 1), Color(0.6304856, 0, 0.17852741, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wnmbh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qsujs"]
+_data = {
+&"RESET": SubResource("Animation_wnmbh"),
+&"damage": SubResource("Animation_e0cuf")
+}
+
 [node name="SeaHorse" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_a3wtd")
@@ -233,6 +270,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_e0cuf")
 }
 autoplay = "idle_left"
+
+[node name="AnimationPlayer_Damage" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qsujs")
+}
 
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]

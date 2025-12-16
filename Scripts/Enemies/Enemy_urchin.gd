@@ -19,13 +19,12 @@ var shooting: bool = false
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
+@onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
 
 func _ready() -> void:
 	randomize()
 	var angle = randf() * TAU 
 	direction = Vector2(cos(angle), sin(angle)).normalized()
-	var mat := icon.material
-	icon.material = mat.duplicate()
 
 func _physics_process(delta: float) -> void:
 	if knockback_velocity.length() > 1:
@@ -85,11 +84,11 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	if not audio_hit.playing:
 		audio_hit.play()
 	health-=damage
+	animation_player_damage.play("damage")
 	# Knockback
 	var direction = (global_position - attacker_pos).normalized()
 	knockback_velocity = direction * attacker_knockback
 	#direction *= -1
-	flash_damage()
 	if health <= 0:
 		die()
 	print("health:", health)
@@ -100,10 +99,3 @@ func die() -> void:
 	death_effect.global_position = global_position
 	queue_free()
 	pass
-
-
-func flash_damage():
-	var mat := icon.material
-	mat.set("shader_param/hit_flash", 1.0)
-	await get_tree().create_timer(0.12).timeout
-	mat.set("shader_param/hit_flash", 0.0)
