@@ -29,6 +29,8 @@ var state: State = State.HIDDEN
 @onready var reveal_timer: Timer = $RevealTimer
 @onready var chase_timer: Timer = $ChaseTimer
 @onready var hide_lock_timer: Timer = $HideLockTimer
+@onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
+@onready var audio_inmortal: AudioStreamPlayer2D = $AudioStreamPlayer_Inmortal
 
 
 
@@ -106,6 +108,7 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	if state == State.HIDDEN:
 		hide_locked = true
 		hide_lock_timer.start(3.0)
+		audio_inmortal.play()
 		return
 
 	# Si ya está muriendo, no hacer nada
@@ -114,6 +117,7 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 
 	health -= damage
 	audio_hit.play()
+	animation_player_damage.play("damage")
 
 	# Si sigue vivo → se esconde
 	if health > 0:

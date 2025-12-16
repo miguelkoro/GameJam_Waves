@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var direction: int = 1
 @export var knockback: float = 100 #Efecto de echar para atras al jugador al golpearle
 @export var health: float = 3
+@onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
 
 
 
@@ -24,8 +25,8 @@ func _ready() -> void:
 		patrol_mode = PatrolMode.HORIZONTAL
 	#if animated_sprite.material:
 	#	animated_sprite.material_override = animated_sprite.material.duplicate()
-	var mat := animated_sprite.material
-	animated_sprite.material = mat.duplicate()
+	#var mat := animated_sprite.material
+	#animated_sprite.material = mat.duplicate()
 		
 func _physics_process(delta: float) -> void:
 	#Movemos horizontalmente el enemigo
@@ -64,7 +65,8 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	# Knockback
 	var direction = (global_position - attacker_pos).normalized()
 	knockback_velocity = direction * attacker_knockback
-	flash_damage()
+	#flash_damage()
+	animation_player_damage.play("damage")
 	if health <= 0:
 		die()
 	print("health:", health)

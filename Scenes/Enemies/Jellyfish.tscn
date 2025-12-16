@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://qxnsc00hb5ae"]
+[gd_scene load_steps=22 format=3 uid="uid://qxnsc00hb5ae"]
 
 [ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Enemies/Jellyfish.png" id="1_cytm7"]
 [ext_resource type="Script" uid="uid://bs0o5bo8i3ovo" path="res://Scripts/Enemies/Enemy_Jellyfish.gd" id="1_ebxm7"]
@@ -100,6 +100,43 @@ radius = 12.0
 radius = 9.0
 height = 22.0
 
+[sub_resource type="Animation" id="Animation_py107"]
+resource_name = "damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.53745896, 0, 0.073713206, 1), Color(1, 1, 1, 1), Color(0.5174277, 0, 0.16498286, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_in4u0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_33lq7"]
+_data = {
+&"RESET": SubResource("Animation_in4u0"),
+&"damage": SubResource("Animation_py107")
+}
+
 [node name="Jellyfish" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_ebxm7")
@@ -148,6 +185,11 @@ debug_color = Color(0.8478625, 0.0009508711, 0.90637434, 0.41960785)
 
 [node name="AudioStreamPlayer_hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_n6vec")
+
+[node name="AnimationPlayer_Damage" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_33lq7")
+}
 
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]
