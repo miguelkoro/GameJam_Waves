@@ -10,8 +10,8 @@ func _ready() -> void:
 	damage = 10
 	fire_rate = 0.3
 	bullet_speed = 600.0
-	max_total_ammo=60
-	total_ammo=60
+	max_total_ammo=40
+	total_ammo=40
 	magazine_size=10
 	ammo_in_mag=10
 	reload_time = 1.5

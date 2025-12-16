@@ -7,11 +7,11 @@ func _ready() -> void:
 	
 	weapon_name = "Pistola Láser"
 	weapon_type = WeaponType.RANGED
-	damage = 20
+	damage = 7
 	fire_rate = 0.5
 	bullet_speed = 800.0
-	max_total_ammo=80
-	total_ammo=80
+	max_total_ammo=60
+	total_ammo=60
 	magazine_size=10
 	ammo_in_mag=10
 	reload_time = 0.1

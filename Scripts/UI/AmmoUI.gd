@@ -44,6 +44,7 @@ func _update_ammo_display() -> void:
 		ammo_label.text = ""
 		show_reload_message(false)
 
+@warning_ignore("shadowed_variable_base_class")
 func show_reload_message(show: bool) -> void:
 	if not reload_panel:
 		return

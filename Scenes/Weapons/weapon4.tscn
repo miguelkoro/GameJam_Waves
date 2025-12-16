@@ -1,20 +1,92 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcbk0cv7r7jbn"]
+[gd_scene load_steps=12 format=3 uid="uid://bcbk0cv7r7jbn"]
 
 [ext_resource type="PackedScene" uid="uid://bwxe1ttcg1iro" path="res://Scenes/Weapons/weapons.tscn" id="1_fhetv"]
+[ext_resource type="Script" uid="uid://dewk3klf1aaoe" path="res://Scripts/Weapons/weapon4.gd" id="2_51rbr"]
+[ext_resource type="AudioStream" uid="uid://cv0gstpwjenwd" path="res://Audios/chains.mp3" id="3_htlfe"]
+[ext_resource type="Texture2D" uid="uid://bkn1nxanlpu1t" path="res://Sprites/Weapons/weapon4.png" id="3_kst4d"]
+[ext_resource type="Texture2D" uid="uid://bggbivre8weqc" path="res://Sprites/Weapons/chains.png" id="4_avpkb"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_fhetv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_kst4d"]
+atlas = ExtResource("3_kst4d")
+region = Rect2(0, 204, 470, 204)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj5aq"]
+atlas = ExtResource("3_kst4d")
+region = Rect2(0, 204, 470, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kst4d"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kst4d")
+}],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj5aq")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_51rbr"]
+size = Vector2(49.75, 18)
+
+[sub_resource type="Gradient" id="Gradient_5ixxa"]
+offsets = PackedFloat32Array(0, 0.5, 0.70666665)
+colors = PackedColorArray(1, 1, 1, 1, 0.18627453, 0.18627453, 0.18627453, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_avpkb"]
+gradient = SubResource("Gradient_5ixxa")
+fill = 1
+fill_from = Vector2(0.5, 0.5046729)
+
 [node name="Weapons" instance=ExtResource("1_fhetv")]
+script = ExtResource("2_51rbr")
+attack_distance = 120.0
+attack_duration = 0.6
+return_speed_multiplier = 1.5
 
-[node name="MuzzlePosition" parent="." index="0"]
-position = Vector2(19, 0)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(6, -8)
+scale = Vector2(0.12367126, 0.19883579)
+sprite_frames = SubResource("SpriteFrames_kst4d")
+animation = &"moving"
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
-sprite_frames = SubResource("SpriteFrames_fhetv")
-animation = &"idle"
+[node name="SwordHitbox" type="Area2D" parent="AnimatedSprite2D" index="0"]
+position = Vector2(0, -4.796291e-06)
+scale = Vector2(8.085953, 5.0292754)
+collision_layer = 8
+collision_mask = 5
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/SwordHitbox" index="0"]
+position = Vector2(3, 6)
+shape = SubResource("RectangleShape2D_51rbr")
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D" index="1"]
+position = Vector2(161.71909, 35.204933)
+scale = Vector2(3.6316903, 3.0146375)
+color = Color(0.9990373, 0.772047, 0.46663582, 0.4745098)
+texture = SubResource("GradientTexture2D_avpkb")
+
+[node name="Line2D" type="Line2D" parent="." index="1"]
+z_index = 1
+texture_repeat = 2
+position = Vector2(-39, -1)
+points = PackedVector2Array(-5, -1, 19, -1, 28, -1, 36, -1, 42, -1)
+width = 15.0
+default_color = Color(1, 0.13725491, 0.21568628, 1)
+texture = ExtResource("4_avpkb")
+texture_mode = 1
+
+[node name="MuzzlePosition" parent="." index="2"]
+position = Vector2(3, -2)
+
+[node name="AudioStreamPlayer2D" parent="." index="5"]
+stream = ExtResource("3_htlfe")
+volume_db = 10.0

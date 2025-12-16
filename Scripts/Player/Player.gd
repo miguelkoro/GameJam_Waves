@@ -31,7 +31,7 @@ func _ready() -> void:
 	attack_hitbox.visible = false
 	attack_hitbox.monitoring = false
 	
-	#Equipar arma inicial (weapon1).
+	#Equipar arma inicial.
 	equip_weapon(preload("res://Scenes/Weapons/weapon3.tscn"))
 
 func _physics_process(delta: float) -> void:
