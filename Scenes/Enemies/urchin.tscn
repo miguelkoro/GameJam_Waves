@@ -161,6 +161,7 @@ radius = 12.0
 height = 52.0
 
 [node name="Urchin" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
 script = ExtResource("1_ip3uh")
 
 [node name="Shadow" type="Sprite2D" parent="."]

@@ -11,10 +11,11 @@ script = ExtResource("3_f8j8t")
 bullet_scene = ExtResource("2_7llsw")
 
 [node name="MuzzlePosition" parent="." index="0"]
-position = Vector2(16, -2)
+position = Vector2(15, -2)
 
 [node name="weapon_sprite" type="Sprite2D" parent="." index="3"]
-scale = Vector2(0.034568787, 0.024032587)
+position = Vector2(1.1920929e-07, 0)
+scale = Vector2(0.03193283, 0.024032587)
 texture = ExtResource("2_f8j8t")
 script = ExtResource("3_f8j8t")
 bullet_scene = ExtResource("2_7llsw")

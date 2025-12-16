@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var knockback: float = 100
 @export var spike_shoot_interval: float = 6.0  
 @export var spike_speed: float = 160
-@export var health: float = 3
+@export var health: float = 300
 
 var spike_scene: PackedScene = load("res://Scenes/spike.tscn")
 const ENEMY_DEATH = preload("uid://bcnpf5g14p543")

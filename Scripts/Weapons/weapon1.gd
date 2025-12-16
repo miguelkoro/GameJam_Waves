@@ -23,7 +23,7 @@ func _flip_sprite() -> void:
 	var mouse_pos = get_global_mouse_position()
 	var player_pos = get_parent().get_parent().global_position  # Asumiendo WeaponPosition -> Player
 	
-	# Si el mouse está a la izquierda del jugador, voltear
+	# Si el mouse está a la izquierda del jugador, girar
 	if mouse_pos.x < player_pos.x:
 		weapon_sprite.flip_v = true
 	else:

@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="1_as6yf"]
 [ext_resource type="Script" uid="uid://bu1gu6jox02y7" path="res://Scripts/Menus/pause_menu.gd" id="1_tf3q2"]
-[ext_resource type="Shader" path="res://Shaders/pause_menu.gdshader" id="2_yeo1y"]
+[ext_resource type="Shader" uid="uid://83ik5mwqxr1r" path="res://Shaders/pause_menu.gdshader" id="2_yeo1y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tf3q2"]
 shader = ExtResource("2_yeo1y")
@@ -113,7 +113,6 @@ _data = {
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

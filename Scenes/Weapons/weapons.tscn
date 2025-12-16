@@ -6,7 +6,7 @@
 script = ExtResource("1_a3qxo")
 
 [node name="MuzzlePosition" type="Marker2D" parent="."]
-position = Vector2(14, -2)
+position = Vector2(13, 0)
 
 [node name="Timer" type="Timer" parent="."]
 

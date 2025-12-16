@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c24mj370yrudd"]
+[gd_scene load_steps=9 format=3 uid="uid://c24mj370yrudd"]
 
 [ext_resource type="Script" uid="uid://c65jk0j0p761p" path="res://Scripts/UI/hearts_ui.gd" id="1_v1ije"]
 [ext_resource type="Texture2D" uid="uid://c8mwlsofbjnej" path="res://Sprites/UI/heart.png" id="2_rqfrp"]
@@ -6,6 +6,11 @@
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="4_1isjq"]
 [ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/UI/label.gd" id="5_l7p21"]
 [ext_resource type="Script" uid="uid://ubrkalxw30s6" path="res://Scripts/UI/AmmoUI.gd" id="6_rqfrp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqfrp"]
+bg_color = Color(0.003921569, 0.003921569, 0.003921569, 0)
+
+[sub_resource type="GDScript" id="GDScript_46khp"]
 
 [node name="GUI" type="CanvasLayer" groups=["GUI"]]
 
@@ -71,12 +76,16 @@ layout_mode = 2
 
 [node name="AmmoLabel" type="Label" parent="Control/AmoUI/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7882353, 0.2784314, 0.05490196, 1)
+theme_override_font_sizes/font_size = 24
 
 [node name="ReloadPane" type="Panel" parent="Control/AmoUI"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rqfrp")
+script = SubResource("GDScript_46khp")
 
 [node name="ReloadLabel" type="Label" parent="Control/AmoUI/ReloadPane"]
-modulate = Color(0.056291588, 0.056291603, 0.056291595, 1)
+modulate = Color(0.7882353, 0.2784314, 0.05490196, 1)
 layout_mode = 0
 offset_left = -64.0
 offset_top = 69.0

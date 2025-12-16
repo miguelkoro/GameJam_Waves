@@ -12,10 +12,8 @@ func _ready() -> void:
 	call_deferred("_find_player")
 
 func _find_player():
-	# Buscar al jugador en el árbol
 	var player = get_tree().get_first_node_in_group("Player")
 	if player:
-		# Aquí conectaremos las señales cuando las añadamos
 		pass
 
 func _process(_delta: float) -> void:
@@ -33,8 +31,7 @@ func _update_ammo_display():
 	# Mostrar munición solo para armas de rango
 	if current_weapon.weapon_type == Weapon.WeaponType.RANGED:
 		if current_weapon.is_reloading:
-			ammo_label.text = "Recargando..."
-			show_reload_message(false)  # Ocultar el mensaje de "Pulsa R"
+			show_reload_message(false)  # Ocultar el mensaje de "Pulsa R para recargar"
 		else:
 			ammo_label.text = str(current_weapon.current_ammo) + " / " + str(current_weapon.max_ammo)
 			
@@ -52,7 +49,7 @@ func show_reload_message(show: bool):
 	if reload_panel:
 		reload_panel.visible = show
 		
-		# Animación parpadeante opcional
+		# Animación que parpadea
 		if show and not reload_panel.has_meta("tween_running"):
 			_start_blink_animation()
 		elif not show and reload_panel.has_meta("tween_running"):

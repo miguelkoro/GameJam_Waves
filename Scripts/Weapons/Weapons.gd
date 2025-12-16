@@ -4,7 +4,7 @@ class_name Weapon
 # Referencias a nodos (OPCIONALES porque no todas las armas los tienen)
 @onready var muzzle_position: Marker2D = $MuzzlePosition if has_node("MuzzlePosition") else null
 @onready var timer: Timer = $Timer if has_node("Timer") else null
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D =$AudioStreamPlayer2D if has_node("AudioStreamPlayer2D") else null
 
 # Propiedades comunes
 @export var weapon_name: String = "Base Weapon"
@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	# Voltear sprite (cada arma lo implementará a su manera)
 	_flip_sprite()
 
-# Función virtual para voltear sprite (cada arma la sobrescribe)
+# Función virtual para girar sprite (cada arma la sobrescribe)
 func _flip_sprite() -> void:
 	# Las armas hijas sobrescribirán esto
 	pass
