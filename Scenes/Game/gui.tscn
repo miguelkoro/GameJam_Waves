@@ -75,7 +75,8 @@ layout_mode = 2
 [node name="AmmoLabel" type="Label" parent="Control/AmoUI/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7882353, 0.2784314, 0.05490196, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("4_1isjq")
+theme_override_font_sizes/font_size = 45
 
 [node name="ReloadPane" type="Panel" parent="Control/AmoUI"]
 layout_mode = 2
@@ -84,9 +85,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rqfrp")
 [node name="ReloadLabel" type="Label" parent="Control/AmoUI/ReloadPane"]
 modulate = Color(0.7882353, 0.2784314, 0.05490196, 1)
 layout_mode = 0
-offset_left = -64.0
-offset_top = 69.0
-offset_right = 188.0
-offset_bottom = 114.0
-theme_override_font_sizes/font_size = 24
+offset_left = -66.0
+offset_top = 72.0
+offset_right = 375.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("4_1isjq")
+theme_override_font_sizes/font_size = 40
 text = "Pulsa R para recargar"
