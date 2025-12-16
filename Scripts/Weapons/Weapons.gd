@@ -54,7 +54,6 @@ func _flip_sprite() -> void:
 func shoot() -> void:
 	if not can_shoot or is_reloading:
 		return
-
 	if weapon_type == WeaponType.RANGED:
 		_shoot_ranged()
 	elif weapon_type == WeaponType.MELEE:
@@ -70,17 +69,13 @@ func shoot() -> void:
 	if timer:
 		timer.start()
 
-
 func _shoot_ranged() -> void:
 	if ammo_in_mag <= 0:
 		emit_signal("out_of_ammo")
 		return
-
 	_spawn_bullet()
-
 	ammo_in_mag -= 1
 	total_ammo -= 1
-
 	emit_signal("ammo_changed", ammo_in_mag, total_ammo)
 
 func _attack_melee() -> void:
@@ -94,7 +89,6 @@ func _spawn_bullet() -> void:
 	get_tree().root.add_child(bullet)
 	bullet.global_position = muzzle_position.global_position
 	bullet.rotation = rotation
-
 	if bullet.has_method("initialize"):
 		bullet.initialize(bullet_speed, damage)
 
@@ -102,30 +96,23 @@ func _spawn_bullet() -> void:
 func reload() -> void:
 	if weapon_type != WeaponType.RANGED:
 		return
-
 	if is_reloading:
 		return
-
 	# No recargar si no hace falta o no hay balas
 	if ammo_in_mag == magazine_size or total_ammo <= 0:
 		return
-
 	is_reloading = true
 	emit_signal("reload_started")
 	gun_reload.play()
 	await get_tree().create_timer(reload_time).timeout
-
 	var missing = magazine_size - ammo_in_mag
 	var ammo_to_load = min(missing, total_ammo)
-
 	ammo_in_mag += ammo_to_load
-
 	is_reloading = false
 	emit_signal("reload_finished")
 	emit_signal("ammo_changed", ammo_in_mag, total_ammo)
 
 #Timer
-
 func _on_timer_timeout() -> void:
 	can_shoot = true
 

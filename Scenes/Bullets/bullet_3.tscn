@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://m3kdnux077g"]
+
+[ext_resource type="Texture2D" uid="uid://00etm4w2qhat" path="res://Sprites/Ammunition/cat_bullet.png" id="1_n2ddf"]
+[ext_resource type="Script" uid="uid://bwvjlyv3j6y6h" path="res://Scripts/Bullets/flame_stream.gd" id="2_xr25j"]
+
+[sub_resource type="Curve" id="Curve_xr25j"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.9856115, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i6aah"]
+curve = SubResource("Curve_xr25j")
+
+[sub_resource type="Curve" id="Curve_n2ddf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.91007197, 0.9613671), 0.0, 0.0, 0, 0, Vector2(0.96043164, 0.22734034), 0.0, 0.0, 0, 0, Vector2(0.9856115, 0.014858961), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_xr25j"]
+curve = SubResource("Curve_n2ddf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xr25j"]
+particle_flag_disable_z = true
+angle_min = -9.9999895
+angle_max = 10.0000105
+spread = 40.0
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.03
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_xr25j")
+alpha_curve = SubResource("CurveTexture_i6aah")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xr25j"]
+radius = 6.0
+height = 14.0
+
+[node name="FlameStream" type="Node2D"]
+script = ExtResource("2_xr25j")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+rotation = 0.0049757464
+emitting = false
+amount = 70
+texture = ExtResource("1_n2ddf")
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_xr25j")
+
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+shape = SubResource("CapsuleShape2D_xr25j")

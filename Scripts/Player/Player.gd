@@ -32,7 +32,7 @@ func _ready() -> void:
 	attack_hitbox.monitoring = false
 	
 	#Equipar arma inicial (weapon1).
-	equip_weapon(preload("res://Scenes/Weapons/weapon2.tscn"))
+	equip_weapon(preload("res://Scenes/Weapons/weapon3.tscn"))
 
 func _physics_process(delta: float) -> void:
 	if inactive:
@@ -51,11 +51,16 @@ func _physics_process(delta: float) -> void:
 		return  # Evita que se mueva mientras ataca
 		
 		# -------- DISPAROS DEL ARMA CON CLICK DERECHO --------
-	if Input.is_action_just_pressed("shoot") and current_weapon and !hurt:
-		shooting = true		
+	if Input.is_action_pressed("shoot") and current_weapon and not hurt:
+		if not shooting:
+			shooting = true
 		current_weapon.shoot()
-		await get_tree().create_timer(0.3).timeout
+
+# Disparo soltado
+	if Input.is_action_just_released("shoot") and current_weapon:
 		shooting = false
+		if current_weapon.has_method("stop_shooting"):
+			current_weapon.stop_shooting()
 	
 	# -------- RECARGAR ARMA PULSANDO TECLA R -------- 
 	#Implementar que aparezca una R cuando se acaben las balas.
