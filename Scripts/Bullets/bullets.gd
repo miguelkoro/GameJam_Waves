@@ -32,9 +32,7 @@ func initialize(bullet_speed: float, bullet_damage: int) -> void:
 	direction = Vector2.RIGHT.rotated(rotation)
 
 # Cuando colisiona con un área (hitbox de los enemigos AttackHitBox)
-func _on_area_entered(area: Area2D) -> void:
-	print("DEBUG: Bala chocó con Area2D: ", area.name, " | Grupos: ", area.get_groups())
-	
+func _on_area_entered(area: Area2D) -> void:	
 	# Si el área pertenece a un enemigo
 	if area.is_in_group("Enemy"):
 		# El parent del Area2D es el CharacterBody2D del enemigo

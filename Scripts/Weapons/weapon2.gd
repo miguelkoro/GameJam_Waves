@@ -10,10 +10,13 @@ func _ready() -> void:
 	damage = 20
 	fire_rate = 0.5
 	bullet_speed = 800.0
-	max_ammo = 80
-	current_ammo = 10
+	max_total_ammo=80
+	total_ammo=80
+	magazine_size=10
+	ammo_in_mag=10
 	reload_time = 0.1
 	bullet_scene = preload("res://Scenes/Bullets/bullet2.tscn")  
+	
 
 func _flip_sprite() -> void:
 	if not weapon_sprite:
