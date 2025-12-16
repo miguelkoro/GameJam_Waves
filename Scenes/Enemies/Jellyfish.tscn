@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://qxnsc00hb5ae"]
+[gd_scene load_steps=20 format=3 uid="uid://qxnsc00hb5ae"]
 
 [ext_resource type="Texture2D" uid="uid://c4u63xkad60y2" path="res://Sprites/Enemies/Jellyfish.png" id="1_cytm7"]
 [ext_resource type="Script" uid="uid://bs0o5bo8i3ovo" path="res://Scripts/Enemies/Enemy_Jellyfish.gd" id="1_ebxm7"]
@@ -18,30 +18,6 @@ fill_to = Vector2(1, 1)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m07os"]
 radius = 8.0
 height = 16.0
-
-[sub_resource type="Shader" id="Shader_724dr"]
-code = "shader_type canvas_item;
-
-uniform float hit_flash : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 tex = texture(TEXTURE, UV);
-
-	// Mezcla del color original con un blanco fuerte según el valor del flash
-	tex.rgb = mix(tex.rgb, vec3(1.0), hit_flash);
-
-	COLOR = tex;
-}
-
-//void light() {
-//	// Called for every pixel for every light affecting the CanvasItem.
-//	// Uncomment to replace the default light processing function with this one.
-//}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6vec"]
-shader = SubResource("Shader_724dr")
-shader_parameter/hit_flash = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebxm7"]
 atlas = ExtResource("1_cytm7")
@@ -100,22 +76,6 @@ radius = 12.0
 radius = 9.0
 height = 22.0
 
-[sub_resource type="Animation" id="Animation_py107"]
-resource_name = "damage"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4, 0.56666666),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0.53745896, 0, 0.073713206, 1), Color(1, 1, 1, 1), Color(0.5174277, 0, 0.16498286, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_in4u0"]
 length = 0.001
 tracks/0/type = "value"
@@ -129,6 +89,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_py107"]
+resource_name = "damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13117078, 0.13333334, 0.26666668, 0.4, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.544961, 0.016219199, 0.08873683, 1), Color(0.53745896, 0, 0.073713206, 1), Color(1, 1, 1, 1), Color(0.5174277, 0, 0.16498286, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_33lq7"]
@@ -155,7 +131,6 @@ position = Vector2(-1, 0)
 texture = ExtResource("2_m07os")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_n6vec")
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_e6vho")
 autoplay = "default"

@@ -29,12 +29,11 @@ var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
 @onready var explosion_area: Area2D = $ExplosionArea
 @onready var audio_bip: AudioStreamPlayer2D = $AudioStreamPlayer_Bip
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
 
 func _ready() -> void:
 	randomize()
 	_start_wander()
-	var mat := animated_sprite.material
-	animated_sprite.material = mat.duplicate()
 
 func _restart_wander_timer():
 	wander_timer.wait_time = randf_range(min_wander_time, max_wander_time)
@@ -105,10 +104,10 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	if not audio_hit.playing:
 		audio_hit.play()
 	health-=damage
+	animation_player_damage.play("damage")
 	# Knockback
 	var direction = (global_position - attacker_pos).normalized()
 	knockback_velocity = direction * attacker_knockback
-	flash_damage()
 	if health <= 0:
 		state = State.DEAD
 		die()
@@ -164,11 +163,6 @@ func _explode():
 	navigation_agent.target_position = global_position
 	queue_free()
 
-func flash_damage():
-	var mat := animated_sprite.material
-	mat.set("shader_param/hit_flash", 1.0)
-	await get_tree().create_timer(0.12).timeout
-	mat.set("shader_param/hit_flash", 0.0)
 
 
 func _on_wander_timer_timeout() -> void:

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var speed: float = 50
 @export var direction: int = 1
 @export var knockback: float = 100 #Efecto de echar para atras al jugador al golpearle
-@export var health: float = 3
+@export var health: float = 6
 @onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
 
 
@@ -78,10 +78,3 @@ func die() -> void:
 	death_effect.countEnemy = false
 	queue_free()
 	pass
-
-
-func flash_damage():
-	var mat := animated_sprite.material
-	mat.set("shader_param/hit_flash", 1.0)
-	await get_tree().create_timer(0.12).timeout
-	mat.set("shader_param/hit_flash", 0.0)

@@ -1,33 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dwo113wvy1q4h"]
+[gd_scene load_steps=18 format=3 uid="uid://dwo113wvy1q4h"]
 
 [ext_resource type="Script" uid="uid://b6ec37lwwwyke" path="res://Scripts/Enemies/Enemy_urchin.gd" id="1_ip3uh"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_rdmt3"]
 [ext_resource type="Texture2D" uid="uid://clqjl8ra6navw" path="res://Sprites/Enemies/PupperFish.png" id="3_xramv"]
 [ext_resource type="AudioStream" uid="uid://bpw5hpam3lt6q" path="res://Audios/hit.ogg" id="4_xramv"]
-
-[sub_resource type="Shader" id="Shader_rdmt3"]
-code = "shader_type canvas_item;
-
-uniform float hit_flash : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 tex = texture(TEXTURE, UV);
-
-	// Mezcla del color original con un blanco fuerte según el valor del flash
-	tex.rgb = mix(tex.rgb, vec3(1.0), hit_flash);
-
-	COLOR = tex;
-}
-
-//void light() {
-//	// Called for every pixel for every light affecting the CanvasItem.
-//	// Uncomment to replace the default light processing function with this one.
-//}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_75682"]
-shader = SubResource("Shader_rdmt3")
-shader_parameter/hit_flash = 0.0
 
 [sub_resource type="Gradient" id="Gradient_m07os"]
 offsets = PackedFloat32Array(0, 0.7133333)
@@ -160,6 +136,43 @@ _data = {
 radius = 12.0
 height = 52.0
 
+[sub_resource type="Animation" id="Animation_xramv"]
+resource_name = "damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16912171, 0.26896465, 0.43604875, 0.59702003),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.5351769, 0, 0.11312687, 1), Color(1, 1, 1, 1), Color(0.5138763, 0, 0.13198623, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uxghh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Icon:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75682"]
+_data = {
+&"RESET": SubResource("Animation_uxghh"),
+&"damage": SubResource("Animation_xramv")
+}
+
 [node name="Urchin" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_ip3uh")
@@ -169,7 +182,6 @@ position = Vector2(0, 4)
 texture = ExtResource("2_rdmt3")
 
 [node name="Icon" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_75682")
 position = Vector2(0, -21)
 texture = ExtResource("3_xramv")
 flip_h = true
@@ -218,6 +230,11 @@ debug_color = Color(0.7490196, 0.4627451, 0, 0.3137255)
 
 [node name="AudioStreamPlayer_hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_xramv")
+
+[node name="AnimationPlayer_Damage" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_75682")
+}
 
 [connection signal="area_entered" from="AttackHitBox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

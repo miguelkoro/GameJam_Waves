@@ -35,6 +35,7 @@ const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
 @onready var audio_hit: AudioStreamPlayer2D = $AudioStreamPlayer_hit
+@onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
 
 func _ready() -> void:
 	randomize()
@@ -144,6 +145,7 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	if not audio_hit.playing:
 		audio_hit.play()
 	health-=damage
+	animation_player_damage.play("damage")
 	# Knockback
 	var direction = (global_position - attacker_pos).normalized()
 	knockback_velocity = direction * attacker_knockback

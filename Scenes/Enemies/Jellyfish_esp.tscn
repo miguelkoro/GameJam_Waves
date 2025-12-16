@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://das1b50eygmx8"]
+[gd_scene load_steps=28 format=3 uid="uid://das1b50eygmx8"]
 
 [ext_resource type="Script" uid="uid://da76lsbq70rgu" path="res://Scripts/Enemies/Enemy_Jellyfish_Esp.gd" id="1_4t5cf"]
 [ext_resource type="Texture2D" uid="uid://dyqeb36ox6iv0" path="res://Sprites/Player/PlayerShadow.png" id="2_gyx5k"]
@@ -19,30 +19,6 @@ fill_to = Vector2(1, 1)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m07os"]
 radius = 8.0
 height = 16.0
-
-[sub_resource type="Shader" id="Shader_724dr"]
-code = "shader_type canvas_item;
-
-uniform float hit_flash : hint_range(0.0, 1.0) = 0.0;
-
-void fragment() {
-	vec4 tex = texture(TEXTURE, UV);
-
-	// Mezcla del color original con un blanco fuerte según el valor del flash
-	tex.rgb = mix(tex.rgb, vec3(1.0), hit_flash);
-
-	COLOR = tex;
-}
-
-//void light() {
-//	// Called for every pixel for every light affecting the CanvasItem.
-//	// Uncomment to replace the default light processing function with this one.
-//}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n6vec"]
-shader = SubResource("Shader_724dr")
-shader_parameter/hit_flash = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gyx5k"]
 atlas = ExtResource("3_4t5cf")
@@ -151,6 +127,43 @@ height = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_4t5cf"]
 radius = 40.1995
 
+[sub_resource type="Animation" id="Animation_in4u0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_py107"]
+resource_name = "damage"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13117078, 0.13333334, 0.26666668, 0.4, 0.56666666),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.544961, 0.016219199, 0.08873683, 1), Color(0.53745896, 0, 0.073713206, 1), Color(1, 1, 1, 1), Color(0.5174277, 0, 0.16498286, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_33lq7"]
+_data = {
+&"RESET": SubResource("Animation_in4u0"),
+&"damage": SubResource("Animation_py107")
+}
+
 [node name="Jellyfish_esp" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_4t5cf")
@@ -169,12 +182,11 @@ position = Vector2(-1, 0)
 texture = ExtResource("2_gyx5k")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_n6vec")
 position = Vector2(0, -18)
 sprite_frames = SubResource("SpriteFrames_e6vho")
 animation = &"arming"
 autoplay = "default"
-frame_progress = 0.948341
+frame_progress = 0.6978006
 
 [node name="HurtBox" type="Area2D" parent="." groups=["Enemy"]]
 position = Vector2(0, -18)
@@ -229,6 +241,11 @@ bus = &"Effects"
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 radius = 14.0
+
+[node name="AnimationPlayer_Damage" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_33lq7")
+}
 
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]
