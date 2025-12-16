@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
 
 
+const DAMAGE_PARTICLES = preload("uid://onmuslgsuqmh")
 
 enum PatrolMode {HORIZONTAL, VERTICAL}
 @export var patrol_mode: PatrolMode = PatrolMode.VERTICAL
@@ -62,6 +63,11 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	if not audio_hit.playing:
 		audio_hit.play()
 	health-=damage
+	
+	var particles = DAMAGE_PARTICLES.instantiate()
+	particles.global_position = global_position
+	get_parent().add_child(particles)
+	
 	# Knockback
 	var direction = (global_position - attacker_pos).normalized()
 	knockback_velocity = direction * attacker_knockback

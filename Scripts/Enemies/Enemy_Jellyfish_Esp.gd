@@ -16,6 +16,7 @@ enum PatrolMode {HORIZONTAL, VERTICAL}
 @export var patrol_mode: PatrolMode = PatrolMode.VERTICAL
 const ENEMY_EXPLOSION = preload("uid://csqr4g8qay5p2")
 const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
+const DAMAGE_PARTICLES = preload("uid://onmuslgsuqmh")
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 var knockback_velocity: Vector2 = Vector2.ZERO
@@ -104,6 +105,11 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	if not audio_hit.playing:
 		audio_hit.play()
 	health-=damage
+	
+	var particles = DAMAGE_PARTICLES.instantiate()
+	particles.global_position = global_position
+	get_parent().add_child(particles)
+	
 	animation_player_damage.play("damage")
 	# Knockback
 	var direction = (global_position - attacker_pos).normalized()

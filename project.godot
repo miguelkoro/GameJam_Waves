@@ -24,6 +24,8 @@ GameManager="*res://Singletons/GameManager.gd"
 
 folder_colors={
 "res://Animations/": "teal",
+"res://Audios/": "gray",
+"res://Particles/": "green",
 "res://Scenes/": "red",
 "res://Scripts/": "purple",
 "res://Shaders/": "pink",

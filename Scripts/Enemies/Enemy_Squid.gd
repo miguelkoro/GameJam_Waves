@@ -30,6 +30,7 @@ var can_shoot: bool = true
 @onready var shadow: Node2D = $Shadow
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+const DAMAGE_PARTICLES = preload("uid://onmuslgsuqmh")
 
 const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
 var knockback_velocity: Vector2 = Vector2.ZERO
@@ -146,6 +147,11 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 		audio_hit.play()
 	health-=damage
 	animation_player_damage.play("damage")
+	
+	var particles = DAMAGE_PARTICLES.instantiate()
+	particles.global_position = global_position
+	get_parent().add_child(particles)
+	
 	# Knockback
 	var direction = (global_position - attacker_pos).normalized()
 	knockback_velocity = direction * attacker_knockback

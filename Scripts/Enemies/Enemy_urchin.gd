@@ -20,6 +20,7 @@ var shooting: bool = false
 var knockback_velocity: Vector2 = Vector2.ZERO
 var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
 @onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
+const DAMAGE_PARTICLES = preload("uid://onmuslgsuqmh")
 
 func _ready() -> void:
 	randomize()
@@ -85,6 +86,11 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 		audio_hit.play()
 	health-=damage
 	animation_player_damage.play("damage")
+	
+	var particles = DAMAGE_PARTICLES.instantiate()
+	particles.global_position = global_position
+	get_parent().add_child(particles)
+	
 	# Knockback
 	var direction = (global_position - attacker_pos).normalized()
 	knockback_velocity = direction * attacker_knockback

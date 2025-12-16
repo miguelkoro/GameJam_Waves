@@ -32,6 +32,7 @@ var state: State = State.HIDDEN
 @onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
 @onready var audio_inmortal: AudioStreamPlayer2D = $AudioStreamPlayer_Inmortal
 
+const DAMAGE_PARTICLES = preload("uid://onmuslgsuqmh")
 
 
 func _ready():
@@ -114,7 +115,11 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	# Si ya está muriendo, no hacer nada
 	if state == State.DEAD:
 		return
-
+		
+	var particles = DAMAGE_PARTICLES.instantiate()
+	particles.global_position = global_position
+	get_parent().add_child(particles)
+	
 	health -= damage
 	audio_hit.play()
 	animation_player_damage.play("damage")

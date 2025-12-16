@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://onmuslgsuqmh"]
+
+[ext_resource type="Script" uid="uid://dix08hen0fu5l" path="res://Particles/particles.gd" id="1_3h2tm"]
+
+[sub_resource type="Gradient" id="Gradient_00ir3"]
+offsets = PackedFloat32Array(0, 0.30666667, 0.44666666, 0.58666664)
+colors = PackedColorArray(0.670748, 0, 0.18488225, 1, 0.9999922, 0.39993614, 0.30900997, 0.42745098, 0.32771352, 0.008744692, 0, 0.65882355, 0.9689297, 0.13069248, 0.3356606, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s2peq"]
+gradient = SubResource("Gradient_00ir3")
+fill = 1
+fill_from = Vector2(0.5, 0.48598132)
+fill_to = Vector2(0.5607477, 0.41588786)
+
+[sub_resource type="Curve" id="Curve_56qy1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.43939394, 0.764045), 0.0, 0.0, 0, 0, Vector2(0.74242425, 0.516854), 0.0, 0.0, 0, 0, Vector2(0.92424244, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_jxpjy"]
+curve = SubResource("Curve_56qy1")
+
+[sub_resource type="Curve" id="Curve_00ir3"]
+_data = [Vector2(0.0075757504, 0.6067416), 0.0, 0.0, 0, 0, Vector2(1, 0.033707857), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_s2peq"]
+curve = SubResource("Curve_00ir3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_brq73"]
+lifetime_randomness = 0.24
+particle_flag_disable_z = true
+angle_min = -177.9
+angle_max = 177.90001
+inherit_velocity_ratio = 0.284
+spread = 73.889
+flatness = 0.148
+angular_velocity_min = -152.47002
+angular_velocity_max = 143.98997
+radial_velocity_min = -400.0
+radial_velocity_max = 235.29997
+gravity = Vector3(0, 98, 0)
+linear_accel_min = -29.410002
+linear_accel_max = 29.409998
+scale_min = 0.0
+scale_max = 5.8799996
+scale_curve = SubResource("CurveTexture_s2peq")
+color = Color(1, 0.30588236, 0.44705883, 0.94509804)
+alpha_curve = SubResource("CurveTexture_jxpjy")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+emitting = false
+amount = 17
+texture = SubResource("GradientTexture2D_s2peq")
+lifetime = 1.25
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.75
+randomness = 0.36
+process_material = SubResource("ParticleProcessMaterial_brq73")
+script = ExtResource("1_3h2tm")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

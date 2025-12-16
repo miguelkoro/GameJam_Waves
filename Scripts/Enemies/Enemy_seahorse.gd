@@ -17,6 +17,7 @@ var player: Node2D = null
 var charge_direction := Vector2.ZERO
 
 const ENEMY_DEATH = preload("uid://bcnpf5g14p543")
+const DAMAGE_PARTICLES = preload("uid://onmuslgsuqmh")
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -121,6 +122,11 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 		audio_hit.play()
 	health-=damage
 	animation_player_damage.play("damage")
+	
+	var particles = DAMAGE_PARTICLES.instantiate()
+	particles.global_position = global_position
+	get_parent().add_child(particles)
+	
 	# Knockback
 	#var direction = (global_position - attacker_pos).normalized()
 	#knockback_velocity = direction * attacker_knockback
