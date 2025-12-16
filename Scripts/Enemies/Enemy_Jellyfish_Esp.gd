@@ -28,6 +28,7 @@ var knockback_decay: float = 50.0 # Qué rápido se frena el knockback
 @onready var wander_timer: Timer = $WanderTimer
 @onready var explosion_area: Area2D = $ExplosionArea
 @onready var audio_bip: AudioStreamPlayer2D = $AudioStreamPlayer_Bip
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 func _ready() -> void:
 	randomize()
@@ -53,30 +54,45 @@ func _physics_process(delta: float) -> void:
 	#	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
 	#else:
 	match state:
-		State.WANDER:				
+		State.WANDER:
 			velocity = direction * wander_speed
 			if is_on_wall() or is_on_ceiling() or is_on_floor():
 				_pick_random_direction()
+
 		State.CHASE:
 			if player:
-				velocity = (player.global_position - global_position). normalized() * chase_speed
-		State.ARMING:
+				navigation_agent.target_position = player.global_position
+				_chase_player()
+
+		State.ARMING, State.DEAD:
 			velocity = Vector2.ZERO
-		State.DEAD:
-			velocity = Vector2.ZERO
+	#navigation_agent.set_velocity(velocity)
 	move_and_slide()
 	
 	#Si hay colision con un muro, que se de la vuelta
-	if patrol_mode == PatrolMode.HORIZONTAL and is_on_wall():
-		direction *= -1
-	elif patrol_mode == PatrolMode.VERTICAL:
-		if is_on_ceiling() or is_on_floor():
-			direction *= -1
+	#if patrol_mode == PatrolMode.HORIZONTAL and is_on_wall():
+	#	direction *= -1
+	#elif patrol_mode == PatrolMode.VERTICAL:
+	#	if is_on_ceiling() or is_on_floor():
+	#		direction *= -1
 
+#func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+#	if state != State.CHASE:
+#		return
+#	velocity = safe_velocity.normalized() * chase_speed
+func _chase_player():
+	if navigation_agent.is_navigation_finished():
+		velocity = Vector2.ZERO
+		return
+
+	var next_pos := navigation_agent.get_next_path_position()
+	var dir := (next_pos - global_position).normalized()
+	velocity = dir * chase_speed
 	
 func _pick_random_direction():
 	var angle = randf() * TAU
 	direction = Vector2(cos(angle), sin(angle)).normalized()
+	velocity = direction * wander_speed
 
 #Si detecta otras areas, hay que usar area_entered
 func _on_attack_hitbox_area_entered(area: Area2D) -> void:
@@ -99,19 +115,26 @@ func take_damage(damage: float, attacker_pos: Vector2, attacker_knockback: float
 	print("health:", health)
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and state == State.WANDER:
+	if body.is_in_group("Player"):
+		print("rdffsfd")
 		player = body
 		state = State.CHASE
+		navigation_agent.target_position = player.global_position
 
 
 		
 func _process(delta: float) -> void:
 	if state == State.CHASE and player:
+		navigation_agent.target_position = player.global_position
+
 		if global_position.distance_to(player.global_position) < 32:
 			_start_arming()
 
 func _start_arming():
 	state = State.ARMING
+	velocity = Vector2.ZERO
+	navigation_agent.set_velocity(Vector2.ZERO)
+	navigation_agent.target_position = global_position
 	animated_sprite.play("arming")
 	audio_bip.play()
 	explosion_timer.start()
@@ -121,6 +144,7 @@ func die() -> void:
 	get_parent().add_child(death_effect)
 	death_effect.global_position = global_position
 	death_effect.countEnemy = true
+	navigation_agent.target_position = global_position
 	queue_free()
 
 func _on_explosion_timer_timeout():
@@ -137,6 +161,7 @@ func _explode():
 	get_parent().add_child(death_effect)
 	death_effect.global_position = global_position
 	death_effect.countEnemy = true
+	navigation_agent.target_position = global_position
 	queue_free()
 
 func flash_damage():

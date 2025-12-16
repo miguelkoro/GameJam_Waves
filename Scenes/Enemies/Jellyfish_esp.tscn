@@ -204,11 +204,12 @@ stream = ExtResource("4_3whcr")
 [node name="ExplosionTimer" type="Timer" parent="."]
 
 [node name="DetectionArea" type="Area2D" parent="."]
-scale = Vector2(3.0399978, 2.1200004)
+scale = Vector2(2.1999965, 1.6800001)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+scale = Vector2(3.2763166, 4.018868)
 shape = SubResource("CircleShape2D_4t5cf")
 
 [node name="ExplosionArea" type="Area2D" parent="."]
@@ -225,9 +226,12 @@ shape = SubResource("CircleShape2D_4t5cf")
 stream = ExtResource("5_gyx5k")
 bus = &"Effects"
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 14.0
+
 [connection signal="area_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_area_entered"]
 [connection signal="body_entered" from="AttackHitbox" to="." method="_on_attack_hitbox_body_entered"]
 [connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_entered" from="ExplosionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="timeout" from="WanderTimer" to="." method="_on_wander_timer_timeout"]
