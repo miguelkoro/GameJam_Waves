@@ -19,14 +19,12 @@ func _flip_sprite() -> void:
 	if not weapon_sprite:
 		return
 	
-	var angle = rotation_degrees
+	# Obtener posición del mouse y del jugador
+	var mouse_pos = get_global_mouse_position()
+	var player_pos = get_parent().get_parent().global_position  # Asumiendo WeaponPosition -> Player
 	
-	while angle > 180:
-		angle -= 360
-	while angle < -180:
-		angle += 360
-	
-	if angle > 90 or angle < -90:
+	# Si el mouse está a la izquierda del jugador, voltear
+	if mouse_pos.x < player_pos.x:
 		weapon_sprite.flip_v = true
 	else:
 		weapon_sprite.flip_v = false

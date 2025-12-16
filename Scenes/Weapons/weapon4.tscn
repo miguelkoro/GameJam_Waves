@@ -1,7 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcbk0cv7r7jbn"]
+[gd_scene load_steps=3 format=3 uid="uid://bcbk0cv7r7jbn"]
 
 [ext_resource type="PackedScene" uid="uid://bwxe1ttcg1iro" path="res://Scenes/Weapons/weapons.tscn" id="1_fhetv"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhetv"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="Weapons" instance=ExtResource("1_fhetv")]
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
+[node name="MuzzlePosition" parent="." index="0"]
+position = Vector2(19, 0)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_fhetv")
+animation = &"idle"

@@ -29,6 +29,10 @@ enum WeaponType {
 	MELEE     # Espadas, hachas, etc.
 }
 
+signal ammo_changed(current: int, max: int)
+signal reload_started()
+signal reload_finished()
+
 func _ready() -> void:
 	if timer:
 		timer.wait_time = fire_rate
@@ -66,10 +70,12 @@ func shoot() -> void:
 # Función virtual para armas de rango
 func _shoot_ranged() -> void:
 	if current_ammo <= 0:
+		emit_signal("ammo_changed", current_ammo, max_ammo)
 		return
 	
 	_spawn_bullet()
 	current_ammo -= 1
+	emit_signal("ammo_changed", current_ammo, max_ammo)
 
 # Función para armas cuerpo a cuerpo
 func _attack_melee() -> void:
@@ -98,9 +104,12 @@ func reload() -> void:
 		return
 	
 	is_reloading = true
+	emit_signal("reload_started")
 	await get_tree().create_timer(reload_time).timeout
 	current_ammo = max_ammo
 	is_reloading = false
+	emit_signal("reload_finished")
+	emit_signal("ammo_changed", current_ammo, max_ammo)
 
 func _on_timer_timeout() -> void:
 	can_shoot = true

@@ -14,3 +14,17 @@ func _ready() -> void:
 	current_ammo = 10
 	reload_time = 0.1
 	bullet_scene = preload("res://Scenes/Bullets/bullet2.tscn")  
+
+func _flip_sprite() -> void:
+	if not weapon_sprite:
+		return
+	
+	# Obtener posición del mouse y del jugador
+	var mouse_pos = get_global_mouse_position()
+	var player_pos = get_parent().get_parent().global_position  # Asumiendo WeaponPosition -> Player
+	
+	# Si el mouse está a la izquierda del jugador, voltear
+	if mouse_pos.x < player_pos.x:
+		weapon_sprite.flip_v = true
+	else:
+		weapon_sprite.flip_v = false
