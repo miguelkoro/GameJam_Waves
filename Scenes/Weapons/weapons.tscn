@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwxe1ttcg1iro"]
+[gd_scene load_steps=3 format=3 uid="uid://bwxe1ttcg1iro"]
 
 [ext_resource type="Script" uid="uid://dfbjdtos5rk7e" path="res://Scripts/Weapons/Weapons.gd" id="1_a3qxo"]
+[ext_resource type="AudioStream" uid="uid://cwrwfybdvu11a" path="res://Audios/empty.mp3" id="2_e5s1b"]
 
 [node name="Weapons" type="Node2D"]
 script = ExtResource("1_a3qxo")
@@ -13,3 +14,8 @@ position = Vector2(13, 0)
 [node name="ReloadTimer" type="Timer" parent="."]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="empty" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_e5s1b")
+
+[node name="gun_reload" type="AudioStreamPlayer2D" parent="."]

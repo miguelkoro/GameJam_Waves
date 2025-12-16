@@ -17,7 +17,6 @@ func _ready() -> void:
 	reload_time = 0.1
 	bullet_scene = preload("res://Scenes/Bullets/bullet2.tscn")  
 	
-
 func _flip_sprite() -> void:
 	if not weapon_sprite:
 		return

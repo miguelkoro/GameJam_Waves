@@ -8,6 +8,7 @@ class_name Weapon
 @export var damage: int = 10
 @export var fire_rate: float = 0.5
 @export var weapon_type: WeaponType = WeaponType.RANGED
+@onready var empty: AudioStreamPlayer2D = $empty
 
 
 @export var bullet_speed: float = 500.0
@@ -17,11 +18,10 @@ class_name Weapon
 @export var ammo_in_mag: int = 12       # Balas actuales en el cargador
 @export var reload_time: float = 2.0
 @export var bullet_scene: PackedScene
+@onready var gun_reload: AudioStreamPlayer2D = $gun_reload
 
 var can_shoot: bool = true
 var is_reloading: bool = false
-
-
 enum WeaponType {
 	RANGED,
 	MELEE
@@ -49,6 +49,7 @@ func _process(delta: float) -> void:
 
 func _flip_sprite() -> void:
 	pass
+	
 #Disparo
 func shoot() -> void:
 	if not can_shoot or is_reloading:
@@ -59,12 +60,16 @@ func shoot() -> void:
 	elif weapon_type == WeaponType.MELEE:
 		_attack_melee()
 
-	if audio_stream_player_2d:
+	# Solo suena si hay balas (RANGED) o es MELEE
+	if audio_stream_player_2d and (weapon_type == WeaponType.MELEE or ammo_in_mag > 0):
 		audio_stream_player_2d.play()
+	else:
+		empty.play()
 
 	can_shoot = false
 	if timer:
 		timer.start()
+
 
 func _shoot_ranged() -> void:
 	if ammo_in_mag <= 0:
@@ -107,7 +112,7 @@ func reload() -> void:
 
 	is_reloading = true
 	emit_signal("reload_started")
-
+	gun_reload.play()
 	await get_tree().create_timer(reload_time).timeout
 
 	var missing = magazine_size - ammo_in_mag
@@ -124,8 +129,7 @@ func reload() -> void:
 func _on_timer_timeout() -> void:
 	can_shoot = true
 
-# MÉTODOS AUXILIARES
-
+# MÉTODOS AUXILIARES.
 func add_ammo(amount: int) -> void:
 	total_ammo = min(total_ammo + amount, max_total_ammo)
 	emit_signal("ammo_changed", ammo_in_mag, total_ammo)

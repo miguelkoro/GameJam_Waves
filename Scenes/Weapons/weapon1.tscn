@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6aseai6bggqo"]
+[gd_scene load_steps=6 format=3 uid="uid://b6aseai6bggqo"]
 
 [ext_resource type="PackedScene" uid="uid://bwxe1ttcg1iro" path="res://Scenes/Weapons/weapons.tscn" id="1_w5ecp"]
 [ext_resource type="Texture2D" uid="uid://85ogp7bwaeo8" path="res://Sprites/Weapons/weapon1.png" id="2_f8j8t"]
 [ext_resource type="Script" uid="uid://wuw0m4d1466y" path="res://Scripts/Weapons/weapon1.gd" id="3_f8j8t"]
 [ext_resource type="AudioStream" uid="uid://wrfqgnkry83u" path="res://Audios/shotgun.mp3" id="5_8cd8t"]
+[ext_resource type="AudioStream" uid="uid://bqxnf81p3m0s7" path="res://Audios/gun_reload.mp3" id="5_jkp71"]
 
 [node name="Weapons" instance=ExtResource("1_w5ecp")]
 script = ExtResource("3_f8j8t")
@@ -18,3 +19,6 @@ texture = ExtResource("2_f8j8t")
 
 [node name="AudioStreamPlayer2D" parent="." index="4"]
 stream = ExtResource("5_8cd8t")
+
+[node name="gun_reload" parent="." index="6"]
+stream = ExtResource("5_jkp71")
