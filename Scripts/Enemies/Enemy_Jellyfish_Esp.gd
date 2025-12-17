@@ -4,7 +4,7 @@ extends CharacterBody2D
 #@export var speed: float = 50
 @export var direction: Vector2 = Vector2.ZERO
 @export var knockback: float = 100 #Efecto de echar para atras al jugador al golpearle
-@export var health: float = 3
+@export var health: float = 8
 
 enum State {WANDER, CHASE, ARMING, DEAD}
 var state: State = State.WANDER

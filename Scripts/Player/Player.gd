@@ -20,7 +20,7 @@ var shooting: bool = false
 @export var invulnerabilityTime: float = 1.5 # Tiempo que es invulnerable
 var external_force: Vector2 = Vector2.ZERO #Esto lo uso para poder mover al personaje en aguas con corriente
 @onready var sprite_2d: Sprite2D = $Sprite2D #Para usar el shader del sprite y ponerle parpadeo cuando es invulnerable
-@onready var screen_fade: ColorRect = $CanvasLayer/ScreenFade
+#@onready var screen_fade: ColorRect = $CanvasLayer/ScreenFade
 @onready var attack_hitbox: Area2D = $AttackHitbox
 @onready var weapon_position: Marker2D = $WeaponPosition
 
@@ -85,12 +85,14 @@ func _physics_process(delta: float) -> void:
 
 func equip_weapon(weapon_scene: PackedScene) -> void:
 	# Eliminar arma anterior si existe
-	if current_weapon:
+	var newWeapon = weapon_scene.instantiate()
+	if current_weapon:		
 		current_weapon.queue_free()
-	
+		newWeapon._get_data()		
 	# Instanciar nueva arma
-	current_weapon = weapon_scene.instantiate()
+	current_weapon = newWeapon
 	weapon_position.add_child(current_weapon)
+	PlayerStats.change_weapon(weapon_scene)
 	
 	print("Arma equipada: ", current_weapon.weapon_name)
 

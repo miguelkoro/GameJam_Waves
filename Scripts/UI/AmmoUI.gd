@@ -1,8 +1,9 @@
 extends MarginContainer
 
 @onready var ammo_label: Label = $HBoxContainer/AmmoLabel
-@onready var reload_panel: Panel = $ReloadPane
-@onready var reload_label: Label = $ReloadPane/ReloadLabel
+@onready var reload_panel: Panel = $HBoxContainer/ReloadPane
+@onready var reload_label: Label = $HBoxContainer/ReloadPane/ReloadLabel
+@onready var ammo_container: HBoxContainer = $HBoxContainer
 
 var current_weapon: Weapon = null
 var player: Node = null
@@ -20,18 +21,21 @@ func _process(_delta: float) -> void:
 	_update_ammo_display()
 
 func _update_ammo_display() -> void:
-	if not player or not player.current_weapon:
+	#if not player or not player.current_weapon:
+	if not PlayerStats.current_weapon:
 		ammo_label.text = ""
 		show_reload_message(false)
+		ammo_container.visible = false
 		return
-
+	ammo_container.visible = true
+	player = get_tree().get_first_node_in_group("Player")
 	current_weapon = player.current_weapon
 
 	# Solo mostrar munición para armas a distancia
 	if current_weapon.weapon_type == Weapon.WeaponType.RANGED:
 		
 		# Texto cargador / total
-		ammo_label.text = "Munición: " + str(current_weapon.ammo_in_mag) + " / " + str(current_weapon.total_ammo)
+		ammo_label.text =  str(current_weapon.ammo_in_mag) + " / " + str(current_weapon.total_ammo)
 		# Mostrar aviso de recarga
 		if current_weapon.is_reloading:
 			show_reload_message(false)

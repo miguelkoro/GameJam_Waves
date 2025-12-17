@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var speed: float = 50
 @export var direction: int = 1
 @export var knockback: float = 100 #Efecto de echar para atras al jugador al golpearle
-@export var health: float = 3
+@export var health: float = 5
 @export var hidding: bool = true #Para ver cuando esta oculto y por tanto es inmortal
 #@export var hide_lock: bool = false #Si lo golpeas mientras esta escondido, se mantendrá oculto otro poco
 var hide_locked := false

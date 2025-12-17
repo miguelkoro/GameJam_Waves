@@ -53,7 +53,7 @@ func _create_map() -> void:
 			
 			var n = noise.get_noise_2d(x/sc, y/sc)
 			n = (n+1) * 0.5
-			print(n)
+			#print(n)
 			#Vemos la probabilidad de un obstaculo grande
 			if n > obstacle_threshold:
 				_try_place_large_obstacle(x,y) #Probamos a ver si cabe el obstaculo
@@ -78,7 +78,6 @@ func _try_place_rock(x:int, y:int) -> void:
 	rock.global_position = pos
 	y_sort.add_child(rock)
 	
-	# --- 🔴 RECORTE DE NAVIGACIÓN ---
 	# Posición en mundo alineada a tile
 	var nav_world_pos := initial_position.global_position \
 		+ Vector2(x * TILE_SIZE, y * TILE_SIZE)

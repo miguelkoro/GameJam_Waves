@@ -47,7 +47,7 @@ process_material = SubResource("ParticleProcessMaterial_xr25j")
 
 [node name="DamageArea" type="Area2D" parent="."]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("CapsuleShape2D_xr25j")

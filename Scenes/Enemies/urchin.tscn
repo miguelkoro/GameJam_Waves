@@ -218,7 +218,8 @@ libraries = {
 autoplay = "idle_Right"
 
 [node name="HurtBox" type="Area2D" parent="." groups=["Enemy"]]
-position = Vector2(0, -18)
+position = Vector2(-1, -25)
+scale = Vector2(1.2799997, 1.4400007)
 collision_layer = 32
 collision_mask = 8
 

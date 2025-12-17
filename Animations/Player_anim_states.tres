@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=42 format=3 uid="uid://cffl8pntr8tt8"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=41 format=3 uid="uid://cffl8pntr8tt8"]
 
 [ext_resource type="AnimationNodeBlendSpace2D" uid="uid://c368uty5tuwvb" path="res://Animations/Player_idle_blend.tres" id="1_pvbtg"]
 
@@ -180,11 +180,7 @@ switch_mode = 2
 advance_mode = 2
 advance_expression = "!shooting"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t2s8e"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lh2u2"]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e7afn"]
 advance_mode = 2
 
 [resource]
@@ -199,5 +195,5 @@ states/Run/position = Vector2(403, 166)
 states/Shoot/node = SubResource("AnimationNodeBlendSpace2D_pvbtg")
 states/Shoot/position = Vector2(725, 156)
 states/Start/position = Vector2(140, 139)
-transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_iok00"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_3evi4"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_pvbtg"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_jbdks"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_j1n0r"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_tgfr7"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_dy78i"), "Shoot", "Idle", SubResource("AnimationNodeStateMachineTransition_f3if5"), "Run", "Shoot", SubResource("AnimationNodeStateMachineTransition_anpor"), "Shoot", "Run", SubResource("AnimationNodeStateMachineTransition_b0oku"), "Start", "Get_Up", SubResource("AnimationNodeStateMachineTransition_t2s8e"), "Get_Up", "Idle", SubResource("AnimationNodeStateMachineTransition_lh2u2")]
+transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_iok00"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_3evi4"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_pvbtg"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_jbdks"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_j1n0r"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_tgfr7"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_dy78i"), "Shoot", "Idle", SubResource("AnimationNodeStateMachineTransition_f3if5"), "Run", "Shoot", SubResource("AnimationNodeStateMachineTransition_anpor"), "Shoot", "Run", SubResource("AnimationNodeStateMachineTransition_b0oku"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_e7afn")]
 graph_offset = Vector2(-141, -50.884617)

@@ -11,7 +11,10 @@ var last_health:float = health #Para poder comparar en la gui si se ha perdido o
 
 signal health_changed(last_health: float, health: float)
 
-var current_weapon
+var current_weapon: PackedScene
+var magacineAmmo: int = 0 #Municion en el cartucho
+var totalAmmo: int = 0 #Municio total del arma
+#var max_total_ammo: int = 00   # Máximo de balas totales (reserva)
 
 func change_weapon(weapon):
 	current_weapon = weapon

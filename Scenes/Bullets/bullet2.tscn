@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bgxi6mqxi118r"]
 
 [ext_resource type="PackedScene" uid="uid://j17dk1wy0ah1" path="res://Scenes/Bullets/bullets.tscn" id="1_10rdi"]
-[ext_resource type="Script" uid="uid://butop4lpwo6kb" path="res://Scripts/Bullets/bullet2.gd" id="2_ao850"]
+[ext_resource type="Script" path="res://Scripts/Bullets/bullet2.gd" id="2_ao850"]
 [ext_resource type="Texture2D" uid="uid://xnkjpuh5kxd8" path="res://Sprites/Ammunition/bullet2.png" id="2_qk0fv"]
 [ext_resource type="Texture2D" uid="uid://db7h3xjrgooxk" path="res://Sprites/Lights/Flare_small.PNG" id="4_a35uu"]
 

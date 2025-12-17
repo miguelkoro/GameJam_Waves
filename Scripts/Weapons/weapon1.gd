@@ -16,6 +16,14 @@ func _ready() -> void:
 	ammo_in_mag=10
 	reload_time = 1.5
 	bullet_scene = preload("res://Scenes/Bullets/bullet1.tscn")
+	_get_data()
+
+func _set_data() -> void:
+	ammo_in_mag=10
+	total_ammo=40
+func _get_data() -> void:
+		ammo_in_mag = PlayerStats.magacineAmmo		
+		total_ammo = PlayerStats.totalAmmo     # Balas totales actuales
 
 func _flip_sprite() -> void:
 	if not weapon_sprite:

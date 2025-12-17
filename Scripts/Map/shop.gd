@@ -61,6 +61,7 @@ func buy_weapon(weapon_scene: PackedScene, price: int) -> void:
 	GameManager.remove_currency(price)
 	player.equip_weapon(weapon_scene)
 	PlayerStats.current_weapon = weapon_scene
+	player.current_weapon._set_data()
 	player.inactive = false
 	canvas_layer.visible = false
 	gui.visible = true

@@ -5,7 +5,7 @@ class_name Weapon
 @onready var timer: Timer = $Timer if has_node("Timer") else null
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D if has_node("AudioStreamPlayer2D") else null
 @export var weapon_name: String = "Base Weapon"
-@export var damage: int = 10
+@export var damage: int = 1
 @export var fire_rate: float = 0.5
 @export var weapon_type: WeaponType = WeaponType.RANGED
 @onready var empty: AudioStreamPlayer2D = $empty
@@ -46,6 +46,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 	_flip_sprite()
+	#update_singleton() #Esto deberia hacerse con señales y de otra forma, esto no es eficiente
+	
+func update_singleton() -> void:
+	PlayerStats.totalAmmo = total_ammo
+	PlayerStats.magacineAmmo = ammo_in_mag
+
+
 
 func _flip_sprite() -> void:
 	pass
@@ -56,6 +63,7 @@ func shoot() -> void:
 		return
 	if weapon_type == WeaponType.RANGED:
 		_shoot_ranged()
+		update_singleton()
 	elif weapon_type == WeaponType.MELEE:
 		_attack_melee()
 
@@ -76,6 +84,7 @@ func _shoot_ranged() -> void:
 	_spawn_bullet()
 	ammo_in_mag -= 1
 	total_ammo -= 1
+
 	emit_signal("ammo_changed", ammo_in_mag, total_ammo)
 
 func _attack_melee() -> void:
@@ -108,6 +117,7 @@ func reload() -> void:
 	var missing = magazine_size - ammo_in_mag
 	var ammo_to_load = min(missing, total_ammo)
 	ammo_in_mag += ammo_to_load
+	update_singleton()
 	is_reloading = false
 	emit_signal("reload_finished")
 	emit_signal("ammo_changed", ammo_in_mag, total_ammo)
@@ -119,9 +129,11 @@ func _on_timer_timeout() -> void:
 # MÉTODOS AUXILIARES.
 func add_ammo(amount: int) -> void:
 	total_ammo = min(total_ammo + amount, max_total_ammo)
+	update_singleton()
 	emit_signal("ammo_changed", ammo_in_mag, total_ammo)
 
 func set_initial_ammo(total: int, mag: int) -> void:
 	total_ammo = min(total, max_total_ammo)
 	ammo_in_mag = min(mag, magazine_size)
+	update_singleton()
 	emit_signal("ammo_changed", ammo_in_mag, total_ammo)

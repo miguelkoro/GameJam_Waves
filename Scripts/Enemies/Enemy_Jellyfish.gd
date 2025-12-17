@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var speed: float = 50
 @export var direction: int = 1
 @export var knockback: float = 100 #Efecto de echar para atras al jugador al golpearle
-@export var health: float = 6
+@export var health: float = 7
 @onready var animation_player_damage: AnimationPlayer = $AnimationPlayer_Damage
 
 

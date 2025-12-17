@@ -40,6 +40,14 @@ func _ready() -> void:
 		sword_hitbox.area_entered.connect(_on_sword_hit_area)
 		sword_hitbox.body_entered.connect(_on_sword_hit_body)
 
+func _set_data() -> void:
+	ammo_in_mag=10
+	total_ammo=40
+
+func _get_data() -> void:
+		ammo_in_mag = PlayerStats.magacineAmmo		
+		total_ammo = PlayerStats.totalAmmo     # Balas totales actuales
+
 func _process(delta: float) -> void:
 	super._process(delta)
 	

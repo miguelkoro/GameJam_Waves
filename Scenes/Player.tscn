@@ -923,6 +923,7 @@ _data = {
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_dewec"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5ixxa"]
+graph_offset = Vector2(-1.9841919, 62.33441)
 nodes/output/position = Vector2(640, 100)
 nodes/PlayerStates/node = ExtResource("2_dewec")
 nodes/PlayerStates/position = Vector2(60, 100)
@@ -1016,13 +1017,6 @@ debug_color = Color(0.8886243, 0.00027261258, 0.8000676, 0.41960785)
 
 [node name="Timers" type="Node2D" parent="."]
 position = Vector2(0, -24)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ScreenFade" type="ColorRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0, 0, 0, 0.6666667)
 
 [node name="WeaponPosition" type="Marker2D" parent="."]
 position = Vector2(4, -8)

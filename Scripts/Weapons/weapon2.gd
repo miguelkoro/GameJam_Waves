@@ -7,7 +7,7 @@ func _ready() -> void:
 	
 	weapon_name = "Pistola Láser"
 	weapon_type = WeaponType.RANGED
-	damage = 7
+	damage = 2
 	fire_rate = 0.5
 	bullet_speed = 800.0
 	max_total_ammo=60
@@ -16,7 +16,16 @@ func _ready() -> void:
 	ammo_in_mag=10
 	reload_time = 0.1
 	bullet_scene = preload("res://Scenes/Bullets/bullet2.tscn")  
+	_get_data()
 	
+func _set_data() -> void:
+	ammo_in_mag=10
+	total_ammo=60
+
+func _get_data() -> void:
+		ammo_in_mag = PlayerStats.magacineAmmo		
+		total_ammo = PlayerStats.totalAmmo     # Balas totales actuales
+
 func _flip_sprite() -> void:
 	if not weapon_sprite:
 		return

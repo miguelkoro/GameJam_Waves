@@ -9,7 +9,7 @@ func _ready() -> void:
 	
 	weapon_name = "Lanzagatos"
 	weapon_type = WeaponType.RANGED
-	damage = 5
+	damage = 3
 	fire_rate = 0.05 
 	reload_time = 2.0
 	max_total_ammo = 200
@@ -22,6 +22,15 @@ func _ready() -> void:
 		
 	if audio_stream_player_2d:
 		audio_stream_player_2d.finished.connect(_on_audio_finished)
+	_get_data()
+	
+func _set_data() -> void:
+	ammo_in_mag=100
+	total_ammo=200
+
+func _get_data() -> void:
+		ammo_in_mag = PlayerStats.magacineAmmo		
+		total_ammo = PlayerStats.totalAmmo     # Balas totales actuales
 
 func _process(_delta: float) -> void:
 	super._process(_delta)
