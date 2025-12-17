@@ -1,6 +1,6 @@
 extends Node
 
-var currency: int = 0
+var currency: int = 25
 var dropMulti: float = 1 #Multiplicador de items spawneados relacionados con el dinero
 var healingMulti: float = 1
 var enemiesMulti: float = 1
@@ -43,3 +43,12 @@ func checkCompleteRoom() -> bool:
 func death_currency():
 	var lost =  int(currency*0.2)
 	currency = max(0, currency - lost) #Para evitar que baje de 0
+
+func restart():
+	currency = 25
+	dropMulti = 1 
+	healingMulti = 1
+	enemiesMulti = 1
+	enemiesToDefeat = 0 
+	enemiesDefeated = 0 
+		

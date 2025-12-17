@@ -1,10 +1,14 @@
-[gd_scene load_steps=25 format=3 uid="uid://cl2r7k5r6qay1"]
+[gd_scene load_steps=29 format=3 uid="uid://cl2r7k5r6qay1"]
 
 [ext_resource type="Texture2D" uid="uid://b50jeswh5emie" path="res://Sprites/Town/Tienda_playa.png" id="1_kjfcx"]
 [ext_resource type="Script" uid="uid://bk508hx0y7a6s" path="res://Scripts/Map/shop.gd" id="1_sq27l"]
+[ext_resource type="PackedScene" uid="uid://b6aseai6bggqo" path="res://Scenes/Weapons/weapon1.tscn" id="2_5q5ly"]
 [ext_resource type="Texture2D" uid="uid://bak8g5kgr0cjd" path="res://Sprites/Town/seagull.png" id="2_iidq5"]
+[ext_resource type="PackedScene" uid="uid://ykcancnwrtpd" path="res://Scenes/Weapons/weapon2.tscn" id="3_7c3sg"]
 [ext_resource type="FontFile" uid="uid://bilc72o6ep70t" path="res://Fonts/PixelifySans-VariableFont_wght.ttf" id="3_lagin"]
+[ext_resource type="PackedScene" uid="uid://cmpxh1l0id178" path="res://Scenes/Weapons/weapon3.tscn" id="4_gvi4m"]
 [ext_resource type="AudioStream" uid="uid://csxkqqs6wab34" path="res://Audios/seagull.ogg" id="5_n3jhh"]
+[ext_resource type="PackedScene" uid="uid://bcbk0cv7r7jbn" path="res://Scenes/Weapons/weapon4.tscn" id="5_qf3hf"]
 [ext_resource type="Texture2D" uid="uid://bxhd7edm7waqw" path="res://Sprites/Town/shop_counter.png" id="6_n3jhh"]
 [ext_resource type="Texture2D" uid="uid://cllaqojstr6na" path="res://Sprites/Weapons/Weapon_Rifle_icon.png" id="7_80xwd"]
 [ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Items/Pearl_16.png" id="8_smrw6"]
@@ -121,6 +125,10 @@ corner_radius_bottom_left = 80
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_sq27l")
+weapon_1_scene = ExtResource("2_5q5ly")
+weapon_2_scene = ExtResource("3_7c3sg")
+weapon_3_scene = ExtResource("4_gvi4m")
+weapon_4_scene = ExtResource("5_qf3hf")
 
 [node name="AnimatedSprite2D_shop" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -26)
@@ -346,7 +354,7 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 71
-text = "X 25"
+text = "X 20"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item2"]
 layout_mode = 2
@@ -395,7 +403,7 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 71
-text = "X 25"
+text = "X 23"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item3"]
 layout_mode = 2
@@ -444,7 +452,7 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 71
-text = "X 25"
+text = "X 18"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4"]
 layout_mode = 2
@@ -489,6 +497,23 @@ theme_override_font_sizes/font_size = 54
 text = "x 0"
 script = ExtResource("10_smrw6")
 
+[node name="warning" type="Label" parent="CanvasLayer/Control"]
+visible = false
+modulate = Color(1, 0.09411765, 0, 1)
+layout_mode = 0
+offset_left = 216.0
+offset_top = 263.0
+offset_right = 1035.0
+offset_bottom = 432.0
+theme_override_fonts/font = ExtResource("3_lagin")
+theme_override_font_sizes/font_size = 54
+text = "No tienes suficientes perlas!"
+uppercase = true
+
 [connection signal="body_entered" from="ShowLabel" to="." method="_on_show_label_body_entered"]
 [connection signal="body_exited" from="ShowLabel" to="." method="_on_show_label_body_exited"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item/Button" to="." method="_on_button1_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item2/Button" to="." method="_on_button2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item3/Button" to="." method="_on_button3_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4/Button" to="." method="_on_button4_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/BackButton" to="." method="_on_back_button_pressed"]
