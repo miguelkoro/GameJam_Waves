@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dtqrv615xuf0p" path="res://Sprites/Weapons/weapon3.png" id="2_njent"]
 [ext_resource type="Script" uid="uid://cfjmv0k6qgmd2" path="res://Scripts/Weapons/weapon_3.gd" id="2_p7keq"]
 [ext_resource type="PackedScene" uid="uid://m3kdnux077g" path="res://Scenes/Bullets/bullet_3.tscn" id="3_edt7k"]
-[ext_resource type="AudioStream" uid="uid://dteuye4dw1ww0" path="res://Audios/angry-cat.mp3" id="5_yj3gy"]
+[ext_resource type="AudioStream" uid="uid://b1e34cbctmdcg" path="res://Audios/fire.mp3" id="5_yj3gy"]
 
 [node name="Weapons" instance=ExtResource("1_qa2nf")]
 script = ExtResource("2_p7keq")

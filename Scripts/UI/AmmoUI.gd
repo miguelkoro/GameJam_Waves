@@ -31,8 +31,7 @@ func _update_ammo_display() -> void:
 	if current_weapon.weapon_type == Weapon.WeaponType.RANGED:
 		
 		# Texto cargador / total
-		ammo_label.text = str(current_weapon.ammo_in_mag) + " / " + str(current_weapon.total_ammo)
-
+		ammo_label.text = "Munición: " + str(current_weapon.ammo_in_mag) + " / " + str(current_weapon.total_ammo)
 		# Mostrar aviso de recarga
 		if current_weapon.is_reloading:
 			show_reload_message(false)

@@ -63,10 +63,10 @@ script = ExtResource("5_l7p21")
 
 [node name="AmoUI" type="MarginContainer" parent="Control"]
 layout_mode = 0
-offset_left = 513.0
-offset_top = 3.0
-offset_right = 615.0
-offset_bottom = 43.0
+offset_left = 405.0
+offset_top = 8.0
+offset_right = 507.0
+offset_bottom = 63.0
 script = ExtResource("6_rqfrp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/AmoUI"]
@@ -76,7 +76,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7882353, 0.2784314, 0.05490196, 1)
 theme_override_fonts/font = ExtResource("4_1isjq")
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 35
 
 [node name="ReloadPane" type="Panel" parent="Control/AmoUI"]
 layout_mode = 2
@@ -85,10 +85,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_rqfrp")
 [node name="ReloadLabel" type="Label" parent="Control/AmoUI/ReloadPane"]
 modulate = Color(0.7882353, 0.2784314, 0.05490196, 1)
 layout_mode = 0
-offset_left = -66.0
-offset_top = 72.0
-offset_right = 375.0
-offset_bottom = 121.0
+offset_left = -64.0
+offset_top = 70.0
+offset_right = 377.0
+offset_bottom = 119.0
 theme_override_fonts/font = ExtResource("4_1isjq")
 theme_override_font_sizes/font_size = 40
 text = "Pulsa R para recargar"

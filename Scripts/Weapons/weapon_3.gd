@@ -10,7 +10,7 @@ func _ready() -> void:
 	weapon_name = "Lanzagatos"
 	weapon_type = WeaponType.RANGED
 	damage = 5
-	fire_rate = 0.05  # Muy rápido para simular continuo
+	fire_rate = 0.05 
 	reload_time = 2.0
 	max_total_ammo = 200
 	total_ammo = 200
@@ -19,6 +19,9 @@ func _ready() -> void:
 	# Asegurar que la llama esté apagada al inicio
 	if flame_stream:
 		flame_stream.stop_flame()
+		
+	if audio_stream_player_2d:
+		audio_stream_player_2d.finished.connect(_on_audio_finished)
 
 func _process(_delta: float) -> void:
 	super._process(_delta)
@@ -70,3 +73,8 @@ func _flip_sprite() -> void:
 func reload() -> void:
 	stop_shooting()
 	super.reload()
+
+func _on_audio_finished() -> void:
+	#Solo repetir si está disparando
+	if is_shooting and audio_stream_player_2d:
+		audio_stream_player_2d.play()
