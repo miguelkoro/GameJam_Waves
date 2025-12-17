@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 		#Activar curacion y meter al jugador en la caja
 		if Input.is_action_just_pressed("ui_accept"):
 			start_healing()
+			
 	else:
 		if Input.is_action_just_pressed("ui_accept"):
 			stop_healing()
@@ -32,6 +33,9 @@ func _process(delta: float) -> void:
 func start_healing() ->void:
 	if player == null:
 		return
+	if player.current_weapon:
+		player.current_weapon._set_data()
+		
 	healing = true
 	animated_sprite.play("full")
 	player.visible = false
