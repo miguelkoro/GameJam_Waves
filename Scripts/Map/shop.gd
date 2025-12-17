@@ -57,10 +57,10 @@ func buy_weapon(weapon_scene: PackedScene, price: int) -> void:
 		warning.visible = true
 		await get_tree().create_timer(1.0).timeout
 		warning.visible = false
-
 		return
 	GameManager.remove_currency(price)
 	player.equip_weapon(weapon_scene)
+	PlayerStats.current_weapon = weapon_scene
 	player.inactive = false
 	canvas_layer.visible = false
 	gui.visible = true

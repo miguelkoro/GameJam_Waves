@@ -11,6 +11,10 @@ var last_health:float = health #Para poder comparar en la gui si se ha perdido o
 
 signal health_changed(last_health: float, health: float)
 
+var current_weapon
+
+func change_weapon(weapon):
+	current_weapon = weapon
 #Funcion para contabilizar el daño recibido
 func take_damage(amount: float) -> void:
 	if health - amount <= 0:

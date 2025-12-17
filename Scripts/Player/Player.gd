@@ -32,7 +32,8 @@ func _ready() -> void:
 	attack_hitbox.monitoring = false
 	
 	#Equipar arma inicial.
-	equip_weapon(preload("res://Scenes/Weapons/weapon3.tscn"))
+	if PlayerStats.current_weapon:
+		equip_weapon(PlayerStats.current_weapon)
 
 func _physics_process(delta: float) -> void:
 	if inactive:
