@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cl2r7k5r6qay1"]
+[gd_scene load_steps=32 format=3 uid="uid://cl2r7k5r6qay1"]
 
 [ext_resource type="Texture2D" uid="uid://b50jeswh5emie" path="res://Sprites/Town/Tienda_playa.png" id="1_kjfcx"]
 [ext_resource type="Script" uid="uid://bk508hx0y7a6s" path="res://Scripts/Map/shop.gd" id="1_sq27l"]
@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://cdfjrv25j88kg" path="res://Sprites/Items/Pearl_16.png" id="8_smrw6"]
 [ext_resource type="Texture2D" uid="uid://c7khyucrixhmj" path="res://Sprites/UI/shop_icon.png" id="9_yurop"]
 [ext_resource type="Script" uid="uid://cjlaku3k7st51" path="res://Scripts/UI/label.gd" id="10_smrw6"]
+[ext_resource type="Texture2D" uid="uid://dh21c4wien0c2" path="res://Sprites/Weapons/weapon2.png" id="14_qf3hf"]
+[ext_resource type="Texture2D" uid="uid://dtqrv615xuf0p" path="res://Sprites/Weapons/weapon3.png" id="15_u72gk"]
+[ext_resource type="Texture2D" uid="uid://cd4ap7a5jrjvt" path="res://Sprites/Weapons/weapon4_shop.png" id="16_8wtl7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iidq5"]
 atlas = ExtResource("1_kjfcx")
@@ -335,7 +338,7 @@ text = "Weapon Name"
 [node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("7_80xwd")
+texture = ExtResource("14_qf3hf")
 expand_mode = 5
 stretch_mode = 5
 
@@ -384,7 +387,7 @@ text = "Weapon Name"
 [node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item3/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("7_80xwd")
+texture = ExtResource("15_u72gk")
 expand_mode = 5
 stretch_mode = 5
 
@@ -433,7 +436,7 @@ text = "Weapon Name"
 [node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("7_80xwd")
+texture = ExtResource("16_8wtl7")
 expand_mode = 5
 stretch_mode = 5
 
