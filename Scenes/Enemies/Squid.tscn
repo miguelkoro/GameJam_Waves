@@ -126,7 +126,7 @@ _data = {
 &"damage": SubResource("Animation_py107")
 }
 
-[node name="Squid" type="CharacterBody2D"]
+[node name="Squid" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_fwcaj")
 ink_scene = ExtResource("2_oh473")
