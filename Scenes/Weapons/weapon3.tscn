@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmpxh1l0id178"]
+[gd_scene load_steps=5 format=3 uid="uid://cmpxh1l0id178"]
 
 [ext_resource type="PackedScene" uid="uid://bwxe1ttcg1iro" path="res://Scenes/Weapons/weapons.tscn" id="1_qa2nf"]
 [ext_resource type="Texture2D" uid="uid://dtqrv615xuf0p" path="res://Sprites/Weapons/weapon3.png" id="2_njent"]
 [ext_resource type="Script" uid="uid://cfjmv0k6qgmd2" path="res://Scripts/Weapons/weapon_3.gd" id="2_p7keq"]
 [ext_resource type="PackedScene" uid="uid://m3kdnux077g" path="res://Scenes/Bullets/bullet_3.tscn" id="3_edt7k"]
-[ext_resource type="AudioStream" uid="uid://dteuye4dw1ww0" path="res://Audios/angry-cat.mp3" id="5_yj3gy"]
 
 [node name="Weapons" instance=ExtResource("1_qa2nf")]
 script = ExtResource("2_p7keq")
@@ -18,6 +17,3 @@ position = Vector2(32, -3)
 position = Vector2(-1.9073486e-06, 9.536743e-07)
 scale = Vector2(0.05013021, 0.0390625)
 texture = ExtResource("2_njent")
-
-[node name="AudioStreamPlayer2D" parent="." index="4"]
-stream = ExtResource("5_yj3gy")
