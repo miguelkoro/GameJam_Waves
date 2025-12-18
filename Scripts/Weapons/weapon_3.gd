@@ -29,8 +29,8 @@ func _set_data() -> void:
 	total_ammo=200
 
 func _get_data() -> void:
-		ammo_in_mag = PlayerStats.magacineAmmo		
-		total_ammo = PlayerStats.totalAmmo     # Balas totales actuales
+	ammo_in_mag = PlayerStats.magacineAmmo		
+	total_ammo = PlayerStats.totalAmmo     # Balas totales actuales
 
 func _process(_delta: float) -> void:
 	super._process(_delta)
