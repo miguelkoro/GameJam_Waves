@@ -67,13 +67,13 @@ func buy_weapon(weapon_scene: PackedScene, price: int) -> void:
 	gui.visible = true
 	
 func _on_button1_pressed() -> void:
-	buy_weapon(weapon_1_scene, 25)
+	buy_weapon(weapon_1_scene, 23)
 	
 func _on_button2_pressed() -> void:
 	buy_weapon(weapon_2_scene, 20)
 
 func _on_button3_pressed() -> void:
-	buy_weapon(weapon_3_scene, 23)
+	buy_weapon(weapon_3_scene, 18)
 	
 func _on_button4_pressed() -> void:
-	buy_weapon(weapon_4_scene, 18)
+	buy_weapon(weapon_4_scene, 25)
