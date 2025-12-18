@@ -5,7 +5,7 @@ class_name Bullet
 # Propiedades
 @export var max_lifetime: float = 3.0
 var speed: float = 500.0
-var damage: int = 10
+var damage: int = 2
 var direction: Vector2 = Vector2.RIGHT
 
 func _ready() -> void:

@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://db7h3xjrgooxk" path="res://Sprites/Lights/Flare_small.PNG" id="3_hctee"]
 
 [node name="Bullets" instance=ExtResource("1_u5ude")]
-collision_mask = 32
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="2"]
 position = Vector2(-0.08129772, -0.5)
