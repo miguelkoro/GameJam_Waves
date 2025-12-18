@@ -237,7 +237,6 @@ avoidance_enabled = true
 radius = 14.0
 neighbor_distance = 32.0
 max_neighbors = 4
-debug_enabled = true
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 0
