@@ -284,7 +284,7 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 41
-text = "Weapon Name"
+text = "       Fusil                "
 
 [node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item/VBoxContainer"]
 layout_mode = 2
@@ -308,7 +308,7 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 71
-text = "X 25"
+text = "X 23"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item"]
 layout_mode = 2
@@ -333,7 +333,7 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 41
-text = "Weapon Name"
+text = "Pistola Láser"
 
 [node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item2/VBoxContainer"]
 layout_mode = 2
@@ -382,7 +382,7 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 41
-text = "Weapon Name"
+text = "       Lanzagatos"
 
 [node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item3/VBoxContainer"]
 layout_mode = 2
@@ -406,7 +406,7 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 71
-text = "X 23"
+text = "X 18"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item3"]
 layout_mode = 2
@@ -431,7 +431,7 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 41
-text = "Weapon Name"
+text = "   Espada Caos"
 
 [node name="Icon" type="TextureRect" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4/VBoxContainer"]
 layout_mode = 2
@@ -455,7 +455,7 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_lagin")
 theme_override_font_sizes/font_size = 71
-text = "X 18"
+text = "X 25"
 
 [node name="Button" type="Button" parent="CanvasLayer/Control/VBoxContainer/ScrollContainer/ItemsContainer/Item4"]
 layout_mode = 2

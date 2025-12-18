@@ -22,7 +22,7 @@ func _ready() -> void:
 	# Configurar como arma cuerpo a cuerpo
 	weapon_name = "Espada Caos"
 	weapon_type = WeaponType.MELEE
-	damage = 30
+	damage = 3
 	fire_rate = 1  # Cooldown entre ataques
 	chain.visible = false
 	chain.clear_points()

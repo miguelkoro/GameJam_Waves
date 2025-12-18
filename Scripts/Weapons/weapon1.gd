@@ -7,7 +7,7 @@ func _ready() -> void:
 	
 	weapon_name = "Fusil"
 	weapon_type = WeaponType.RANGED
-	damage = 10
+	damage = 4
 	fire_rate = 0.3
 	bullet_speed = 600.0
 	max_total_ammo=40
