@@ -22,8 +22,8 @@ func _set_data() -> void:
 	ammo_in_mag=10
 	total_ammo=40
 func _get_data() -> void:
-		ammo_in_mag = PlayerStats.magacineAmmo		
-		total_ammo = PlayerStats.totalAmmo     # Balas totales actuales
+	ammo_in_mag = PlayerStats.magacineAmmo		
+	total_ammo = PlayerStats.totalAmmo     # Balas totales actuales
 
 func _flip_sprite() -> void:
 	if not weapon_sprite:
