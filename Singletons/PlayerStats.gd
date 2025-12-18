@@ -54,3 +54,14 @@ func screen_ink_effect() -> void: #Este metodo deberia refactorizarlo y meterlo 
 	if screen == null:
 		return
 	screen._ink_effect()
+	
+func restart() -> void:
+	health = 2.5 
+	last_health = health 
+	agility = 150 #Velocidad a la que se mueve
+	strenght = 1 #Daño que hace a los enemigos (mas luego lo que haga el arma de daño)
+	endurance = 50 #Resistencia a los ataques
+	knockback = 50 #Retroceso que aplica a los enemigos
+	current_weapon = null
+	magacineAmmo = 0 #Municion en el cartucho
+	totalAmmo = 0 

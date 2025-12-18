@@ -65,6 +65,7 @@ func _on_restart_pressed() -> void:
 	resume()
 	get_tree().reload_current_scene()
 	GameManager.restart()
+	PlayerStats.restart()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
