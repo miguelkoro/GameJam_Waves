@@ -63,7 +63,7 @@ func _on_resume_pressed() -> void:
 
 func _on_restart_pressed() -> void:
 	resume()
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://Scenes/Town/Town.tscn")
 	GameManager.restart()
 	PlayerStats.restart()
 
